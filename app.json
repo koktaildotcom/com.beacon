@@ -1,0 +1,73 @@
+{
+	"id": "com.koktail.beacon",
+	"version": "1.0.0",
+	"compatibility": ">=1.5.8",
+	"sdk": 2,
+	"brandColor": "#FF0000",
+	"name": {
+		"en": "Beacon"
+	},
+	"description": {
+		"en": "Adds support for BLE beacons"
+	},
+	"category": [
+		"localization"
+	],
+	"permissions": [],
+	"images": {
+		"large": "/assets/images/large.png",
+		"small": "/assets/images/small.png"
+	},
+	"author": {
+		"name": "Leendert De Kok",
+		"email": "koktaildotcom@hotmail.com"
+	},
+	"contributing": {
+		"donate": {
+			"paypal": {
+				"username": "koktaildotcom"
+			}
+		}
+	},
+	"capabilities": {
+		"detect": {
+			"type": "boolean",
+			"title": {
+				"en": "Detected",
+				"nl": "Gedetecteerd"
+			},
+			"getable": true,
+			"setable": true
+		}
+	},
+	"drivers": [
+		{
+			"id": "itag",
+			"name": {
+				"en": "Itag",
+				"nl": "Itag"
+			},
+			"class": "sensor",
+			"capabilities": [
+				"detect"
+			],
+			"images": {
+				"small": "drivers/itag/assets/images/small.png",
+				"large": "drivers/itag/assets/images/large.png"
+			},
+			"pair": [
+				{
+					"id": "list_devices",
+					"template": "list_devices",
+					"navigation": {
+						"next": "add"
+					}
+				},
+				{
+					"id": "add",
+					"template": "add_devices"
+				}
+			]
+		}
+	]
+}
