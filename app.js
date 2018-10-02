@@ -76,7 +76,7 @@ class Beacon extends Homey.App {
                                 if (devices.length > 0) {
                                     resolve(devices);
                                 }
-                                else{
+                                else {
                                     reject("No devices found.");
                                 }
                             });
@@ -141,10 +141,11 @@ class Beacon extends Homey.App {
                 if (error) {
                     reject('failed connection to peripheral: ' + error);
                 }
+                else {
+                    device.peripheral = peripheral;
 
-                device.peripheral = peripheral;
-
-                resolve(device);
+                    resolve(device);
+                }
             });
         })
     }
@@ -275,8 +276,6 @@ class Beacon extends Homey.App {
                                     // }
 
 
-
-
                                 })
                             }
                             else {
@@ -293,8 +292,6 @@ class Beacon extends Homey.App {
     }
 
 
-
-
     /**
      * discover advertisements
      *
@@ -304,10 +301,6 @@ class Beacon extends Homey.App {
         console.log('Discover');
         return new Promise((resolve, reject) => {
             if (device) {
-                if (device.advertisement) {
-                    console.log('Already found');
-                    resolve(device);
-                }
                 Homey.ManagerBLE.discover().then(function (advertisements) {
                     if (advertisements) {
 
@@ -327,6 +320,8 @@ class Beacon extends Homey.App {
                     else {
                         reject("Cannot find any advertisements");
                     }
+                }).catch(error => {
+                    reject(error);
                 });
             }
             else {
