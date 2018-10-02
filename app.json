@@ -68,6 +68,34 @@
 					"template": "add_devices"
 				}
 			]
+		},
+		{
+			"id": "RDL51822",
+			"name": {
+				"en": "RDL51822",
+				"nl": "RDL51822"
+			},
+			"class": "sensor",
+			"capabilities": [
+				"detect"
+			],
+			"images": {
+				"small": "drivers/itag/assets/images/small.png",
+				"large": "drivers/itag/assets/images/large.png"
+			},
+			"pair": [
+				{
+					"id": "list_devices",
+					"template": "list_devices",
+					"navigation": {
+						"next": "add"
+					}
+				},
+				{
+					"id": "add",
+					"template": "add_devices"
+				}
+			]
 		}
 	]
 }
