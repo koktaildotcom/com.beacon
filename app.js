@@ -101,7 +101,6 @@ class Beacon extends Homey.App {
                 let index = 0;
                 let devices = [];
                 advertisements.forEach(function (advertisement) {
-                    console.log(advertisement);
                     if (advertisement.localName === driver.getBleIntentifier()) {
                         ++index;
                         devices.push({
