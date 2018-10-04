@@ -52,8 +52,8 @@
 				"detect"
 			],
 			"images": {
-				"small": "drivers/itag/assets/images/small.png",
-				"large": "drivers/itag/assets/images/large.png"
+				"small": "drivers/RDL51822/assets/images/small.png",
+				"large": "drivers/RDL51822/assets/images/large.png"
 			},
 			"pair": [
 				{
