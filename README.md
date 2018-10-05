@@ -34,6 +34,8 @@ Do you like the app? You can make me happy by buying me a beer! [![](https://img
   * first alpha to app store.
 ### v1.0.1 - 05.10.18
   * add support for NRF51822  
+  * add app icon
+  * refactoring the drivers
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/com.koktail.beacon

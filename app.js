@@ -54,7 +54,81 @@ if (process.env.HOMEY_VERSION.replace(/\W/g, '') < 159) {
 class Beacon extends Homey.App {
 
     onInit() {
-        this.log('Beacon is running...');
+        this.log('Beacon app is running...');
+        this._matchBeacons();
+    }
+
+    /**
+     * @private
+     *
+     * set a new timeout for synchronisation
+     */
+    _setNewTimeout() {
+        let interval = 1000 * 20;
+        console.log('set timeout: %s', interval);
+        this._syncTimeout = setTimeout(this._matchBeacons.bind(this), interval);
+    }
+
+    /**
+     * @private
+     *
+     * handle beacon matches
+     */
+    _matchBeacons() {
+        let updateDevicesTime = new Date();
+        console.log("_matchBeacons");
+        this._scanDevices()
+            .then((foundDevices) => {
+                console.log('Found %s devices', foundDevices.length);
+
+                console.log('emit event beacon.devices');
+                Homey.emit('beacon.devices', foundDevices);
+
+                console.log('All devices are synced complete in: ' + (new Date() - updateDevicesTime) / 1000 + ' seconds');
+                this._setNewTimeout();
+            })
+            .catch(error => {
+                this._setNewTimeout();
+                throw new Error(error);
+            });
+    }
+
+    /**
+     * discover advertisements
+     *
+     * @returns {Promise.<Array>}
+     */
+    _scanDevices() {
+        console.log('_scanDevices');
+        return new Promise((resolve, reject) => {
+
+            /**
+             * @param advertisements
+             *
+             * @returns {Promise.<Array>}
+             */
+            async function _extractAdvertisements(advertisements) {
+                const foundDevices = [];
+                advertisements.forEach(function (advertisement) {
+                    console.log("find: %s with uuid %s", advertisement.localName, advertisement.uuid)
+                    foundDevices.push(advertisement.uuid);
+                });
+
+                return foundDevices;
+            }
+
+            Homey.ManagerBLE.discover().then(function (advertisements) {
+                console.log("discover ready");
+                if (advertisements) {
+                    resolve(_extractAdvertisements(advertisements));
+                }
+                else {
+                    reject("Cannot find any advertisements");
+                }
+            }).catch(error => {
+                reject(error);
+            });
+        });
     }
 
     /**
@@ -71,16 +145,7 @@ class Beacon extends Homey.App {
                         resolve(devices);
                     }
                     else {
-                        new Promise(resolve => setTimeout(resolve, 1000)).then(() => {
-                            this._searchDevices(driver).then((devices) => {
-                                if (devices.length > 0) {
-                                    resolve(devices);
-                                }
-                                else {
-                                    reject("No devices found.");
-                                }
-                            });
-                        });
+                        reject("No devices found.");
                     }
                 })
             } catch (exception) {
@@ -124,106 +189,6 @@ class Beacon extends Homey.App {
                     reject('Cannot discover BLE devices from the homey manager. ' + error);
                 });
         })
-    }
-
-
-    /**
-     * connect to advertisement and return peripheral
-     *
-     * @returns {Promise.<BeaconDevice>}
-     */
-    connect(device) {
-        console.log('Connect');
-        return new Promise((resolve, reject) => {
-
-            device.advertisement.connect((error, peripheral) => {
-                if (error) {
-                    reject('failed connection to peripheral: ' + error);
-                }
-                else {
-                    device.peripheral = peripheral;
-
-                    resolve(device);
-                }
-            });
-        })
-    }
-
-    /**
-     * disconnect from peripheral
-     *
-     * @returns {Promise.<BeaconDevice>}
-     */
-    disconnect(device) {
-        console.log('Disconnect');
-        return new Promise((resolve, reject) => {
-
-            if (device && device.peripheral) {
-                device.peripheral.disconnect((error, peripheral) => {
-                    if (error) {
-                        reject('failed connection to peripheral: ' + error);
-                    }
-                    resolve(device);
-                });
-            }
-            else {
-                reject('cannot disconnect to unknown device or peripheral');
-            }
-        })
-    }
-
-    /**
-     * discover advertisements
-     *
-     * @returns {Promise.<BeaconDevice>}
-     */
-    discover(device) {
-        console.log('Discover');
-        return new Promise((resolve, reject) => {
-            if (device) {
-                Homey.ManagerBLE.discover().then(function (advertisements) {
-                    if (advertisements) {
-
-                        let matchedAdvertisements = advertisements.filter(function (advertisement) {
-                            return (advertisement.uuid === device.getData().address || advertisement.uuid === device.getData().address);
-                        });
-
-                        if (matchedAdvertisements.length === 1) {
-                            device.advertisement = matchedAdvertisements[0];
-
-                            resolve(device);
-                        }
-                        else {
-                            reject("Cannot find advertisement with uuid " + device.getData().address);
-                        }
-                    }
-                    else {
-                        reject("Cannot find any advertisements");
-                    }
-                }).catch(error => {
-                    reject(error);
-                });
-            }
-            else {
-                reject("No device found");
-            }
-        });
-    }
-
-    /**
-     * render a list of devices for pairing to homey
-     *
-     * @param data
-     * @param callback
-     */
-    onPairListDevices(data, callback) {
-        Homey.app.discoverDevices(this)
-            .then(devices => {
-                callback(null, devices);
-            })
-            .catch(error => {
-                reject('Cannot get devices:' + error);
-            });
     }
 }
 
