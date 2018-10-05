@@ -1,9 +1,9 @@
 {
 	"id": "com.koktail.beacon",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"compatibility": ">=1.5.8",
 	"sdk": 2,
-	"brandColor": "#FF0000",
+	"brandColor": "#11437c",
 	"name": {
 		"en": "Beacon"
 	},
@@ -41,6 +41,34 @@
 		}
 	},
 	"drivers": [
+		{
+			"id": "NRF51822",
+			"name": {
+				"en": "NRF51822",
+				"nl": "NRF51822"
+			},
+			"class": "sensor",
+			"capabilities": [
+				"detect"
+			],
+			"images": {
+				"small": "drivers/NRF51822/assets/images/small.png",
+				"large": "drivers/NRF51822/assets/images/large.png"
+			},
+			"pair": [
+				{
+					"id": "list_devices",
+					"template": "list_devices",
+					"navigation": {
+						"next": "add"
+					}
+				},
+				{
+					"id": "add",
+					"template": "add_devices"
+				}
+			]
+		},
 		{
 			"id": "RDL51822",
 			"name": {
@@ -135,7 +163,7 @@
 					{
 						"name": "device",
 						"type": "device",
-						"filter": "driver_id=RDL51822"
+						"filter": "driver_id=NRF51822|RDL51822"
 					}
 				]
 			},
@@ -162,7 +190,7 @@
 					{
 						"name": "device",
 						"type": "device",
-						"filter": "driver_id=RDL51822"
+						"filter": "driver_id=NRF51822|RDL51822"
 					}
 				]
 			}
