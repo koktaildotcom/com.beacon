@@ -28,7 +28,9 @@ Do you like the app? You can make me happy by buying me a beer! [![](https://img
    * beacon name
 2. The beacon is undetected
    * beacon name
-
+3. The beacon discovered
+   * beacon name
+   
 ## History
 ### v1.0.0 - 04.10.18
   * first alpha to app store.
