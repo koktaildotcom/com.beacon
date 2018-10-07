@@ -55,6 +55,10 @@ class Beacon extends Homey.App {
 
     onInit() {
         this.log('Beacon app is running...');
+
+        this.beaconDiscovered = new Homey.FlowCardTrigger('beacon_discovered');
+        this.beaconDiscovered.register();
+
         this._matchBeacons();
     }
 
@@ -100,17 +104,29 @@ class Beacon extends Homey.App {
      */
     _scanDevices() {
         console.log('_scanDevices');
+        const app = this;
         return new Promise((resolve, reject) => {
 
             /**
-             * @param advertisements
+             * @param app               Beacon
+             * @param advertisements    Advertisements
              *
              * @returns {Promise.<Array>}
              */
-            async function _extractAdvertisements(advertisements) {
+            async function _extractAdvertisements(app, advertisements) {
                 const foundDevices = [];
                 advertisements.forEach(function (advertisement) {
                     console.log("find: %s with uuid %s", advertisement.localName, advertisement.uuid)
+
+                    if(advertisement.localName !== undefined) {
+                        app.beaconDiscovered.trigger({
+                            'beacon': advertisement.localName
+                        })
+                            .catch(function (error) {
+                                console.log('Cannot trigger flow card beacon_discovered: %s.', error);
+                            });
+                    }
+
                     foundDevices.push(advertisement.uuid);
                 });
 
@@ -120,7 +136,7 @@ class Beacon extends Homey.App {
             Homey.ManagerBLE.discover().then(function (advertisements) {
                 console.log("discover ready");
                 if (advertisements) {
-                    resolve(_extractAdvertisements(advertisements));
+                    resolve(_extractAdvertisements(app, advertisements));
                 }
                 else {
                     reject("Cannot find any advertisements");

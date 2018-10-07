@@ -1,6 +1,6 @@
 {
 	"id": "com.koktail.beacon",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"compatibility": ">=1.5.8",
 	"sdk": 2,
 	"brandColor": "#11437c",
@@ -193,7 +193,53 @@
 						"filter": "driver_id=NRF51822|RDL51822"
 					}
 				]
+			},
+			{
+				"id": "beacon_discovered",
+				"title": {
+					"en": "A beacon has been discovered",
+					"nl": "Een baken is ontdekt"
+				},
+				"tokens": [
+					{
+						"name": "beacon",
+						"title": {
+							"en": "beacon",
+							"nl": "baken"
+						},
+						"example": {
+							"en": "Beacon 1",
+							"nl": "Baken 1"
+						}
+					}
+				]
 			}
-		]
+		],
+		"mobile": {
+			"components": [
+				{
+					"id": "NRF51822",
+					"capabilities": [
+						"directed"
+					],
+					"options": {
+						"icons": {
+							"flora_measure_moisture": "/assets/directed.svg"
+						}
+					}
+				},
+				{
+					"id": "RDL51822",
+					"capabilities": [
+						"directed"
+					],
+					"options": {
+						"icons": {
+							"flora_measure_moisture": "/assets/directed.svg"
+						}
+					}
+				}
+			]
+		}
 	}
 }

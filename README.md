@@ -36,6 +36,9 @@ Do you like the app? You can make me happy by buying me a beer! [![](https://img
   * add support for NRF51822  
   * add app icon
   * refactoring the drivers
+### v1.0.2 - 07.10.18
+  * add trigger card for discoverd devices
+  * add icon for discovery
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/com.koktail.beacon
