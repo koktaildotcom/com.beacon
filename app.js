@@ -68,7 +68,7 @@ class Beacon extends Homey.App {
      * set a new timeout for synchronisation
      */
     _setNewTimeout() {
-        let interval = 1000 * 20;
+        let interval = 1000 * 600;
         console.log('set timeout: %s', interval);
         this._syncTimeout = setTimeout(this._matchBeacons.bind(this), interval);
     }
@@ -179,24 +179,20 @@ class Beacon extends Homey.App {
     _searchDevices(driver) {
         return new Promise((resolve, reject) => {
             Homey.ManagerBLE.discover().then(function (advertisements) {
-                let index = 0;
                 let devices = [];
                 advertisements.forEach(function (advertisement) {
-                    if (advertisement.localName === driver.getBleIntentifier()) {
-                        ++index;
-                        devices.push({
-                            "name": driver.getBleName() + " " + index,
-                            "data": {
-                                "id": advertisement.id,
-                                "uuid": advertisement.uuid,
-                                "address": advertisement.uuid,
-                                "name": advertisement.name,
-                                "type": advertisement.type,
-                                "version": "v" + Homey.manifest.version,
-                            },
-                            "capabilities": ["detect"],
-                        });
-                    }
+                    devices.push({
+                        "name": advertisement.localName,
+                        "data": {
+                            "id": advertisement.id,
+                            "uuid": advertisement.uuid,
+                            "address": advertisement.uuid,
+                            "name": advertisement.localName,
+                            "type": advertisement.type,
+                            "version": "v" + Homey.manifest.version,
+                        },
+                        "capabilities": ["detect"],
+                    });
                 });
 
                 resolve(devices);

@@ -6,8 +6,7 @@ This app integrate the basic flows for BLE beacons into Homey.
 Do you like the app? You can make me happy by buying me a beer! [![](https://img.shields.io/badge/paypal-donate-green.svg)](https://www.paypal.me/koktaildotcom)
 
 ## Supported devices:
-* RDL51822
-* NRF51822
+* Generic beacon
 
 ## Usage
 1. Install app

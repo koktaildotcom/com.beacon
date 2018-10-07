@@ -42,64 +42,18 @@
 	},
 	"drivers": [
 		{
-			"id": "NRF51822",
+			"id": "beacon",
 			"name": {
-				"en": "NRF51822",
-				"nl": "NRF51822"
+				"en": "beacon",
+				"nl": "beacon"
 			},
 			"class": "sensor",
 			"capabilities": [
 				"detect"
 			],
 			"images": {
-				"small": "drivers/NRF51822/assets/images/small.png",
-				"large": "drivers/NRF51822/assets/images/large.png"
-			},
-			"pair": [
-				{
-					"id": "list_devices",
-					"template": "list_devices",
-					"navigation": {
-						"next": "add"
-					}
-				},
-				{
-					"id": "add",
-					"template": "add_devices"
-				}
-			],
-			"mobile": {
-				"components": [
-					{
-						"id": "icon"
-					},
-					{
-						"id": "sensor",
-						"capabilities": [
-							"detect"
-						],
-						"options": {
-							"icons": {
-								"detect": "/assets/detect.svg"
-							}
-						}
-					}
-				]
-			}
-		},
-		{
-			"id": "RDL51822",
-			"name": {
-				"en": "RDL51822",
-				"nl": "RDL51822"
-			},
-			"class": "sensor",
-			"capabilities": [
-				"detect"
-			],
-			"images": {
-				"small": "drivers/RDL51822/assets/images/small.png",
-				"large": "drivers/RDL51822/assets/images/large.png"
+				"small": "drivers/beacon/assets/images/small.png",
+				"large": "drivers/beacon/assets/images/large.png"
 			},
 			"pair": [
 				{
@@ -199,7 +153,7 @@
 					{
 						"name": "device",
 						"type": "device",
-						"filter": "driver_id=NRF51822|RDL51822"
+						"filter": "driver_id=beacon"
 					}
 				]
 			},
@@ -226,7 +180,7 @@
 					{
 						"name": "device",
 						"type": "device",
-						"filter": "driver_id=NRF51822|RDL51822"
+						"filter": "driver_id=beacon"
 					}
 				]
 			},
