@@ -76,11 +76,11 @@
 					{
 						"id": "sensor",
 						"capabilities": [
-							"directed"
+							"detect"
 						],
 						"options": {
 							"icons": {
-								"flora_measure_moisture": "/assets/directed.svg"
+								"detect": "/assets/detect.svg"
 							}
 						}
 					}
@@ -122,11 +122,11 @@
 					{
 						"id": "sensor",
 						"capabilities": [
-							"directed"
+							"detect"
 						],
 						"options": {
 							"icons": {
-								"flora_measure_moisture": "/assets/directed.svg"
+								"detect": "/assets/detect.svg"
 							}
 						}
 					}
