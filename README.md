@@ -40,6 +40,8 @@ Do you like the app? You can make me happy by buying me a beer! [![](https://img
 ### v1.0.2 - 07.10.18
   * add trigger card for discoverd devices
   * add icon for discovery
+### v1.0.3 - 07.10.18
+  * add generic device
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/com.koktail.beacon
