@@ -67,7 +67,25 @@
 					"id": "add",
 					"template": "add_devices"
 				}
-			]
+			],
+			"mobile": {
+				"components": [
+					{
+						"id": "icon"
+					},
+					{
+						"id": "directed",
+						"capabilities": [
+							"directed"
+						],
+						"options": {
+							"icons": {
+								"flora_measure_moisture": "/assets/directed.svg"
+							}
+						}
+					}
+				]
+			}
 		},
 		{
 			"id": "RDL51822",
@@ -95,7 +113,25 @@
 					"id": "add",
 					"template": "add_devices"
 				}
-			]
+			],
+			"mobile": {
+				"components": [
+					{
+						"id": "icon"
+					},
+					{
+						"id": "directed",
+						"capabilities": [
+							"directed"
+						],
+						"options": {
+							"icons": {
+								"flora_measure_moisture": "/assets/directed.svg"
+							}
+						}
+					}
+				]
+			}
 		}
 	],
 	"flow": {
@@ -214,32 +250,6 @@
 					}
 				]
 			}
-		],
-		"mobile": {
-			"components": [
-				{
-					"id": "NRF51822",
-					"capabilities": [
-						"directed"
-					],
-					"options": {
-						"icons": {
-							"flora_measure_moisture": "/assets/directed.svg"
-						}
-					}
-				},
-				{
-					"id": "RDL51822",
-					"capabilities": [
-						"directed"
-					],
-					"options": {
-						"icons": {
-							"flora_measure_moisture": "/assets/directed.svg"
-						}
-					}
-				}
-			]
-		}
+		]
 	}
 }
