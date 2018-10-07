@@ -118,7 +118,7 @@ class Beacon extends Homey.App {
                 advertisements.forEach(function (advertisement) {
                     console.log("find: %s with uuid %s", advertisement.localName, advertisement.uuid)
 
-                    if(advertisement.localName !== undefined) {
+                    if (advertisement.localName !== undefined) {
                         app.beaconDiscovered.trigger({
                             'beacon': advertisement.localName
                         })
@@ -181,18 +181,20 @@ class Beacon extends Homey.App {
             Homey.ManagerBLE.discover().then(function (advertisements) {
                 let devices = [];
                 advertisements.forEach(function (advertisement) {
-                    devices.push({
-                        "name": advertisement.localName,
-                        "data": {
-                            "id": advertisement.id,
-                            "uuid": advertisement.uuid,
-                            "address": advertisement.uuid,
+                    if (advertisement.localName !== undefined) {
+                        devices.push({
                             "name": advertisement.localName,
-                            "type": advertisement.type,
-                            "version": "v" + Homey.manifest.version,
-                        },
-                        "capabilities": ["detect"],
-                    });
+                            "data": {
+                                "id": advertisement.id,
+                                "uuid": advertisement.uuid,
+                                "address": advertisement.uuid,
+                                "name": advertisement.localName,
+                                "type": advertisement.type,
+                                "version": "v" + Homey.manifest.version,
+                            },
+                            "capabilities": ["detect"],
+                        });
+                    }
                 });
 
                 resolve(devices);
