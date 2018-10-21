@@ -176,8 +176,16 @@ class Beacon extends Homey.App {
      */
     _searchDevices(driver) {
         return new Promise((resolve, reject) => {
+            let devices = [];
+            let currentUuids = [];
+            driver.getDevices().forEach(device => {
+                let data = device.getData();
+                currentUuids.push(data.uuid);
+            });
             Homey.ManagerBLE.discover().then(function (advertisements) {
-                let devices = [];
+                advertisements = advertisements.filter(function (advertisement) {
+                    return (currentUuids.indexOf(advertisement.uuid) === -1);
+                });
                 advertisements.forEach(function (advertisement) {
                     if (advertisement.localName !== undefined) {
                         devices.push({
