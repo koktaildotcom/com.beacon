@@ -68,7 +68,7 @@ class Beacon extends Homey.App {
      * set a new timeout for synchronisation
      */
     _setNewTimeout() {
-        this._syncTimeout = setTimeout(this._matchBeacons.bind(this), 200);
+        this._syncTimeout = setTimeout(this._matchBeacons.bind(this), 5000);
     }
 
     /**
