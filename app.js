@@ -68,7 +68,7 @@ class Beacon extends Homey.App {
      * set a new timeout for synchronisation
      */
     _setNewTimeout() {
-        this._syncTimeout = setTimeout(this._matchBeacons.bind(this), 5000);
+        setTimeout(this._matchBeacons.bind(this), 1000);
     }
 
     /**
@@ -83,8 +83,10 @@ class Beacon extends Homey.App {
             .then((foundDevices) => {
                 console.log('Found %s devices', foundDevices.length);
 
-                console.log('emit event beacon.devices');
-                Homey.emit('beacon.devices', foundDevices);
+                if (foundDevices.length !== 0) {
+                    console.log('emit event beacon.devices');
+                    Homey.emit('beacon.devices', foundDevices);
+                }
 
                 console.log('All devices are synced complete in: ' + (new Date() - updateDevicesTime) / 1000 + ' seconds');
                 this._setNewTimeout();
@@ -118,7 +120,8 @@ class Beacon extends Homey.App {
 
                     if (advertisement.localName !== undefined) {
                         app.beaconDiscovered.trigger({
-                            'beacon': advertisement.localName
+                            'beacon': advertisement.localName,
+                            'uuid': advertisement.uuid
                         })
                             .catch(function (error) {
                                 console.log('Cannot trigger flow card beacon_discovered: %s.', error);
@@ -166,6 +169,13 @@ class Beacon extends Homey.App {
                 reject(exception);
             }
         })
+    }
+
+    /**
+     * @param log
+     */
+    log(log) {
+        console.log(log);
     }
 
     /**

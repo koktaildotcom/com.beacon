@@ -93,8 +93,8 @@
 			{
 				"id": "beacon_inside_range",
 				"title": {
-					"en": "The beacon is detected",
-					"nl": "Het baken is gedetecteerd"
+					"en": "A beacon is detected",
+					"nl": "Een baken is gedetecteerd"
 				},
 				"tokens": [
 					{
@@ -113,8 +113,8 @@
 			{
 				"id": "beacon_outside_range",
 				"title": {
-					"en": "The beacon is undetected",
-					"nl": "Het baken is ongedetecteerd"
+					"en": "A beacon is undetected",
+					"nl": "Een baken is ongedetecteerd"
 				},
 				"tokens": [
 					{
@@ -133,8 +133,8 @@
 			{
 				"id": "device_beacon_inside_range",
 				"title": {
-					"en": "A beacon is detected",
-					"nl": "Een baken is gedetecteerd"
+					"en": "The beacon is detected",
+					"nl": "Het baken is gedetecteerd"
 				},
 				"tokens": [
 					{
@@ -160,8 +160,8 @@
 			{
 				"id": "device_beacon_outside_range",
 				"title": {
-					"en": "A beacon is undetected",
-					"nl": "Een baken is ongedetecteerd"
+					"en": "The beacon is undetected",
+					"nl": "Het baken is ongedetecteerd"
 				},
 				"tokens": [
 					{
@@ -200,6 +200,17 @@
 						"example": {
 							"en": "Beacon 1",
 							"nl": "Baken 1"
+						}
+					},
+					{
+						"name": "uuid",
+						"title": {
+							"en": "uuid",
+							"nl": "uuid"
+						},
+						"example": {
+							"en": "c47c8d660875",
+							"nl": "c47c8d660875"
 						}
 					}
 				]
