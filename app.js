@@ -77,24 +77,8 @@ class Beacon extends Homey.App {
      * handle beacon matches
      */
     _matchBeacons() {
-        let updateDevicesTime = new Date();
-        console.log("_matchBeacons");
-        this._scanDevices()
-            .then((foundDevices) => {
-                console.log('Found %s devices', foundDevices.length);
-
-                if (foundDevices.length !== 0) {
-                    console.log('emit event beacon.devices');
-                    Homey.emit('beacon.devices', foundDevices);
-                }
-
-                console.log('All devices are synced complete in: ' + (new Date() - updateDevicesTime) / 1000 + ' seconds');
-                this._setNewTimeout();
-            })
-            .catch(error => {
-                this._setNewTimeout();
-                throw new Error(error);
-            });
+        Homey.emit('beacon.devices');
+        this._setNewTimeout();
     }
 
     /**
