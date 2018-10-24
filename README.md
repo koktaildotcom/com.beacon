@@ -47,6 +47,8 @@ Do you like the app? You can make me happy by buying me a beer! [![](https://img
 ### v1.0.5 - 07.10.24
   * improve discovery of the devices
   * change card description
+### v1.0.6 - 07.10.24
+  * improve by connection and find the advertisement
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/com.koktail.beacon
