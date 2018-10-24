@@ -8,7 +8,7 @@
 		"en": "Beacon"
 	},
 	"description": {
-		"en": "Adds support for BLE beacons"
+		"en": "Add support for BLE beacons"
 	},
 	"category": [
 		"localization"
@@ -93,8 +93,8 @@
 			{
 				"id": "beacon_inside_range",
 				"title": {
-					"en": "A beacon is detected",
-					"nl": "Een baken is gedetecteerd"
+					"en": "A beacon is inside range",
+					"nl": "Een baken is binnen bereik"
 				},
 				"tokens": [
 					{
@@ -113,8 +113,8 @@
 			{
 				"id": "beacon_outside_range",
 				"title": {
-					"en": "A beacon is undetected",
-					"nl": "Een baken is ongedetecteerd"
+					"en": "A beacon is outside range",
+					"nl": "Een baken is buiten bereik"
 				},
 				"tokens": [
 					{
@@ -133,8 +133,8 @@
 			{
 				"id": "device_beacon_inside_range",
 				"title": {
-					"en": "The beacon is detected",
-					"nl": "Het baken is gedetecteerd"
+					"en": "The beacon is inside range",
+					"nl": "Het baken is binnen bereik"
 				},
 				"tokens": [
 					{
@@ -160,8 +160,8 @@
 			{
 				"id": "device_beacon_outside_range",
 				"title": {
-					"en": "The beacon is undetected",
-					"nl": "Het baken is ongedetecteerd"
+					"en": "The beacon is outside range",
+					"nl": "Het baken is buiten bereik"
 				},
 				"tokens": [
 					{
