@@ -44,6 +44,9 @@ Do you like the app? You can make me happy by buying me a beer! [![](https://img
   * add generic device
 ### v1.0.4 - 20.10.18  
   * add verify process for detect/undetect events
+### v1.0.5 - 07.10.24
+  * improve discovery of the devices
+  * change card description
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/com.koktail.beacon
