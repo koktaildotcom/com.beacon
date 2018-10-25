@@ -51,12 +51,14 @@ Do you like the app? You can make me happy by buying me a beer! [![](https://img
   * improve by connection and find the advertisement
 ### v1.0.7 - 07.10.24
   * bump version
-### v1.0.8 - 07.10.24
+### v1.0.8 - 07.10.25
   * improve sequence update beacons
   * get peripheral for accurate range
   * change timeout to 1 second
   * improve logging to the app
   * add retry strategy
+### v1.0.9 - 07.10.25
+  * bump version
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/com.koktail.beacon
