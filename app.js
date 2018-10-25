@@ -17,7 +17,7 @@ if (process.env.HOMEY_VERSION.replace(/\W/g, '') < 159) {
             this._disconnectTimeout = setTimeout(() => {
                 if (this._disconnectLockCounter === 0) {
                     this._disconnected();
-                    // console.log('called disconnect', new Error().stack);
+                    // Homey.app.log('called disconnect', new Error().stack);
                     this.__client.emit('disconnect', [this._connectionId, this.uuid], err => {
                         this._connectionId = null;
                         this._disconnectQueue.forEach(cb => cb(err));
@@ -54,82 +54,10 @@ if (process.env.HOMEY_VERSION.replace(/\W/g, '') < 159) {
 class Beacon extends Homey.App {
 
     onInit() {
-        this.log('Beacon app is running...');
+        Homey.app.log('Beacon app is running...');
 
         this.beaconDiscovered = new Homey.FlowCardTrigger('beacon_discovered');
         this.beaconDiscovered.register();
-
-        this._matchBeacons();
-    }
-
-    /**
-     * @private
-     *
-     * set a new timeout for synchronisation
-     */
-    _setNewTimeout() {
-        setTimeout(this._matchBeacons.bind(this), 1000 * 10);
-    }
-
-    /**
-     * @private
-     *
-     * handle beacon matches
-     */
-    _matchBeacons() {
-        Homey.emit('beacon.devices');
-        this._setNewTimeout();
-    }
-
-    /**
-     * discover advertisements
-     *
-     * @returns {Promise.<Array>}
-     */
-    _scanDevices() {
-        console.log('_scanDevices');
-        const app = this;
-        return new Promise((resolve, reject) => {
-
-            /**
-             * @param app               Beacon
-             * @param advertisements    Advertisements
-             *
-             * @returns {Promise.<Array>}
-             */
-            async function _extractAdvertisements(app, advertisements) {
-                const foundDevices = [];
-                advertisements.forEach(function (advertisement) {
-                    console.log("find: %s with uuid %s", advertisement.localName, advertisement.uuid)
-
-                    if (advertisement.localName !== undefined) {
-                        app.beaconDiscovered.trigger({
-                            'beacon': advertisement.localName,
-                            'uuid': advertisement.uuid
-                        })
-                            .catch(function (error) {
-                                console.log('Cannot trigger flow card beacon_discovered: %s.', error);
-                            });
-                    }
-
-                    foundDevices.push(advertisement.uuid);
-                });
-
-                return foundDevices;
-            }
-
-            Homey.ManagerBLE.discover().then(function (advertisements) {
-                console.log("discover ready");
-                if (advertisements) {
-                    resolve(_extractAdvertisements(app, advertisements));
-                }
-                else {
-                    reject("Cannot find any advertisements");
-                }
-            }).catch(error => {
-                reject(error);
-            });
-        });
     }
 
     /**
@@ -153,13 +81,6 @@ class Beacon extends Homey.App {
                 reject(exception);
             }
         })
-    }
-
-    /**
-     * @param log
-     */
-    log(log) {
-        console.log(log);
     }
 
     /**
