@@ -53,11 +53,73 @@ if (process.env.HOMEY_VERSION.replace(/\W/g, '') < 159) {
 
 class Beacon extends Homey.App {
 
+    /**
+     * on init the app
+     */
     onInit() {
         Homey.app.log('Beacon app is running...');
 
         this.beaconDiscovered = new Homey.FlowCardTrigger('beacon_discovered');
         this.beaconDiscovered.register();
+
+        this._bleDevices = [];
+        this._scanning();
+    }
+
+    /**
+     * @private
+     *
+     * set a new timeout for synchronisation
+     */
+    _setNewTimeout() {
+        setTimeout(this._scanning.bind(this), 1000);
+    }
+
+    /**
+     * @private
+     *
+     * handle beacon matches
+     */
+    _scanning() {
+        Homey.app.log('New sequence --------------------------------------------------------------------------------');
+        try {
+            let updateDevicesTime = new Date();
+            this._updateDevices()
+                .then((foundDevices) => {
+                    Homey.emit('beacon.devices', foundDevices);
+                    Homey.app.log('Sequence complete ---------------------------------------------------------------------------');
+                    Homey.app.log('All devices are synced complete in: ' + (new Date() - updateDevicesTime) / 1000 + ' seconds');
+                    this._setNewTimeout();
+                })
+                .catch((error) => {
+                    Homey.app.log('error 1: ' + error.message);
+                    this._setNewTimeout();
+                });
+        }
+        catch (error) {
+            Homey.app.log('error 2: ' + error.message);
+            this._setNewTimeout();
+        }
+    }
+
+    /**
+     * discover beacons
+     *
+     * @returns {Promise.<BeaconDevice[]>}
+     */
+    _updateDevices() {
+        const app = this;
+        return new Promise((resolve, reject) => {
+            Homey.ManagerBLE.discover([], 2000).then(function (advertisements) {
+                app._advertisements = [];
+                advertisements.forEach(advertisement => {
+                    app._advertisements.push(advertisement);
+                });
+                resolve(advertisements);
+            }).catch(error => {
+                reject(error);
+            });
+        });
     }
 
     /**
@@ -90,6 +152,7 @@ class Beacon extends Homey.App {
      * @returns {Promise.<object[]>}
      */
     _searchDevices(driver) {
+        const app = this;
         return new Promise((resolve, reject) => {
             let devices = [];
             let currentUuids = [];
@@ -97,33 +160,34 @@ class Beacon extends Homey.App {
                 let data = device.getData();
                 currentUuids.push(data.uuid);
             });
-            Homey.ManagerBLE.discover().then(function (advertisements) {
-                advertisements = advertisements.filter(function (advertisement) {
-                    return (currentUuids.indexOf(advertisement.uuid) === -1);
-                });
-                advertisements.forEach(function (advertisement) {
-                    if (advertisement.localName !== undefined) {
-                        devices.push({
-                            "name": advertisement.localName,
-                            "data": {
-                                "id": advertisement.id,
-                                "uuid": advertisement.uuid,
-                                "address": advertisement.uuid,
-                                "name": advertisement.localName,
-                                "type": advertisement.type,
-                                "version": "v" + Homey.manifest.version,
-                            },
-                            "capabilities": ["detect"],
-                        });
-                    }
-                });
 
-                resolve(devices);
-            })
-                .catch(function (error) {
-                    reject('Cannot discover BLE devices from the homey manager. ' + error);
-                });
-        })
+            const advertisements = app._advertisements.filter(function (advertisement) {
+                return (currentUuids.indexOf(advertisement.uuid) === -1);
+            });
+
+            if (advertisements.length === 0) {
+                resolve([]);
+            }
+
+            advertisements.forEach(function (advertisement) {
+                if (advertisement.localName !== undefined) {
+                    devices.push({
+                        "name": advertisement.localName,
+                        "data": {
+                            "id": advertisement.id,
+                            "uuid": advertisement.uuid,
+                            "address": advertisement.uuid,
+                            "name": advertisement.localName,
+                            "type": advertisement.type,
+                            "version": "v" + Homey.manifest.version,
+                        },
+                        "capabilities": ["detect"],
+                    });
+                }
+            });
+
+            resolve(devices);
+        });
     }
 }
 
