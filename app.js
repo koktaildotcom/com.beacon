@@ -110,7 +110,7 @@ class Beacon extends Homey.App {
     _updateDevices() {
         const app = this;
         return new Promise((resolve, reject) => {
-            Homey.ManagerBLE.discover([], 2000).then(function (advertisements) {
+            Homey.ManagerBLE.discover([], 10000).then(function (advertisements) {
                 app._advertisements = [];
                 advertisements.forEach(advertisement => {
                     app._advertisements.push(advertisement);
