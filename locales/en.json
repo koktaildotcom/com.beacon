@@ -1,1 +1,23 @@
-{}
+{
+	"settings" : {
+		"title" : "Settings beacon app",
+		"verification" : "Verification settings",
+		"verification_amount_inside" : {
+			"label" : "Verification amount inside range",
+			"info" : "The amount of verifications the app need to mark a beacon inside the range."
+		},
+		"verification_amount_outside" : {
+			"label" : "Verification amount outside range",
+			"info" : "The amount of verifications the app need to mark a beacon outside the range."
+		},
+		"update" : "Update settings",
+		"interval" : {
+			"label" : "De interval between updates in seconds",
+			"info" : "The delay between reading sensor values in seconds. The minimal interval is 1 second."
+		},
+		"save" : {
+			"label" : "Save"
+		},
+		"success" : "The settings has been saved"
+	}
+}

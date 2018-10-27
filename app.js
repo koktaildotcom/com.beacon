@@ -58,6 +58,20 @@ class Beacon extends Homey.App {
      */
     onInit() {
         Homey.app.log('Beacon app is running...');
+        console.log(Homey.ManagerSettings.get('updateInterval'));
+        console.log(Homey.ManagerSettings.get('verificationAmountInside'));
+        console.log(Homey.ManagerSettings.get('verificationAmountOutside'));
+        if (!Homey.ManagerSettings.get('updateInterval')) {
+            Homey.ManagerSettings.set('updateInterval', 1)
+        }
+
+        if (!Homey.ManagerSettings.get('verificationAmountInside')) {
+            Homey.ManagerSettings.set('verificationAmountInside', 0)
+        }
+
+        if (!Homey.ManagerSettings.get('verificationAmountOutside')) {
+            Homey.ManagerSettings.set('verificationAmountOutside', 3)
+        }
 
         this.beaconDiscovered = new Homey.FlowCardTrigger('beacon_discovered');
         this.beaconDiscovered.register();
@@ -72,7 +86,7 @@ class Beacon extends Homey.App {
      * set a new timeout for synchronisation
      */
     _setNewTimeout() {
-        setTimeout(this._scanning.bind(this), 1000);
+        setTimeout(this._scanning.bind(this), 1000 * Homey.ManagerSettings.get('updateInterval'));
     }
 
     /**

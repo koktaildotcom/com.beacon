@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+<head>
+    <script type="text/javascript" src="/homey.js" data-origin="settings"></script>
+    <style>
+        #notice {
+            color: green;
+        }
+        .note {
+            margin: 0 0 1em 0;
+            display: inline-block;
+        }
+        .setting-row{
+            width: 100%;
+        }
+        #verificationAmountInside{
+            width:55px;
+            padding: 5px 10px;
+        }
+        #verificationAmountOutside{
+            width:55px;
+            padding: 5px 10px;
+        }
+        #updateInterval{
+            width:55px;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h1 data-i18n="settings.title"></h1>
+
+<fieldset>
+    <legend>
+        <p data-i18n="settings.update"></p>
+    </legend>
+
+    <table class="setting-row">
+        <tbody>
+        <tr>
+            <td colspan="2">
+                <i data-i18n="settings.interval.label" class="note"></i>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="updateInterval">
+                    <p data-i18n="settings.interval.info"></p>
+                </label>
+            </td>
+            <td>
+                <input id="updateInterval" class="left" type="number" step=1 min=1 max=60/>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table class="setting-row">
+        <tbody>
+        <tr>
+            <td colspan="2">
+                <i data-i18n="settings.verification" class="note"></i>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="verificationAmountInside">
+                    <p data-i18n="settings.verification_amount_inside.label"></p>
+                </label>
+            </td>
+            <td>
+                <input id="verificationAmountInside" class="left" type="number" step=1 min=0 max=5/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="verificationAmountOutside">
+                    <p data-i18n="settings.verification_amount_outside.label"></p>
+                </label>
+            </td>
+            <td>
+                <input id="verificationAmountOutside" class="left" type="number" step=1 min=0 max=5/>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</fieldset>
+
+<div class="field row">
+    <button id="save" class="right"><p data-i18n="settings.save.label"></p></button>
+</div>
+
+<script type="text/javascript">
+
+    function onHomeyReady(Homey) {
+
+        Homey.ready();
+
+        let saveElement = document.getElementById('save');
+
+        let updateInterval = document.getElementById('updateInterval');
+        Homey.get('updateInterval', function (err, value) {
+            if (err) return Homey.alert(err);
+            updateInterval.value = value;
+        });
+
+        let verificationAmountOutside = document.getElementById('verificationAmountOutside');
+        Homey.get('verificationAmountOutside', function (err, value) {
+            if (err) return Homey.alert(err);
+            verificationAmountOutside.value = value;
+        });
+
+        let verificationAmountInside = document.getElementById('verificationAmountInside');
+        Homey.get('verificationAmountInside', function (err, value) {
+            if (err) return Homey.alert(err);
+            verificationAmountInside.value = value;
+        });
+
+        saveElement.addEventListener('click', function (e) {
+            Homey.set('updateInterval', updateInterval.value, function (err) {
+                if (err) return Homey.alert(err);
+            });
+            Homey.set('verificationAmountOutside', verificationAmountOutside.value, function (err) {
+                if (err) return Homey.alert(err);
+            });
+            Homey.set('verificationAmountInside', verificationAmountInside.value, function (err) {
+                if (err) return Homey.alert(err);
+            });
+
+            Homey.alert(__("settings.success"));
+        });
+    }
+</script>
+
+</body>
+</html>

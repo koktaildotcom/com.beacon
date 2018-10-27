@@ -1,0 +1,23 @@
+{
+	"settings" : {
+		"title" : "Instellingen beacon app",
+		"verification" : "Verificatie instelligen",
+		"verification_amount_inside" : {
+			"label" : "Aantal keer verifiëren binnen bereik",
+			"info" : "Aantal keer dat de app gaat verifiëren of het baken binnen bereik is."
+		},
+		"verification_amount_outside" : {
+			"label" : "Aantal keer verifiëren buiten bereik",
+			"info" : "Aantal keer dat de app gaat verifiëren of het baken buiten bereik is."
+		},
+		"update" : "Update instellingen",
+		"interval" : {
+			"label" : "De interval tussen updates in seconde",
+			"info" : "Het aantal seconde wat gepauzeerd wordt voordat de sensoren opnieuw worden uitgelezen. De minimale update interval is 1 seconde."
+		},
+		"save" : {
+			"label" : "Opslaan"
+		},
+		"success" : "De instellingen zijn opgeslagen"
+	}
+}
