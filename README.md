@@ -70,6 +70,9 @@ Do you like the app? You can make me happy by buying me a beer! [![](https://img
   * revert back to discovery strategy to improve speed
   * add translations
   * improve logging
+### v1.0.11 - 07.10.27
+  * mismatch variable name bug
+  * also check on bigger that the amount if app restarts
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/com.koktail.beacon
