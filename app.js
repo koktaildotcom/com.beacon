@@ -58,9 +58,7 @@ class Beacon extends Homey.App {
      */
     onInit() {
         Homey.app.log('Beacon app is running...');
-        console.log(Homey.ManagerSettings.get('updateInterval'));
-        console.log(Homey.ManagerSettings.get('verificationAmountInside'));
-        console.log(Homey.ManagerSettings.get('verificationAmountOutside'));
+
         if (!Homey.ManagerSettings.get('updateInterval')) {
             Homey.ManagerSettings.set('updateInterval', 1)
         }
