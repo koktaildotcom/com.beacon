@@ -2,6 +2,12 @@
 
 ## Introduction
 This app integrate the basic flows for BLE beacons into Homey.
+Once the app is installed it will do a discovery of BLE devices, after a short adjustable timeout it wil keep discovering.
+After each discovery the app compares the found devices with the one paired.
+If the beacon is not found within the new "discovered list" the beaon is changed in state. 
+
+For filtering out false positives there is a verification amount inside or outside the range available in the settings.
+This setting is the amount of times the beacon needs to be changed before it wil marked as such. The amount will be reset if the beacon is not in that current state.
 
 Do you like the app? You can make me happy by buying me a beer! [![](https://img.shields.io/badge/paypal-donate-green.svg)](https://www.paypal.me/koktaildotcom)
 
@@ -59,6 +65,11 @@ Do you like the app? You can make me happy by buying me a beer! [![](https://img
   * add retry strategy
 ### v1.0.9 - 07.10.25
   * bump version
+### v1.0.10 - 07.10.27
+  * introducing timeout and verification settings
+  * revert back to discovery strategy to improve speed
+  * add translations
+  * improve logging
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/com.koktail.beacon
