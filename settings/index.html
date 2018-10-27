@@ -25,6 +25,10 @@
             width:55px;
             padding: 5px 10px;
         }
+        #timeout{
+            width:55px;
+            padding: 5px 10px;
+        }
     </style>
 </head>
 <body>
@@ -53,11 +57,21 @@
                 <input id="updateInterval" class="left" type="number" step=1 min=1 max=60/>
             </td>
         </tr>
-        </tbody>
-    </table>
-
-    <table class="setting-row">
-        <tbody>
+        <tr>
+            <td colspan="2">
+                <i data-i18n="settings.timeout.label" class="note"></i>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="timeout">
+                    <p data-i18n="settings.timeout.info"></p>
+                </label>
+            </td>
+            <td>
+                <input id="timeout" class="left" type="number" step=1 min=1 max=30/>
+            </td>
+        </tr>
         <tr>
             <td colspan="2">
                 <i data-i18n="settings.verification" class="note"></i>
@@ -100,6 +114,12 @@
 
         let saveElement = document.getElementById('save');
 
+        let timeout = document.getElementById('timeout');
+        Homey.get('timeout', function (err, value) {
+            if (err) return Homey.alert(err);
+            timeout.value = value;
+        });
+
         let updateInterval = document.getElementById('updateInterval');
         Homey.get('updateInterval', function (err, value) {
             if (err) return Homey.alert(err);
@@ -119,6 +139,9 @@
         });
 
         saveElement.addEventListener('click', function (e) {
+            Homey.set('timeout', timeout.value, function (err) {
+                if (err) return Homey.alert(err);
+            });
             Homey.set('updateInterval', updateInterval.value, function (err) {
                 if (err) return Homey.alert(err);
             });

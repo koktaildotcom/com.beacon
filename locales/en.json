@@ -15,6 +15,10 @@
 			"label" : "De interval between updates in seconds",
 			"info" : "The delay between reading sensor values in seconds. The minimal interval is 1 second."
 		},
+		"timeout" : {
+			"label" : "Discovery timeout",
+			"info" : "Amount of seconds that is given to discover the beacons."
+		},
 		"save" : {
 			"label" : "Save"
 		},

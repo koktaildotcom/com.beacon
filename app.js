@@ -59,6 +59,10 @@ class Beacon extends Homey.App {
     onInit() {
         Homey.app.log('Beacon app is running...');
 
+        if (!Homey.ManagerSettings.get('timeout')) {
+            Homey.ManagerSettings.set('timeout', 3)
+        }
+
         if (!Homey.ManagerSettings.get('updateInterval')) {
             Homey.ManagerSettings.set('updateInterval', 1)
         }
@@ -122,7 +126,7 @@ class Beacon extends Homey.App {
     _updateDevices() {
         const app = this;
         return new Promise((resolve, reject) => {
-            Homey.ManagerBLE.discover([], 10000).then(function (advertisements) {
+            Homey.ManagerBLE.discover([], Homey.ManagerSettings.get('timeout') * 1000).then(function (advertisements) {
                 app._advertisements = [];
                 advertisements.forEach(advertisement => {
                     app._advertisements.push(advertisement);

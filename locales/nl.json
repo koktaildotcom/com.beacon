@@ -12,8 +12,12 @@
 		},
 		"update" : "Update instellingen",
 		"interval" : {
-			"label" : "De interval tussen updates in seconde",
-			"info" : "Het aantal seconde wat gepauzeerd wordt voordat de sensoren opnieuw worden uitgelezen. De minimale update interval is 1 seconde."
+			"label" : "De interval tussen updates in seconden",
+			"info" : "Het aantal seconde wat gepauzeerd wordt voordat de sensoren opnieuw worden uitgelezen."
+		},
+		"timeout" : {
+			"label" : "Ontdek timeout",
+			"info" : "Aantal seconden dat de app mag doen om bakens te ontdekken."
 		},
 		"save" : {
 			"label" : "Opslaan"
