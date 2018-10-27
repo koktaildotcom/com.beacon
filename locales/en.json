@@ -13,11 +13,11 @@
 		"update" : "Update settings",
 		"interval" : {
 			"label" : "De interval between updates in seconds",
-			"info" : "The delay between reading sensor values in seconds. The minimal interval is 1 second."
+			"info" : "The delay between reading sensor values in seconds."
 		},
 		"timeout" : {
 			"label" : "Discovery timeout",
-			"info" : "Amount of seconds that is given to discover the beacons."
+			"info" : "The amount of seconds that is given to discover the beacons."
 		},
 		"save" : {
 			"label" : "Save"
