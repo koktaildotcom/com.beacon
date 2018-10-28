@@ -13,7 +13,7 @@
 		"update" : "Update instellingen",
 		"interval" : {
 			"label" : "De interval tussen updates in seconden",
-			"info" : "Het aantal seconde wat gepauzeerd wordt voordat de sensoren opnieuw worden uitgelezen."
+			"info" : "Het aantal seconden wat gepauzeerd wordt voordat de sensoren opnieuw worden uitgelezen."
 		},
 		"timeout" : {
 			"label" : "Ontdek timeout",

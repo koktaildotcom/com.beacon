@@ -68,11 +68,11 @@ class Beacon extends Homey.App {
         }
 
         if (!Homey.ManagerSettings.get('verificationAmountInside')) {
-            Homey.ManagerSettings.set('verificationAmountInside', 0)
+            Homey.ManagerSettings.set('verificationAmountInside', 1)
         }
 
         if (!Homey.ManagerSettings.get('verificationAmountOutside')) {
-            Homey.ManagerSettings.set('verificationAmountOutside', 3)
+            Homey.ManagerSettings.set('verificationAmountOutside', 5)
         }
 
         this.beaconDiscovered = new Homey.FlowCardTrigger('beacon_discovered');
@@ -102,7 +102,9 @@ class Beacon extends Homey.App {
             let updateDevicesTime = new Date();
             this._updateDevices()
                 .then((foundDevices) => {
-                    Homey.emit('beacon.devices', foundDevices);
+                    if (foundDevices.length !== 0) {
+                        Homey.emit('beacon.devices', foundDevices);
+                    }
                     Homey.app.log('Sequence complete ---------------------------------------------------------------------------');
                     Homey.app.log('All devices are synced complete in: ' + (new Date() - updateDevicesTime) / 1000 + ' seconds');
                     this._setNewTimeout();
