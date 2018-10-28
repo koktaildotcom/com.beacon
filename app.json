@@ -214,6 +214,26 @@
 						}
 					}
 				]
+			},
+			{
+				"id": "log",
+				"title": {
+					"en": "The app generates a log",
+					"nl": "De app genereert een log"
+				},
+				"tokens": [
+					{
+						"name": "log",
+						"title": {
+							"en": "log",
+							"nl": "log"
+						},
+						"example": {
+							"en": "Not in range",
+							"nl": "Niet binnen bereik"
+						}
+					}
+				]
 			}
 		]
 	}

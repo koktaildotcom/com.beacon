@@ -57,7 +57,7 @@ class Beacon extends Homey.App {
      * on init the app
      */
     onInit() {
-        Homey.app.log('Beacon app is running...');
+        console.log('Beacon app is running...');
 
         if (!Homey.ManagerSettings.get('timeout')) {
             Homey.ManagerSettings.set('timeout', 3)
@@ -78,8 +78,28 @@ class Beacon extends Homey.App {
         this.beaconDiscovered = new Homey.FlowCardTrigger('beacon_discovered');
         this.beaconDiscovered.register();
 
+        this.logTrigger = new Homey.FlowCardTrigger('log');
+        this.logTrigger.register();
+
         this._bleDevices = [];
         this._scanning();
+    }
+
+    /**
+     * @param message
+     */
+    log(message) {
+
+        if (this.logTrigger) {
+            this.logTrigger.trigger({
+                'log': message
+            })
+                .catch(function (error) {
+                    console.error('Cannot trigger flow card log device: %s.', error);
+                });
+        }
+
+        console.log(message);
     }
 
     /**
@@ -97,7 +117,7 @@ class Beacon extends Homey.App {
      * handle beacon matches
      */
     _scanning() {
-        Homey.app.log('New sequence --------------------------------------------------------------------------------');
+        Homey.app.log('New sequence --------------');
         try {
             let updateDevicesTime = new Date();
             this._updateDevices()
@@ -105,7 +125,7 @@ class Beacon extends Homey.App {
                     if (foundDevices.length !== 0) {
                         Homey.emit('beacon.devices', foundDevices);
                     }
-                    Homey.app.log('Sequence complete ---------------------------------------------------------------------------');
+                    Homey.app.log('Sequence complete --------------');
                     Homey.app.log('All devices are synced complete in: ' + (new Date() - updateDevicesTime) / 1000 + ' seconds');
                     this._setNewTimeout();
                 })
