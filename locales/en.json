@@ -3,20 +3,20 @@
 		"title" : "Settings beacon app",
 		"verification" : "Verification settings",
 		"verification_amount_inside" : {
-			"label" : "Verification amount inside range",
+			"label" : "Verification amount inside range (default 1)",
 			"info" : "The amount of verifications the app need to mark a beacon inside the range."
 		},
 		"verification_amount_outside" : {
-			"label" : "Verification amount outside range",
+			"label" : "Verification amount outside range (default 5)",
 			"info" : "The amount of verifications the app need to mark a beacon outside the range."
 		},
 		"update" : "Update settings",
 		"interval" : {
-			"label" : "De interval between updates in seconds",
+			"label" : "De interval between updates in seconds (default 10)",
 			"info" : "The delay between reading sensor values in seconds."
 		},
 		"timeout" : {
-			"label" : "Discovery timeout",
+			"label" : "Discovery timeout (default 5)",
 			"info" : "The amount of seconds that is given to discover the beacons."
 		},
 		"save" : {

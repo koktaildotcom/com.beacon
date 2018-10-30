@@ -60,11 +60,11 @@ class Beacon extends Homey.App {
         console.log('Beacon app is running...');
 
         if (!Homey.ManagerSettings.get('timeout')) {
-            Homey.ManagerSettings.set('timeout', 3)
+            Homey.ManagerSettings.set('timeout', 5)
         }
 
         if (!Homey.ManagerSettings.get('updateInterval')) {
-            Homey.ManagerSettings.set('updateInterval', 1)
+            Homey.ManagerSettings.set('updateInterval', 10)
         }
 
         if (!Homey.ManagerSettings.get('verificationAmountInside')) {

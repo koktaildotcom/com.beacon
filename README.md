@@ -73,6 +73,9 @@ Do you like the app? You can make me happy by buying me a beer! [![](https://img
 ### v1.0.11 - 07.10.27
   * mismatch variable name bug
   * also check on bigger that the amount if app restarts
-  
+### v1.0.12 - 07.10.30
+  * add default values in settings
+  * change comparator typo
+
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/com.koktail.beacon

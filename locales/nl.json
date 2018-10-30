@@ -3,20 +3,20 @@
 		"title" : "Instellingen beacon app",
 		"verification" : "Verificatie instelligen",
 		"verification_amount_inside" : {
-			"label" : "Aantal keer verifiëren binnen bereik",
+			"label" : "Aantal keer verifiëren binnen bereik (initieel 1)",
 			"info" : "Aantal keer dat de app gaat verifiëren of het baken binnen bereik is."
 		},
 		"verification_amount_outside" : {
-			"label" : "Aantal keer verifiëren buiten bereik",
+			"label" : "Aantal keer verifiëren buiten bereik (initieel 5)",
 			"info" : "Aantal keer dat de app gaat verifiëren of het baken buiten bereik is."
 		},
 		"update" : "Update instellingen",
 		"interval" : {
-			"label" : "De interval tussen updates in seconden",
+			"label" : "De interval tussen updates in seconden (initieel 10)",
 			"info" : "Het aantal seconden wat gepauzeerd wordt voordat de sensoren opnieuw worden uitgelezen."
 		},
 		"timeout" : {
-			"label" : "Ontdek timeout",
+			"label" : "Ontdek timeout (initieel 5)",
 			"info" : "Aantal seconden dat de app mag doen om bakens te ontdekken."
 		},
 		"save" : {
