@@ -60,11 +60,11 @@ class Beacon extends Homey.App {
         console.log('Beacon app is running...');
 
         if (!Homey.ManagerSettings.get('timeout')) {
-            Homey.ManagerSettings.set('timeout', 3)
+            Homey.ManagerSettings.set('timeout', 5)
         }
 
         if (!Homey.ManagerSettings.get('updateInterval')) {
-            Homey.ManagerSettings.set('updateInterval', 1)
+            Homey.ManagerSettings.set('updateInterval', 10)
         }
 
         if (!Homey.ManagerSettings.get('verificationAmountInside')) {
@@ -81,25 +81,70 @@ class Beacon extends Homey.App {
         this.logTrigger = new Homey.FlowCardTrigger('log');
         this.logTrigger.register();
 
-        this._bleDevices = [];
+        this._advertisements = [];
         this._scanning();
+    }
+
+    /**
+     * discover devices
+     *
+     * @param driver BeaconDriver
+     * @returns {Promise.<object[]>}
+     */
+    discoverDevices(driver) {
+        return new Promise((resolve, reject) => {
+            try {
+                this._searchDevices(driver).then((devices) => {
+                    if (devices.length > 0) {
+                        resolve(devices);
+                    }
+                    else {
+                        reject("No devices found.");
+                    }
+                })
+            } catch (exception) {
+                reject(exception);
+            }
+        })
     }
 
     /**
      * @param message
      */
     log(message) {
-
         if (this.logTrigger) {
             this.logTrigger.trigger({
-                'log': message
+                'log': this._getDateTime(new Date()) + ' ' + message
             })
-                .catch(function (error) {
-                    console.error('Cannot trigger flow card log device: %s.', error);
-                });
         }
-
         console.log(message);
+    }
+
+    /**
+     * @param date Date
+     * @returns {string}
+     * @private
+     */
+    _getDateTime(date) {
+
+        let hour = date.getHours();
+        hour = (hour < 10 ? "0" : "") + hour;
+
+        let min = date.getMinutes();
+        min = (min < 10 ? "0" : "") + min;
+
+        let sec = date.getSeconds();
+        sec = (sec < 10 ? "0" : "") + sec;
+
+        let year = date.getFullYear();
+
+        let month = date.getMonth() + 1;
+        month = (month < 10 ? "0" : "") + month;
+
+        let day = date.getDate();
+        day = (day < 10 ? "0" : "") + day;
+
+        return day + "-" + month + "-" + year + " " + hour + ":" + min + ":" + sec;
     }
 
     /**
@@ -117,7 +162,6 @@ class Beacon extends Homey.App {
      * handle beacon matches
      */
     _scanning() {
-        Homey.app.log('New sequence --------------');
         try {
             let updateDevicesTime = new Date();
             this._updateDevices()
@@ -125,7 +169,6 @@ class Beacon extends Homey.App {
                     if (foundDevices.length !== 0) {
                         Homey.emit('beacon.devices', foundDevices);
                     }
-                    Homey.app.log('Sequence complete --------------');
                     Homey.app.log('All devices are synced complete in: ' + (new Date() - updateDevicesTime) / 1000 + ' seconds');
                     this._setNewTimeout();
                 })
@@ -158,29 +201,6 @@ class Beacon extends Homey.App {
                 reject(error);
             });
         });
-    }
-
-    /**
-     * discover devices
-     *
-     * @param driver BeaconDriver
-     * @returns {Promise.<object[]>}
-     */
-    discoverDevices(driver) {
-        return new Promise((resolve, reject) => {
-            try {
-                this._searchDevices(driver).then((devices) => {
-                    if (devices.length > 0) {
-                        resolve(devices);
-                    }
-                    else {
-                        reject("No devices found.");
-                    }
-                })
-            } catch (exception) {
-                reject(exception);
-            }
-        })
     }
 
     /**
