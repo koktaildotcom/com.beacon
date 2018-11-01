@@ -94,6 +94,9 @@ An overview of all the trigger cards that can be used
   * mismatch variable name bug
   * also check on bigger that the amount if app restarts
 ### v1.0.12 - 07.11.01
+  * fixed change detect comparison mismatch
+  * add log handler to watch false positives
+  * fixed zero verification times 
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/com.koktail.beacon
