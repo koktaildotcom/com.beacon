@@ -93,7 +93,10 @@ An overview of all the trigger cards that can be used
 ### v1.0.11 - 07.10.27
   * mismatch variable name bug
   * also check on bigger that the amount if app restarts
-### v1.0.12 - 07.11.01
+### v1.0.12 - 07.10.30
+  * add default values in settings
+  * change comparator typo
+### v1.0.13 - 07.11.01
   * fixed change detect comparison mismatch
   * add log handler to watch false positives
   * fixed zero verification times 
