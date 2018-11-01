@@ -100,6 +100,8 @@ An overview of all the trigger cards that can be used
   * fixed change detect comparison mismatch
   * add log handler to watch false positives
   * fixed zero verification times 
+### v1.0.14 - xxxxxxx
+  * add homeyCommunityTopicId
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/com.koktail.beacon

@@ -4,6 +4,7 @@
 	"compatibility": ">=1.5.8",
 	"sdk": 2,
 	"brandColor": "#11437c",
+	"homeyCommunityTopicId": 3550,
 	"name": {
 		"en": "Beacon"
 	},
