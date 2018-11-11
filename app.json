@@ -261,8 +261,8 @@
 							"nl": "gedetecteerd"
 						},
 						"example": {
-							"en": true,
-							"nl": true
+							"en": "true",
+							"nl": "true"
 						}
 					}
 				]
@@ -292,8 +292,8 @@
 							"nl": "gedetecteerd"
 						},
 						"example": {
-							"en": true,
-							"nl": true
+							"en": "true",
+							"nl": "true"
 						}
 					}
 				],
