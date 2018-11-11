@@ -49,10 +49,12 @@ An overview of all the trigger cards that can be used
 
 | Trigger | Name | Tokens |
 | :---: | :---: | :---: |
+| Global | A beacon detected state is changed | (beacon name, detected) |
 | Global | A beacon is inside range | (beacon name) |
 | Global | A beacon is outside range | (beacon name) |
 | Global | A beacon has been discovered | (beacon name, uuid) |
 | Global | The app generates a log | (log) |
+| Device | The beacon detected state is changed | (beacon name, detected) |
 | Device | The beacon is inside range | beacon name |
 | Device | The beacon is outside range | beacon name |
    
