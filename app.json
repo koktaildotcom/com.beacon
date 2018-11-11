@@ -235,6 +235,75 @@
 						}
 					}
 				]
+			},
+			{
+				"id": "beacon_state_changed",
+				"title": {
+					"en": "A beacon is changed",
+					"nl": "Een baken is gewijzigd"
+				},
+				"tokens": [
+					{
+						"name": "beacon",
+						"title": {
+							"en": "beacon",
+							"nl": "baken"
+						},
+						"example": {
+							"en": "Beacon 1",
+							"nl": "Baken 1"
+						}
+					},
+					{
+						"name": "detected",
+						"title": {
+							"en": "detected",
+							"nl": "gedetecteerd"
+						},
+						"example": {
+							"en": true,
+							"nl": true
+						}
+					}
+				]
+			},
+			{
+				"id": "device_beacon_state_changed",
+				"title": {
+					"en": "The beacon is changed",
+					"nl": "Het baken is gewijzigd"
+				},
+				"tokens": [
+					{
+						"name": "beacon",
+						"title": {
+							"en": "beacon",
+							"nl": "baken"
+						},
+						"example": {
+							"en": "Beacon 1",
+							"nl": "Baken 1"
+						}
+					},
+					{
+						"name": "detected",
+						"title": {
+							"en": "detected",
+							"nl": "gedetecteerd"
+						},
+						"example": {
+							"en": true,
+							"nl": true
+						}
+					}
+				],
+				"args": [
+					{
+						"name": "device",
+						"type": "device",
+						"filter": "driver_id=beacon"
+					}
+				]
 			}
 		]
 	}

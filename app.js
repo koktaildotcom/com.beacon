@@ -57,7 +57,7 @@ class Beacon extends Homey.App {
      * on init the app
      */
     onInit() {
-        console.log('Beacon app is running...');
+        console.log('Successfully init Beacon app version: %s', Homey.app.manifest.version);
 
         if (!Homey.ManagerSettings.get('timeout')) {
             Homey.ManagerSettings.set('timeout', 5)
