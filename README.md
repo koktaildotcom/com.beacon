@@ -20,6 +20,7 @@ Here is a list of used devices
 | Brand | Name | Range (+/-) |
 | :---: | :---: | :---: |
 | Tile | Pro | 8m |
+| Tile | Mate | 8m |
 | Nordic | nRF51822 | 5m |
 
 ## Usage
