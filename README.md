@@ -60,53 +60,55 @@ An overview of all the trigger cards that can be used
 | Device | The beacon is outside range | beacon name |
    
 ## History
-### v1.0.0 - 04.10.18
+### v1.0.0 - 04.10.2018
   * first alpha to app store.
-### v1.0.1 - 05.10.18
+### v1.0.1 - 05.10.2018
   * add support for NRF51822  
   * add app icon
   * refactoring the drivers
-### v1.0.2 - 07.10.18
+### v1.0.2 - 07.10.2018
   * add trigger card for discovered devices
   * add icon for discovery
-### v1.0.3 - 07.10.18
+### v1.0.3 - 07.10.2018
   * add generic device
-### v1.0.4 - 20.10.18  
+### v1.0.4 - 20.10.2018  
   * add verify process for detect/undetect events
-### v1.0.5 - 07.10.24
+### v1.0.5 - 24.10.2018
   * improve discovery of the devices
   * change card description
-### v1.0.6 - 07.10.24
+### v1.0.6 - 24.10.2018
   * improve by connection and find the advertisement
-### v1.0.7 - 07.10.24
+### v1.0.7 - 24.10.2018
   * bump version
-### v1.0.8 - 07.10.25
+### v1.0.8 - 24.10.2018
   * improve sequence update beacons
   * get peripheral for accurate range
   * change timeout to 1 second
   * improve logging to the app
   * add retry strategy
-### v1.0.9 - 07.10.25
+### v1.0.9 - 25.10.2018
   * bump version
-### v1.0.10 - 07.10.27
+### v1.0.10 - 27.10.2018
   * introducing timeout and verification settings
   * revert back to discovery strategy to improve speed
   * add translations
   * improve logging
-### v1.0.11 - 07.10.27
+### v1.0.11 - 27.10.2018
   * mismatch variable name bug
   * also check on bigger that the amount if app restarts
-### v1.0.12 - 07.10.30
+### v1.0.12 - 30.10.2018
   * add default values in settings
   * change comparator typo
-### v1.0.13 - 07.11.01
+### v1.0.13 - 07.11.2018
   * fixed change detect comparison mismatch
   * add log handler to watch false positives
   * fixed zero verification times 
-### v1.0.14 - 11.11.01
+### v1.0.14 - 11.11.2018
   * add homeyCommunityTopicId
   * add version number app for logging
   * add triggercards detect state changed
+### v1.0.15 - 04.12.2018
+  * resolved issue of not triggering the device `change` cards
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/com.koktail.beacon
