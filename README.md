@@ -109,6 +109,8 @@ An overview of all the trigger cards that can be used
   * add triggercards detect state changed
 ### v1.0.15 - 04.12.2018
   * resolved issue of not triggering the device `change` cards
+### v1.0.16 - 06.12.2018
+  * add BLE permission into manifest
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/com.koktail.beacon
