@@ -32,24 +32,6 @@ class Beacon extends Homey.App {
         this.logTrigger = new Homey.FlowCardTrigger('log');
         this.logTrigger.register();
 
-        this.beaconInsideRange = new Homey.FlowCardTrigger('beacon_inside_range');
-        this.beaconInsideRange.register();
-
-        this.deviceBeaconInsideRange = new Homey.FlowCardTriggerDevice('device_beacon_inside_range');
-        this.deviceBeaconInsideRange.register();
-
-        this.beaconOutsideRange = new Homey.FlowCardTrigger('beacon_outside_range');
-        this.beaconOutsideRange.register();
-
-        this.deviceBeaconOutsideRange = new Homey.FlowCardTriggerDevice('device_beacon_outside_range');
-        this.deviceBeaconOutsideRange.register();
-
-        this.beaconStateChanged = new Homey.FlowCardTrigger('beacon_state_changed');
-        this.beaconStateChanged.register();
-
-        this.deviceBeaconStateChanged = new Homey.FlowCardTriggerDevice('device_beacon_state_changed');
-        this.deviceBeaconStateChanged.register();
-
         this._advertisements = [];
         this._scanning();
     }
