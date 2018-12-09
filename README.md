@@ -111,6 +111,8 @@ An overview of all the trigger cards that can be used
   * resolved issue of not triggering the device `change` cards
 ### v1.0.16 - 06.12.2018
   * add BLE permission into manifest
+### v1.0.17 - 12.12.2018
+  * removed BLE permission into manifest due to incompatibility with < v2.0.0
 ### 
   * moved registering cards to the app due to make them work in 2.0
   
