@@ -14,9 +14,6 @@
 	"category": [
 		"localization"
 	],
-	"permissions": [
-		"homey:wireless:ble"
-	],
 	"images": {
 		"large": "/assets/images/large.png",
 		"small": "/assets/images/small.png"
