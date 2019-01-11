@@ -115,6 +115,8 @@ An overview of all the trigger cards that can be used
   * removed BLE permission into manifest due to incompatibility with < v2.0.0
 ### v1.2.0 - 12.12.2018
   * moved registering cards to the app due to make them work in 2.0
+### v1.2.1 - 11.01.2018
+  * update icon because of wrong viewport
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/com.koktail.beacon
