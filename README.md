@@ -117,6 +117,8 @@ An overview of all the trigger cards that can be used
   * moved registering cards to the app due to make them work in 2.0
 ### v1.2.1 - 11.01.2018
   * update icon because of wrong viewport
+### v1.2.2
+  * update icon capability
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/com.koktail.beacon

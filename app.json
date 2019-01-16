@@ -34,7 +34,9 @@
 	},
 	"capabilities": {
 		"detect": {
+			"uiComponent": "sensor",
 			"type": "boolean",
+			"icon": "assets/detect.svg",
 			"title": {
 				"en": "Detected",
 				"nl": "Gedetecteerd"
@@ -83,7 +85,7 @@
 						],
 						"options": {
 							"icons": {
-								"detect": "/assets/detect.svg"
+								"detect": "./drivers/beacon/assets/detect.svg"
 							}
 						}
 					}
