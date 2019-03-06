@@ -1,7 +1,7 @@
 {
 	"id": "com.koktail.beacon",
-	"version": "1.0.17",
-	"compatibility": ">=1.5.8",
+	"version": "1.2.2",
+	"compatibility": ">=2.0.0",
 	"sdk": 2,
 	"brandColor": "#11437c",
 	"homeyCommunityTopicId": 3550,
@@ -13,6 +13,9 @@
 	},
 	"category": [
 		"localization"
+	],
+	"permissions": [
+		"homey:wireless:ble"
 	],
 	"images": {
 		"large": "/assets/images/large.png",
@@ -31,7 +34,9 @@
 	},
 	"capabilities": {
 		"detect": {
+			"uiComponent": "sensor",
 			"type": "boolean",
+			"icon": "assets/detect.svg",
 			"title": {
 				"en": "Detected",
 				"nl": "Gedetecteerd"
@@ -80,7 +85,7 @@
 						],
 						"options": {
 							"icons": {
-								"detect": "/assets/detect.svg"
+								"detect": "./drivers/beacon/assets/detect.svg"
 							}
 						}
 					}
@@ -90,8 +95,6 @@
 	],
 	"flow": {
 		"triggers": [
-
-
 			{
 				"id": "beacon_state_changed",
 				"title": {
@@ -249,37 +252,6 @@
 						"name": "device",
 						"type": "device",
 						"filter": "driver_id=beacon"
-					}
-				]
-			},
-			{
-				"id": "beacon_discovered",
-				"title": {
-					"en": "A beacon has been discovered",
-					"nl": "Een baken is ontdekt"
-				},
-				"tokens": [
-					{
-						"name": "beacon",
-						"title": {
-							"en": "beacon",
-							"nl": "baken"
-						},
-						"example": {
-							"en": "Beacon 1",
-							"nl": "Baken 1"
-						}
-					},
-					{
-						"name": "uuid",
-						"title": {
-							"en": "uuid",
-							"nl": "uuid"
-						},
-						"example": {
-							"en": "c47c8d660875",
-							"nl": "c47c8d660875"
-						}
 					}
 				]
 			},
