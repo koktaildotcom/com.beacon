@@ -130,7 +130,7 @@ class Beacon extends Homey.App {
     _scanning() {
         try {
             let updateDevicesTime = new Date();
-            this._updateDevices()
+            this._discoverAdvertisements()
                 .then((foundDevices) => {
                     if (foundDevices.length !== 0) {
                         Homey.emit('beacon.devices', foundDevices);
@@ -154,7 +154,7 @@ class Beacon extends Homey.App {
      *
      * @returns {Promise.<BeaconDevice[]>}
      */
-    _updateDevices() {
+    _discoverAdvertisements() {
         const app = this;
         return new Promise((resolve, reject) => {
             Homey.ManagerBLE.discover([], Homey.ManagerSettings.get('timeout') * 1000).then(function (advertisements) {
@@ -185,32 +185,38 @@ class Beacon extends Homey.App {
                 currentUuids.push(data.uuid);
             });
 
-            const advertisements = app._advertisements.filter(function (advertisement) {
-                return (currentUuids.indexOf(advertisement.uuid) === -1);
+            const promise = this._discoverAdvertisements().then((advertisements) => {
+                return advertisements.filter(function (advertisement) {
+                    return (currentUuids.indexOf(advertisement.uuid) === -1);
+                });
             });
 
-            if (advertisements.length === 0) {
-                resolve([]);
-            }
-
-            advertisements.forEach(function (advertisement) {
-                if (advertisement.localName !== undefined) {
-                    devices.push({
-                        "name": advertisement.localName,
-                        "data": {
-                            "id": advertisement.id,
-                            "uuid": advertisement.uuid,
-                            "address": advertisement.uuid,
-                            "name": advertisement.localName,
-                            "type": advertisement.type,
-                            "version": "v" + Homey.manifest.version,
-                        },
-                        "capabilities": ["detect"],
-                    });
+            promise.then((advertisements) => {
+                if (advertisements.length === 0) {
+                    resolve([]);
                 }
-            });
 
-            resolve(devices);
+                advertisements.forEach(function (advertisement) {
+                    if (advertisement.localName !== undefined) {
+                        devices.push({
+                            "name": advertisement.localName,
+                            "data": {
+                                "id": advertisement.id,
+                                "uuid": advertisement.uuid,
+                                "address": advertisement.uuid,
+                                "name": advertisement.localName,
+                                "type": advertisement.type,
+                                "version": "v" + Homey.manifest.version,
+                            },
+                            "capabilities": ["detect"],
+                        });
+                    }
+                });
+
+                resolve(devices);
+            }).catch((error) => {
+                reject(error);
+            });
         });
     }
 }

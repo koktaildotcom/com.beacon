@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="8afa8c9d-234c-4ab7-8423-e7da2cb208df" viewBox="0 0 455 300" xmlns="http://www.w3.org/2000/svg">
+    <text id="8afa8c9d-234c-4ab7-8423-e7da2cb208df-title" x="32" y="15" fill="rgb(0,0,0,0.6)" text-anchor="start"
+          alignment-baseline="middle" font-family="sans-serif" font-size="1.1em">Philodendron erubescens (15 minutes
+        ago)
+    </text>
+    <rect id="8afa8c9d-234c-4ab7-8423-e7da2cb208df-measure_temperature-background" x="40" y="60" rx="8" width="400"
+          height="30" fill="rgb(247,245,245)"></rect>
+    <rect id="8afa8c9d-234c-4ab7-8423-e7da2cb208df-measure_temperature-min-line" x="173.33333333333334" y="40" rx="8"
+          width="1" height="50" fill="rgb(0,0,0,0.07)"></rect>
+    <text id="8afa8c9d-234c-4ab7-8423-e7da2cb208df-measure_temperature-min" x="165.33333333333334" y="50"
+          fill="rgb(0,0,0,0.4)" text-anchor="end" alignment-baseline="middle" font-family="sans-serif"
+          font-size="0.5em">8 °C
+    </text>
+    <rect id="8afa8c9d-234c-4ab7-8423-e7da2cb208df-measure_temperature-max-line" x="306.6666666666667" y="40" rx="8"
+          width="1" height="50" fill="rgb(0,0,0,0.07)"></rect>
+    <text id="8afa8c9d-234c-4ab7-8423-e7da2cb208df-measure_temperaturemax" x="314.6666666666667" y="50"
+          fill="rgb(0,0,0,0.4)" text-anchor="start" alignment-baseline="middle" font-family="sans-serif"
+          font-size="0.5em">32 °C
+    </text>
+    <rect id="8afa8c9d-234c-4ab7-8423-e7da2cb208df-measure_temperature-graph" x="40" y="60" rx="8"
+          width="189.44444444444446" height="30" fill="rgb(211,254,196,0.95)"></rect>
+    <text id="8afa8c9d-234c-4ab7-8423-e7da2cb208df-measure_temperature-title" x="221.44444444444446" y="75"
+          fill="rgb(0,0,0,0.6)" text-anchor="end" font-family="sans-serif" alignment-baseline="middle"
+          font-size="0.7em">18.1 °C
+    </text>
+    <image id="8afa8c9d-234c-4ab7-8423-e7da2cb208df-measure_temperature-icon" x="5" y="60" height="28" width="28"
+           href="assets/icons/temperatuur.svg" class="capability-icon"></image>
+    <rect id="8afa8c9d-234c-4ab7-8423-e7da2cb208df-measure_luminance-background" x="40" y="120" rx="8" width="400"
+          height="30" fill="rgb(247,245,245)"></rect>
+    <rect id="8afa8c9d-234c-4ab7-8423-e7da2cb208df-measure_luminance-min-line" x="173.33333333333334" y="100" rx="8"
+          width="1" height="50" fill="rgb(0,0,0,0.07)"></rect>
+    <text id="8afa8c9d-234c-4ab7-8423-e7da2cb208df-measure_luminance-min" x="165.33333333333334" y="110"
+          fill="rgb(0,0,0,0.4)" text-anchor="end" alignment-baseline="middle" font-family="sans-serif"
+          font-size="0.5em">600 lx
+    </text>
+    <rect id="8afa8c9d-234c-4ab7-8423-e7da2cb208df-measure_luminance-max-line" x="306.6666666666667" y="100" rx="8"
+          width="1" height="50" fill="rgb(0,0,0,0.07)"></rect>
+    <text id="8afa8c9d-234c-4ab7-8423-e7da2cb208df-measure_luminancemax" x="314.6666666666667" y="110"
+          fill="rgb(0,0,0,0.4)" text-anchor="start" alignment-baseline="middle" font-family="sans-serif"
+          font-size="0.5em">5000 lx
+    </text>
+    <rect id="8afa8c9d-234c-4ab7-8423-e7da2cb208df-measure_luminance-graph" x="40" y="120" rx="8"
+          width="122.96969696969697" height="30" fill="rgb(255,211,203,0.95)"></rect>
+    <text id="8afa8c9d-234c-4ab7-8423-e7da2cb208df-measure_luminance-title" x="154.96969696969697" y="135"
+          fill="rgb(0,0,0,0.6)" text-anchor="end" font-family="sans-serif" alignment-baseline="middle"
+          font-size="0.7em">258 lx
+    </text>
+    <image id="8afa8c9d-234c-4ab7-8423-e7da2cb208df-measure_luminance-icon" x="5" y="120" height="28" width="28"
+           href="assets/icons/helderheid.svg" class="capability-icon"></image>
+    <rect id="8afa8c9d-234c-4ab7-8423-e7da2cb208df-flora_measure_fertility-background" x="40" y="180" rx="8" width="400"
+          height="30" fill="rgb(247,245,245)"></rect>
+    <rect id="8afa8c9d-234c-4ab7-8423-e7da2cb208df-flora_measure_fertility-min-line" x="173.33333333333334" y="160"
+          rx="8" width="1" height="50" fill="rgb(0,0,0,0.07)"></rect>
+    <text id="8afa8c9d-234c-4ab7-8423-e7da2cb208df-flora_measure_fertility-min" x="165.33333333333334" y="170"
+          fill="rgb(0,0,0,0.4)" text-anchor="end" alignment-baseline="middle" font-family="sans-serif"
+          font-size="0.5em">350 µS/cm
+    </text>
+    <rect id="8afa8c9d-234c-4ab7-8423-e7da2cb208df-flora_measure_fertility-max-line" x="306.6666666666667" y="160"
+          rx="8" width="1" height="50" fill="rgb(0,0,0,0.07)"></rect>
+    <text id="8afa8c9d-234c-4ab7-8423-e7da2cb208df-flora_measure_fertilitymax" x="314.6666666666667" y="170"
+          fill="rgb(0,0,0,0.4)" text-anchor="start" alignment-baseline="middle" font-family="sans-serif"
+          font-size="0.5em">2000 µS/cm
+    </text>
+    <rect id="8afa8c9d-234c-4ab7-8423-e7da2cb208df-flora_measure_fertility-graph" x="40" y="180" rx="8"
+          width="114.98989898989899" height="30" fill="rgb(255,211,203,0.95)"></rect>
+    <text id="8afa8c9d-234c-4ab7-8423-e7da2cb208df-flora_measure_fertility-title" x="146.989898989899" y="195"
+          fill="rgb(0,0,0,0.6)" text-anchor="end" font-family="sans-serif" alignment-baseline="middle"
+          font-size="0.7em">123 µS/cm
+    </text>
+    <image id="8afa8c9d-234c-4ab7-8423-e7da2cb208df-flora_measure_fertility-icon" x="5" y="180" height="28" width="28"
+           href="assets/icons/geleidingsvermogen.svg" class="capability-icon"></image>
+    <rect id="8afa8c9d-234c-4ab7-8423-e7da2cb208df-flora_measure_moisture-background" x="40" y="240" rx="8" width="400"
+          height="30" fill="rgb(247,245,245)"></rect>
+    <rect id="8afa8c9d-234c-4ab7-8423-e7da2cb208df-flora_measure_moisture-min-line" x="173.33333333333334" y="220"
+          rx="8" width="1" height="50" fill="rgb(0,0,0,0.07)"></rect>
+    <text id="8afa8c9d-234c-4ab7-8423-e7da2cb208df-flora_measure_moisture-min" x="165.33333333333334" y="230"
+          fill="rgb(0,0,0,0.4)" text-anchor="end" alignment-baseline="middle" font-family="sans-serif"
+          font-size="0.5em">15 %
+    </text>
+    <rect id="8afa8c9d-234c-4ab7-8423-e7da2cb208df-flora_measure_moisture-max-line" x="306.6666666666667" y="220" rx="8"
+          width="1" height="50" fill="rgb(0,0,0,0.07)"></rect>
+    <text id="8afa8c9d-234c-4ab7-8423-e7da2cb208df-flora_measure_moisturemax" x="314.6666666666667" y="230"
+          fill="rgb(0,0,0,0.4)" text-anchor="start" alignment-baseline="middle" font-family="sans-serif"
+          font-size="0.5em">60 %
+    </text>
+    <rect id="8afa8c9d-234c-4ab7-8423-e7da2cb208df-flora_measure_moisture-graph" x="40" y="240" rx="8"
+          width="139.25925925925927" height="30" fill="rgb(211,254,196,0.95)"></rect>
+    <text id="8afa8c9d-234c-4ab7-8423-e7da2cb208df-flora_measure_moisture-title" x="171.25925925925927" y="255"
+          fill="rgb(0,0,0,0.6)" text-anchor="end" font-family="sans-serif" alignment-baseline="middle"
+          font-size="0.7em">17 %
+    </text>
+    <image id="8afa8c9d-234c-4ab7-8423-e7da2cb208df-flora_measure_moisture-icon" x="5" y="240" height="28" width="28"
+           href="assets/icons/vochtigheid.svg" class="capability-icon"></image>
+</svg>

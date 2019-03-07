@@ -119,6 +119,8 @@ An overview of all the trigger cards that can be used
   * update icon because of wrong viewport
 ### v1.2.2 - 01.03.2019
   * update icon capability
+### v1.2.3 - 07.03.2019
+  * update the discovery sequence for pairing
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/com.koktail.beacon
