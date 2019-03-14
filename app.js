@@ -47,6 +47,12 @@ class Beacon extends Homey.App {
         this.deviceBeaconStateChanged = new Homey.FlowCardTriggerDevice('device_beacon_state_changed');
         this.deviceBeaconStateChanged.register();
 
+        this.deviceBeaconIsInsideRange = new Homey.FlowCardCondition('beacon_is_inside_range')
+        this.deviceBeaconIsInsideRange.register();
+        this.deviceBeaconIsInsideRange.registerRunListener((args, state) => {
+            return args.device.getCapabilityValue("detect");
+        });
+
         this._advertisements = [];
         this._scanning();
     }
@@ -131,17 +137,17 @@ class Beacon extends Homey.App {
         try {
             let updateDevicesTime = new Date();
             this._discoverAdvertisements()
-                .then((foundDevices) => {
-                    if (foundDevices.length !== 0) {
-                        Homey.emit('beacon.devices', foundDevices);
-                    }
-                    Homey.app.log('All devices are synced complete in: ' + (new Date() - updateDevicesTime) / 1000 + ' seconds');
-                    this._setNewTimeout();
-                })
-                .catch((error) => {
-                    Homey.app.log('error 1: ' + error.message);
-                    this._setNewTimeout();
-                });
+            .then((foundDevices) => {
+                if (foundDevices.length !== 0) {
+                    Homey.emit('beacon.devices', foundDevices);
+                }
+                Homey.app.log('All devices are synced complete in: ' + (new Date() - updateDevicesTime) / 1000 + ' seconds');
+                this._setNewTimeout();
+            })
+            .catch((error) => {
+                Homey.app.log('error 1: ' + error.message);
+                this._setNewTimeout();
+            });
         }
         catch (error) {
             Homey.app.log('error 2: ' + error.message);
