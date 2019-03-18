@@ -1,7 +1,7 @@
 {
 	"id": "com.koktail.beacon",
-	"version": "1.2.2",
-	"compatibility": ">=2.0.0",
+	"version": "1.2.4",
+	"compatibility": ">=2.0.5",
 	"sdk": 2,
 	"brandColor": "#11437c",
 	"homeyCommunityTopicId": 3550,
@@ -272,6 +272,26 @@
 							"en": "Not in range",
 							"nl": "Niet binnen bereik"
 						}
+					}
+				]
+			}
+		],
+		"conditions": [
+			{
+				"id": "beacon_is_inside_range",
+				"title": {
+					"en": "The beacon !{{is|is not}} inside range",
+					"nl": "Het baken !{{is|is not}} binnen bereik"
+				},
+				"hint": {
+					"en": "Use this card to determine if the plant is inside range.",
+					"nl": "Gebruik deze kaart om te bepalen of de beacon binnen bereik is."
+				},
+				"args": [
+					{
+						"name": "device",
+						"type": "device",
+						"filter": "driver_id=beacon"
 					}
 				]
 			}

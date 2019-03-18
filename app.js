@@ -47,6 +47,12 @@ class Beacon extends Homey.App {
         this.deviceBeaconStateChanged = new Homey.FlowCardTriggerDevice('device_beacon_state_changed');
         this.deviceBeaconStateChanged.register();
 
+        this.deviceBeaconIsInsideRange = new Homey.FlowCardCondition('beacon_is_inside_range')
+        this.deviceBeaconIsInsideRange.register();
+        this.deviceBeaconIsInsideRange.registerRunListener((args, state) => {
+            return args.device.getCapabilityValue("detect");
+        });
+
         this._advertisements = [];
         this._scanning();
     }
@@ -130,18 +136,18 @@ class Beacon extends Homey.App {
     _scanning() {
         try {
             let updateDevicesTime = new Date();
-            this._updateDevices()
-                .then((foundDevices) => {
-                    if (foundDevices.length !== 0) {
-                        Homey.emit('beacon.devices', foundDevices);
-                    }
-                    Homey.app.log('All devices are synced complete in: ' + (new Date() - updateDevicesTime) / 1000 + ' seconds');
-                    this._setNewTimeout();
-                })
-                .catch((error) => {
-                    Homey.app.log('error 1: ' + error.message);
-                    this._setNewTimeout();
-                });
+            this._discoverAdvertisements()
+            .then((foundDevices) => {
+                if (foundDevices.length !== 0) {
+                    Homey.emit('beacon.devices', foundDevices);
+                }
+                Homey.app.log('All devices are synced complete in: ' + (new Date() - updateDevicesTime) / 1000 + ' seconds');
+                this._setNewTimeout();
+            })
+            .catch((error) => {
+                Homey.app.log('error 1: ' + error.message);
+                this._setNewTimeout();
+            });
         }
         catch (error) {
             Homey.app.log('error 2: ' + error.message);
@@ -154,7 +160,7 @@ class Beacon extends Homey.App {
      *
      * @returns {Promise.<BeaconDevice[]>}
      */
-    _updateDevices() {
+    _discoverAdvertisements() {
         const app = this;
         return new Promise((resolve, reject) => {
             Homey.ManagerBLE.discover([], Homey.ManagerSettings.get('timeout') * 1000).then(function (advertisements) {
@@ -185,32 +191,38 @@ class Beacon extends Homey.App {
                 currentUuids.push(data.uuid);
             });
 
-            const advertisements = app._advertisements.filter(function (advertisement) {
-                return (currentUuids.indexOf(advertisement.uuid) === -1);
+            const promise = this._discoverAdvertisements().then((advertisements) => {
+                return advertisements.filter(function (advertisement) {
+                    return (currentUuids.indexOf(advertisement.uuid) === -1);
+                });
             });
 
-            if (advertisements.length === 0) {
-                resolve([]);
-            }
-
-            advertisements.forEach(function (advertisement) {
-                if (advertisement.localName !== undefined) {
-                    devices.push({
-                        "name": advertisement.localName,
-                        "data": {
-                            "id": advertisement.id,
-                            "uuid": advertisement.uuid,
-                            "address": advertisement.uuid,
-                            "name": advertisement.localName,
-                            "type": advertisement.type,
-                            "version": "v" + Homey.manifest.version,
-                        },
-                        "capabilities": ["detect"],
-                    });
+            promise.then((advertisements) => {
+                if (advertisements.length === 0) {
+                    resolve([]);
                 }
-            });
 
-            resolve(devices);
+                advertisements.forEach(function (advertisement) {
+                    if (advertisement.localName !== undefined) {
+                        devices.push({
+                            "name": advertisement.localName,
+                            "data": {
+                                "id": advertisement.id,
+                                "uuid": advertisement.uuid,
+                                "address": advertisement.uuid,
+                                "name": advertisement.localName,
+                                "type": advertisement.type,
+                                "version": "v" + Homey.manifest.version,
+                            },
+                            "capabilities": ["detect"],
+                        });
+                    }
+                });
+
+                resolve(devices);
+            }).catch((error) => {
+                reject(error);
+            });
         });
     }
 }
