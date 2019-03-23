@@ -54,6 +54,7 @@ class Beacon extends Homey.App {
         });
 
         this._advertisements = [];
+        this._log = '';
         this._scanning();
     }
 
@@ -84,12 +85,19 @@ class Beacon extends Homey.App {
      * @param message
      */
     log(message) {
+        const logMessage = this._getDateTime(new Date()) + ' ' + message;
+        this._log += logMessage;
+        console.log(logMessage);
+    }
+
+    sendLog() {
         if (this.logTrigger) {
             this.logTrigger.trigger({
-                'log': this._getDateTime(new Date()) + ' ' + message
+                'log': this._log
             })
         }
-        console.log(message);
+
+        this._log = '';
     }
 
     /**
