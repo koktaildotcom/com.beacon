@@ -125,6 +125,8 @@ An overview of all the trigger cards that can be used
   * introduce condition card for beacon in/not in zone
 ### v1.2.5 - 18.03.2019
   * bump version v1.2.4
-
+### v1.2.6 - 27.03.2019
+  * fixed typo in the condition card
+  
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/com.koktail.beacon
