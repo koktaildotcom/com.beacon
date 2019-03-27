@@ -123,6 +123,8 @@ An overview of all the trigger cards that can be used
   * update the discovery sequence for pairing
 ### v1.2.4 - 14.03.2019
   * introduce condition card for beacon in/not in zone
+### v1.2.5 - 27.03.2019
+  * fixed typo in the condition card
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/com.koktail.beacon

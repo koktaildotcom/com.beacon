@@ -1,6 +1,6 @@
 {
 	"id": "com.koktail.beacon",
-	"version": "1.2.4",
+	"version": "1.2.5",
 	"compatibility": ">=2.0.5",
 	"sdk": 2,
 	"brandColor": "#11437c",
@@ -281,7 +281,7 @@
 				"id": "beacon_is_inside_range",
 				"title": {
 					"en": "The beacon !{{is|is not}} inside range",
-					"nl": "Het baken !{{is|is not}} binnen bereik"
+					"nl": "Het baken !{{is|is niet}} binnen bereik"
 				},
 				"hint": {
 					"en": "Use this card to determine if the plant is inside range.",
