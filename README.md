@@ -37,7 +37,7 @@ There are some settings to improve and tweak the apps behaviour.
 The delay between reading sensor values in seconds. (default 10 seconds)
 
 #### Discovery timeout
-The amount of seconds that is given to discover the beacons. (5 seconds)
+The amount of seconds that is given to discover the beacons. (10 seconds)
 
 #### VerificationAmountInside
 The amount of verifications the app need to mark a beacon inside the range. (1 time)

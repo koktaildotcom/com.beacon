@@ -23,5 +23,6 @@
 			"label" : "Save"
 		},
 		"success" : "The settings has been saved"
-	}
+	},
+	"outside_range": "The beacon is outside range"
 }

@@ -23,5 +23,6 @@
 			"label" : "Opslaan"
 		},
 		"success" : "De instellingen zijn opgeslagen"
-	}
+	},
+	"outside_range": "De beacon is buiten bereik"
 }

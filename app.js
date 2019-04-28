@@ -11,7 +11,7 @@ class Beacon extends Homey.App {
         console.log('Successfully init Beacon app version: %s', Homey.app.manifest.version);
 
         if (!Homey.ManagerSettings.get('timeout')) {
-            Homey.ManagerSettings.set('timeout', 5)
+            Homey.ManagerSettings.set('timeout', 10)
         }
 
         if (!Homey.ManagerSettings.get('updateInterval')) {
