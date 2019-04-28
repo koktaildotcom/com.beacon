@@ -127,7 +127,7 @@ An overview of all the trigger cards that can be used
   * bump version v1.2.4
 ### v1.2.6 - 27.03.2019
   * fixed typo in the condition card
-### v1.2.7 - 27.03.2019
+### v1.2.7 - 28.04.2019
   * add warning if the beacon is outside range
   * change discovery timeout to 10 seconds
   
