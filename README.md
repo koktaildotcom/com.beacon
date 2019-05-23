@@ -132,6 +132,8 @@ An overview of all the trigger cards that can be used
   * change discovery timeout to 10 seconds
 ### v1.2.8 - 23.05.2019
   * removed warning because condition cards won't trigger again
+### v1.2.9 - 23.05.2019
+  * bump 1.2.8 due to app store bug
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/com.koktail.beacon
