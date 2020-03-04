@@ -1,0 +1,11 @@
+{
+  "id": "update_beacon_presence",
+  "title": {
+    "en": "Update beacon presence",
+    "nl": "Werk de locatie van de bakens bij"
+  },
+  "hint": {
+    "en": "Use this card to update the beacons presence.",
+    "nl": "Gebruik deze kaart om de locatie van de bakens bij te werken."
+  }
+}

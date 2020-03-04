@@ -56,8 +56,14 @@ class Beacon extends Homey.App {
         this._advertisements = [];
         this._log = '';
 
+        new Homey.FlowCardAction('update_beacon_presence')
+            .register()
+            .registerRunListener(async () => {
+                return Promise.resolve(await this.scanning())
+            });
+
         if (this._useTimeout()) {
-            this.scanning()
+            this.scanning();
         }
 
         Homey.ManagerSettings.on('set', function (setting) {
@@ -154,32 +160,30 @@ class Beacon extends Homey.App {
      *
      * handle beacon matches
      */
-    scanning() {
+    async scanning () {
         console.log('start scanning')
         try {
-            let updateDevicesTime = new Date();
-            this._discoverAdvertisements()
-            .then((foundDevices) => {
-                if (foundDevices.length !== 0) {
-                    Homey.emit('beacon.devices', foundDevices);
-                }
-                Homey.app.log('All devices are synced complete in: ' + (new Date() - updateDevicesTime) / 1000 + ' seconds');
-                if (this._useTimeout()) {
-                    this._setNewTimeout();
-                }
-            })
-            .catch((error) => {
-                Homey.app.log('error 1: ' + error.message);
-                if (this._useTimeout()) {
-                    this._setNewTimeout();
-                }
-            });
+            let updateDevicesTime = new Date()
+            const foundDevices = await this._discoverAdvertisements()
+            if (foundDevices.length !== 0) {
+                Homey.emit('beacon.devices', foundDevices)
+            }
+            Homey.app.log('All devices are synced complete in: ' + (new Date() - updateDevicesTime) / 1000 + ' seconds')
+
+            if (this._useTimeout()) {
+                this._setNewTimeout()
+            }
+
+            return true
         }
         catch (error) {
-            Homey.app.log('error 2: ' + error.message);
+            Homey.app.log(error.message)
+
             if (this._useTimeout()) {
-                this._setNewTimeout();
+                this._setNewTimeout()
             }
+
+            return false
         }
     }
 
