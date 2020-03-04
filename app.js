@@ -55,7 +55,18 @@ class Beacon extends Homey.App {
 
         this._advertisements = [];
         this._log = '';
-        this._scanning();
+
+        if (this._useTimeout()) {
+            this.scanning()
+        }
+
+        Homey.ManagerSettings.on('set', function (setting) {
+            if (setting === 'useTimeout') {
+                if (Homey.ManagerSettings.get('useTimeout') !== false) {
+                    Homey.app.scanning()
+                }
+            }
+        })
     }
 
     /**
@@ -133,7 +144,7 @@ class Beacon extends Homey.App {
      * set a new timeout for synchronisation
      */
     _setNewTimeout() {
-        setTimeout(this._scanning.bind(this), 1000 * Homey.ManagerSettings.get('updateInterval'));
+        setTimeout(this.scanning.bind(this), 1000 * Homey.ManagerSettings.get('updateInterval'));
     }
 
     /**
@@ -141,7 +152,8 @@ class Beacon extends Homey.App {
      *
      * handle beacon matches
      */
-    _scanning() {
+    scanning() {
+        console.log('start scanning')
         try {
             let updateDevicesTime = new Date();
             this._discoverAdvertisements()
@@ -150,16 +162,22 @@ class Beacon extends Homey.App {
                     Homey.emit('beacon.devices', foundDevices);
                 }
                 Homey.app.log('All devices are synced complete in: ' + (new Date() - updateDevicesTime) / 1000 + ' seconds');
-                this._setNewTimeout();
+                if (this._useTimeout()) {
+                    this._setNewTimeout();
+                }
             })
             .catch((error) => {
                 Homey.app.log('error 1: ' + error.message);
-                this._setNewTimeout();
+                if (this._useTimeout()) {
+                    this._setNewTimeout();
+                }
             });
         }
         catch (error) {
             Homey.app.log('error 2: ' + error.message);
-            this._setNewTimeout();
+            if (this._useTimeout()) {
+                this._setNewTimeout();
+            }
         }
     }
 
@@ -232,6 +250,10 @@ class Beacon extends Homey.App {
                 reject(error);
             });
         });
+    }
+
+    _useTimeout () {
+        return (Homey.ManagerSettings.get('useTimeout') !== false);
     }
 }
 

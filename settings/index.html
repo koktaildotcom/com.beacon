@@ -6,27 +6,33 @@
         #notice {
             color: green;
         }
+
         .note {
             margin: 0 0 1em 0;
             display: inline-block;
         }
-        .setting-row{
+
+        .setting-row {
             width: 100%;
         }
-        #verificationAmountInside{
-            width:55px;
+
+        #verificationAmountInside {
+            width: 55px;
             padding: 5px 10px;
         }
-        #verificationAmountOutside{
-            width:55px;
+
+        #verificationAmountOutside {
+            width: 55px;
             padding: 5px 10px;
         }
-        #updateInterval{
-            width:55px;
+
+        #updateInterval {
+            width: 55px;
             padding: 5px 10px;
         }
-        #timeout{
-            width:55px;
+
+        #timeout {
+            width: 55px;
             padding: 5px 10px;
         }
     </style>
@@ -43,6 +49,16 @@
     <table class="setting-row">
         <tbody>
         <tr>
+            <td>
+                <label for="useTimeout">
+                    <p data-i18n="settings.interval.use"></p>
+                </label>
+            </td>
+            <td>
+                <input id="useTimeout" class="left" type="checkbox"/>
+            </td>
+        </tr>
+        <tr>
             <td colspan="2">
                 <i data-i18n="settings.interval.label" class="note"></i>
             </td>
@@ -57,6 +73,16 @@
                 <input id="updateInterval" class="left" type="number" step=1 min=1/>
             </td>
         </tr>
+        </tbody>
+    </table>
+</fieldset>
+
+<fieldset>
+    <legend>
+        <p data-i18n="settings.verification"></p>
+    </legend>
+    <table class="setting-row">
+        <tbody>
         <tr>
             <td colspan="2">
                 <i data-i18n="settings.timeout.label" class="note"></i>
@@ -108,52 +134,65 @@
 
 <script type="text/javascript">
 
-    function onHomeyReady(Homey) {
+    function onHomeyReady (Homey) {
 
-        Homey.ready();
+        Homey.ready()
 
-        let saveElement = document.getElementById('save');
+        let saveElement = document.getElementById('save')
 
-        let timeout = document.getElementById('timeout');
+        let useTimeout = document.getElementById('useTimeout')
+        Homey.get('useTimeout', function (err, value) {
+            if (err) return Homey.alert(err)
+            if (true === value || null === value) {
+                useTimeout.setAttribute('checked', 'checked')
+            } else {
+                useTimeout.removeAttribute('checked')
+            }
+        })
+
+        let timeout = document.getElementById('timeout')
         Homey.get('timeout', function (err, value) {
-            if (err) return Homey.alert(err);
-            timeout.value = value;
-        });
+            if (err) return Homey.alert(err)
+            timeout.value = value
+        })
 
-        let updateInterval = document.getElementById('updateInterval');
+        let updateInterval = document.getElementById('updateInterval')
         Homey.get('updateInterval', function (err, value) {
-            if (err) return Homey.alert(err);
-            updateInterval.value = value;
-        });
+            if (err) return Homey.alert(err)
+            updateInterval.value = value
+        })
 
-        let verificationAmountOutside = document.getElementById('verificationAmountOutside');
+        let verificationAmountOutside = document.getElementById('verificationAmountOutside')
         Homey.get('verificationAmountOutside', function (err, value) {
-            if (err) return Homey.alert(err);
-            verificationAmountOutside.value = value;
-        });
+            if (err) return Homey.alert(err)
+            verificationAmountOutside.value = value
+        })
 
-        let verificationAmountInside = document.getElementById('verificationAmountInside');
+        let verificationAmountInside = document.getElementById('verificationAmountInside')
         Homey.get('verificationAmountInside', function (err, value) {
-            if (err) return Homey.alert(err);
-            verificationAmountInside.value = value;
-        });
+            if (err) return Homey.alert(err)
+            verificationAmountInside.value = value
+        })
 
-        saveElement.addEventListener('click', function (e) {
+        saveElement.addEventListener('click', function () {
+            Homey.set('useTimeout', useTimeout.checked, function (err) {
+                if (err) return Homey.alert(err)
+            })
             Homey.set('timeout', timeout.value, function (err) {
-                if (err) return Homey.alert(err);
-            });
+                if (err) return Homey.alert(err)
+            })
             Homey.set('updateInterval', updateInterval.value, function (err) {
-                if (err) return Homey.alert(err);
-            });
+                if (err) return Homey.alert(err)
+            })
             Homey.set('verificationAmountOutside', verificationAmountOutside.value, function (err) {
-                if (err) return Homey.alert(err);
-            });
+                if (err) return Homey.alert(err)
+            })
             Homey.set('verificationAmountInside', verificationAmountInside.value, function (err) {
-                if (err) return Homey.alert(err);
-            });
+                if (err) return Homey.alert(err)
+            })
 
-            Homey.alert(__("settings.success"));
-        });
+            Homey.alert(__('settings.success'))
+        })
     }
 </script>
 

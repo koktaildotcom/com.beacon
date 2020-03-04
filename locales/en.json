@@ -12,6 +12,7 @@
 		},
 		"update" : "Update settings",
 		"interval" : {
+			"use" : "Enable the automatic update",
 			"label" : "De interval between updates in seconds (default 10)",
 			"info" : "The delay between reading sensor values in seconds."
 		},
