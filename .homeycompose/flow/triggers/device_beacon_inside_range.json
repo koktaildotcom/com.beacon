@@ -1,0 +1,27 @@
+{
+  "id": "device_beacon_inside_range",
+  "title": {
+    "en": "The beacon is inside range",
+    "nl": "Het baken is binnen bereik"
+  },
+  "tokens": [
+    {
+      "name": "beacon",
+      "title": {
+        "en": "beacon",
+        "nl": "baken"
+      },
+      "example": {
+        "en": "Beacon 1",
+        "nl": "Baken 1"
+      }
+    }
+  ],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=beacon"
+    }
+  ]
+}
