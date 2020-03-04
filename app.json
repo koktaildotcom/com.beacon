@@ -1,6 +1,6 @@
 {
 	"id": "com.koktail.beacon",
-	"version": "1.2.9",
+	"version": "1.2.10",
 	"compatibility": ">=2.0.5",
 	"sdk": 2,
 	"brandColor": "#11437c",

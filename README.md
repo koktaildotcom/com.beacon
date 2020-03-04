@@ -134,6 +134,9 @@ An overview of all the trigger cards that can be used
   * removed warning because condition cards won't trigger again
 ### v1.2.9 - 23.05.2019
   * bump 1.2.8 due to app store bug
+### v1.2.10 - 04.03.2020
+  * make automatic detection optional
+  * add flow card for update beacon presence
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/com.koktail.beacon
