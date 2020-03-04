@@ -143,8 +143,10 @@ class Beacon extends Homey.App {
      *
      * set a new timeout for synchronisation
      */
-    _setNewTimeout() {
-        setTimeout(this.scanning.bind(this), 1000 * Homey.ManagerSettings.get('updateInterval'));
+    _setNewTimeout () {
+        const seconds = 1000 * Homey.ManagerSettings.get('updateInterval')
+        console.log('try to scan again in ' + seconds + ' seconds')
+        setTimeout(this.scanning.bind(this), seconds)
     }
 
     /**
