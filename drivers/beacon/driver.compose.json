@@ -1,0 +1,46 @@
+{
+  "id": "beacon",
+  "name": {
+    "en": "beacon",
+    "nl": "beacon"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "detect"
+  ],
+  "images": {
+    "small": "drivers/beacon/assets/images/small.png",
+    "large": "drivers/beacon/assets/images/large.png"
+  },
+  "pair": [
+    {
+      "id": "list_devices",
+      "template": "list_devices",
+      "navigation": {
+        "next": "add"
+      }
+    },
+    {
+      "id": "add",
+      "template": "add_devices"
+    }
+  ],
+  "mobile": {
+    "components": [
+      {
+        "id": "icon"
+      },
+      {
+        "id": "sensor",
+        "capabilities": [
+          "detect"
+        ],
+        "options": {
+          "icons": {
+            "detect": "./drivers/beacon/assets/detect.svg"
+          }
+        }
+      }
+    ]
+  }
+}

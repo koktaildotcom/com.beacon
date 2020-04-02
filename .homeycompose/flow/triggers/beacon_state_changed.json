@@ -1,0 +1,29 @@
+{
+  "id": "beacon_state_changed",
+  "title": {
+    "en": "A beacon is changed",
+    "nl": "Een baken is gewijzigd"
+  },
+  "tokens": [
+    {
+      "name": "beacon",
+      "title": {
+        "en": "beacon",
+        "nl": "baken"
+      },
+      "example": {
+        "en": "Beacon 1",
+        "nl": "Baken 1"
+      }
+    },
+    {
+      "name": "detected",
+      "type": "boolean",
+      "title": {
+        "en": "detected",
+        "nl": "gedetecteerd"
+      },
+      "example": true
+    }
+  ]
+}

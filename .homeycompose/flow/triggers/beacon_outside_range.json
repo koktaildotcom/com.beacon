@@ -1,0 +1,20 @@
+{
+  "id": "beacon_outside_range",
+  "title": {
+    "en": "A beacon is outside range",
+    "nl": "Een baken is buiten bereik"
+  },
+  "tokens": [
+    {
+      "name": "beacon",
+      "title": {
+        "en": "beacon",
+        "nl": "baken"
+      },
+      "example": {
+        "en": "Beacon 1",
+        "nl": "Baken 1"
+      }
+    }
+  ]
+}

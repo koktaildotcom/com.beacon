@@ -17,11 +17,18 @@ Do you like the app? You can make me happy by buying me a beer! [![](https://img
 #### Tested devices
 Here is a list of used devices
 
-| Brand | Name | Range (+/-) |
-| :---: | :---: | :---: |
-| Tile | Pro | 8m |
-| Tile | Mate | 8m |
-| Nordic | nRF51822 | 5m |
+|Beacon name|Max range (through concrete)|
+| --- | --- |
+|*Tile Pro*|*8m*|
+|*Tile Mate*|*8m*|
+|*Nordic nRF51822*|*5m*|
+|*Keeper*|*8m*|
+|*iTag*|*5m*|
+|*Nedis mini*|*3m*|
+|*Lapa*|*?m*
+
+> WARNING: The tile pro 2020 does not work because it is not publicly discoverable
+
 
 ## Usage
 1. Install app
@@ -54,10 +61,11 @@ An overview of all the trigger cards that can be used
 | Global | A beacon is inside range | (beacon name) |
 | Global | A beacon is outside range | (beacon name) |
 | Global | A beacon has been discovered | (beacon name, uuid) |
-| Global | The app generates a log | (log) |
+| Global | Update beacon presence | - |
 | Device | The beacon detected state is changed | (beacon name, detected) |
 | Device | The beacon is inside range | beacon name |
 | Device | The beacon is outside range | beacon name |
+| Global | The app generates a log | (log) |
    
 ## History
 ### v1.0.0 - 04.10.2018
@@ -134,6 +142,9 @@ An overview of all the trigger cards that can be used
   * removed warning because condition cards won't trigger again
 ### v1.2.9 - 23.05.2019
   * bump 1.2.8 due to app store bug
+### v1.2.10 - 04.03.2020
+  * make automatic detection optional
+  * add flow card for update beacon presence
   
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/com.koktail.beacon
