@@ -1,0 +1,12 @@
+{
+  "uiComponent": "sensor",
+  "type": "number",
+  "units": "dBm",
+  "decimals": 0,
+  "icon": "assets/signal_strength.svg",
+  "title": {
+    "en": "Signal strength"
+  },
+  "getable": true,
+  "setable": true
+}

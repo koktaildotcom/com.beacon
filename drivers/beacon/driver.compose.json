@@ -25,6 +25,132 @@
       "template": "add_devices"
     }
   ],
+
+  "settings": [
+    {
+      "type": "group",
+      "label": {
+        "en": "General info"
+      },
+      "children": [
+        {
+          "id": "address",
+          "type": "label",
+          "label": {
+            "en": "Address"
+          },
+          "value": "-",
+          "hint": {
+            "en": "This is the current address advertised by this device."
+          }
+        },
+        {
+          "id": "advertisedName",
+          "type": "label",
+          "label": {
+            "en": "Advertised name"
+          },
+          "value": "-",
+          "hint": {
+            "en": "This is the original name advertised by this device."
+          }
+        },
+        {
+          "id": "calibratedPower",
+          "type": "label",
+          "label": {
+            "en": "Calibrated power"
+          },
+          "value": "-",
+          "hint": {
+            "en": "This is the calibrated power."
+          }
+        },
+        {
+          "id": "typeName",
+          "type": "label",
+          "label": {
+            "en": "Type"
+          },
+          "value": "-",
+          "hint": {
+            "en": "This is the beacon type."
+          }
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "label": {
+        "en": "iBeacon info"
+      },
+      "children": [
+        {
+          "id": "iBeaconProximityUUID",
+          "type": "label",
+          "label": {
+            "en": "UUID"
+          },
+          "value": "-",
+          "hint": {
+            "en": "Proximity UUID."
+          }
+        },
+        {
+          "id": "iBeaconMajor",
+          "type": "label",
+          "label": {
+            "en": "Major"
+          },
+          "value": "-",
+          "hint": {
+            "en": "Major."
+          }
+        },
+        {
+          "id": "iBeaconMinor",
+          "type": "label",
+          "label": {
+            "en": "Minor"
+          },
+          "value": "-",
+          "hint": {
+            "en": "Minor."
+          }
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "label": {
+        "en": "Eddystone info"
+      },
+      "children": [
+        {
+          "id": "eddystoneNS",
+          "type": "label",
+          "label": {
+            "en": "Namespace"
+          },
+          "value": "-",
+          "hint": {
+            "en": "Namespace."
+          }
+        },
+        {
+          "id": "eddystoneInstance",
+          "type": "label",
+          "label": {
+            "en": "Instance"
+          },
+          "value": "-",
+          "hint": {
+            "en": "Instance."
+          }
+        }
+      ]
+    }
+  ],
   "mobile": {
     "components": [
       {

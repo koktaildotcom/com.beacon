@@ -2,6 +2,8 @@
 
 const Homey = require('homey');
 
+const BeaconAdvertisement = require('../../lib/BeaconAdvertisement.js');
+
 class Beacon extends Homey.App {
 
     /**
@@ -198,7 +200,13 @@ class Beacon extends Homey.App {
             Homey.ManagerBLE.discover([], Homey.ManagerSettings.get('timeout') * 1000).then(function (advertisements) {
                 app._advertisements = [];
                 advertisements.forEach(advertisement => {
-                    app._advertisements.push(advertisement);
+                    //app._advertisements.push(advertisement);
+                    // Rather than push into array every BLE advertisenment, push
+                    //  beacon advertisement only.
+                    let beaconAdv = new BeaconAdvertisement(advertisement);
+                    if (beaconAdv.key.typeId > 0) {
+                        app._advertisements.push(beaconAdv);
+                    }
                 });
                 resolve(advertisements);
             }).catch(error => {
@@ -233,22 +241,14 @@ class Beacon extends Homey.App {
                 if (advertisements.length === 0) {
                     resolve([]);
                 }
-
                 advertisements.forEach(function (advertisement) {
-                    if (advertisement.localName !== undefined) {
-                        devices.push({
-                            "name": advertisement.localName,
-                            "data": {
-                                "id": advertisement.id,
-                                "uuid": advertisement.uuid,
-                                "address": advertisement.uuid,
-                                "name": advertisement.localName,
-                                "type": advertisement.type,
-                                "version": "v" + Homey.manifest.version,
-                            },
-                            "capabilities": ["detect"],
-                        });
-                    }
+                    // Because there are several type of beacons with different
+                    //  settings and capabilities, a dedicated method is called.
+                    //  The method deviceToBePaired transforms a beacon
+                    //  advertisement in an homey object suitable for pairing.
+                    let beaconAdv = new BeaconAdvertisement(advertisement);
+                    if (beaconAdv.key.typeId > 0)
+                        devices.push(beaconAdv.deviceToBePaired());
                 });
 
                 resolve(devices);
