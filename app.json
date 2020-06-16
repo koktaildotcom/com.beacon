@@ -1,35 +1,462 @@
 {
-	"id": "com.koktail.beacon",
-	"version": "1.2.10",
-	"compatibility": ">=2.0.5",
-	"sdk": 2,
-	"brandColor": "#11437c",
-	"homeyCommunityTopicId": 3550,
-	"name": {
-		"en": "Beacon"
-	},
-	"description": {
-		"en": "Add support for BLE beacons"
-	},
-	"category": [
-		"localization"
-	],
-	"permissions": [
-		"homey:wireless:ble"
-	],
-	"images": {
-		"large": "/assets/images/large.png",
-		"small": "/assets/images/small.png"
-	},
-	"author": {
-		"name": "Leendert De Kok",
-		"email": "koktaildotcom@hotmail.com"
-	},
-	"contributing": {
-		"donate": {
-			"paypal": {
-				"username": "koktaildotcom"
-			}
-		}
-	}
+  "id": "com.koktail.beacon",
+  "version": "1.2.10",
+  "compatibility": ">=2.0.5",
+  "sdk": 2,
+  "brandColor": "#11437c",
+  "homeyCommunityTopicId": 3550,
+  "name": {
+    "en": "Beacon"
+  },
+  "description": {
+    "en": "Add support for BLE beacons"
+  },
+  "category": [
+    "localization"
+  ],
+  "permissions": [
+    "homey:wireless:ble"
+  ],
+  "images": {
+    "large": "/assets/images/large.png",
+    "small": "/assets/images/small.png"
+  },
+  "author": {
+    "name": "Leendert De Kok",
+    "email": "koktaildotcom@hotmail.com"
+  },
+  "contributing": {
+    "donate": {
+      "paypal": {
+        "username": "koktaildotcom"
+      }
+    }
+  },
+  "flow": {
+    "triggers": [
+      {
+        "id": "beacon_inside_range",
+        "title": {
+          "en": "A beacon is inside range",
+          "nl": "Een baken is binnen bereik"
+        },
+        "tokens": [
+          {
+            "name": "beacon",
+            "title": {
+              "en": "beacon",
+              "nl": "baken"
+            },
+            "example": {
+              "en": "Beacon 1",
+              "nl": "Baken 1"
+            }
+          }
+        ]
+      },
+      {
+        "id": "beacon_outside_range",
+        "title": {
+          "en": "A beacon is outside range",
+          "nl": "Een baken is buiten bereik"
+        },
+        "tokens": [
+          {
+            "name": "beacon",
+            "title": {
+              "en": "beacon",
+              "nl": "baken"
+            },
+            "example": {
+              "en": "Beacon 1",
+              "nl": "Baken 1"
+            }
+          }
+        ]
+      },
+      {
+        "id": "beacon_state_changed",
+        "title": {
+          "en": "A beacon is changed",
+          "nl": "Een baken is gewijzigd"
+        },
+        "tokens": [
+          {
+            "name": "beacon",
+            "title": {
+              "en": "beacon",
+              "nl": "baken"
+            },
+            "example": {
+              "en": "Beacon 1",
+              "nl": "Baken 1"
+            }
+          },
+          {
+            "name": "detected",
+            "type": "boolean",
+            "title": {
+              "en": "detected",
+              "nl": "gedetecteerd"
+            },
+            "example": true
+          }
+        ]
+      },
+      {
+        "id": "device_beacon_inside_range",
+        "title": {
+          "en": "The beacon is inside range",
+          "nl": "Het baken is binnen bereik"
+        },
+        "tokens": [
+          {
+            "name": "beacon",
+            "title": {
+              "en": "beacon",
+              "nl": "baken"
+            },
+            "example": {
+              "en": "Beacon 1",
+              "nl": "Baken 1"
+            }
+          }
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=beacon"
+          }
+        ]
+      },
+      {
+        "id": "device_beacon_outside_range",
+        "title": {
+          "en": "The beacon is outside range",
+          "nl": "Het baken is buiten bereik"
+        },
+        "tokens": [
+          {
+            "name": "beacon",
+            "title": {
+              "en": "beacon",
+              "nl": "baken"
+            },
+            "example": {
+              "en": "Beacon 1",
+              "nl": "Baken 1"
+            }
+          }
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=beacon"
+          }
+        ]
+      },
+      {
+        "id": "device_beacon_state_changed",
+        "title": {
+          "en": "The beacon is changed",
+          "nl": "Het baken is gewijzigd"
+        },
+        "tokens": [
+          {
+            "name": "beacon",
+            "type": "string",
+            "title": {
+              "en": "beacon",
+              "nl": "baken"
+            },
+            "example": {
+              "en": "Beacon 1",
+              "nl": "Baken 1"
+            }
+          },
+          {
+            "name": "detected",
+            "type": "boolean",
+            "title": {
+              "en": "detected",
+              "nl": "gedetecteerd"
+            },
+            "example": true
+          }
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=beacon"
+          }
+        ]
+      },
+      {
+        "id": "log",
+        "title": {
+          "en": "The app generates a log",
+          "nl": "De app genereert een log"
+        },
+        "tokens": [
+          {
+            "name": "log",
+            "title": {
+              "en": "log",
+              "nl": "log"
+            },
+            "example": {
+              "en": "Not in range",
+              "nl": "Niet binnen bereik"
+            }
+          }
+        ]
+      }
+    ],
+    "conditions": [
+      {
+        "id": "beacon_is_inside_range",
+        "title": {
+          "en": "The beacon !{{is|is not}} inside range",
+          "nl": "Het baken !{{is|is niet}} binnen bereik"
+        },
+        "hint": {
+          "en": "Use this card to determine if the plant is inside range.",
+          "nl": "Gebruik deze kaart om te bepalen of de beacon binnen bereik is."
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=beacon"
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "update_beacon_presence",
+        "title": {
+          "en": "Update beacon presence",
+          "nl": "Werk de locatie van de bakens bij"
+        },
+        "hint": {
+          "en": "Use this card to update the beacons presence.",
+          "nl": "Gebruik deze kaart om de locatie van de bakens bij te werken."
+        }
+      }
+    ]
+  },
+  "drivers": [
+    {
+      "id": "beacon",
+      "name": {
+        "en": "beacon",
+        "nl": "beacon"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "detect"
+      ],
+      "images": {
+        "small": "drivers/beacon/assets/images/small.png",
+        "large": "drivers/beacon/assets/images/large.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add"
+          }
+        },
+        {
+          "id": "add",
+          "template": "add_devices"
+        }
+      ],
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "General info"
+          },
+          "children": [
+            {
+              "id": "address",
+              "type": "label",
+              "label": {
+                "en": "Address"
+              },
+              "value": "-",
+              "hint": {
+                "en": "This is the current address advertised by this device."
+              }
+            },
+            {
+              "id": "advertisedName",
+              "type": "label",
+              "label": {
+                "en": "Advertised name"
+              },
+              "value": "-",
+              "hint": {
+                "en": "This is the original name advertised by this device."
+              }
+            },
+            {
+              "id": "calibratedPower",
+              "type": "label",
+              "label": {
+                "en": "Calibrated power"
+              },
+              "value": "-",
+              "hint": {
+                "en": "This is the calibrated power."
+              }
+            },
+            {
+              "id": "typeName",
+              "type": "label",
+              "label": {
+                "en": "Type"
+              },
+              "value": "-",
+              "hint": {
+                "en": "This is the beacon type."
+              }
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "iBeacon info"
+          },
+          "children": [
+            {
+              "id": "iBeaconProximityUUID",
+              "type": "label",
+              "label": {
+                "en": "UUID"
+              },
+              "value": "-",
+              "hint": {
+                "en": "Proximity UUID."
+              }
+            },
+            {
+              "id": "iBeaconMajor",
+              "type": "label",
+              "label": {
+                "en": "Major"
+              },
+              "value": "-",
+              "hint": {
+                "en": "Major."
+              }
+            },
+            {
+              "id": "iBeaconMinor",
+              "type": "label",
+              "label": {
+                "en": "Minor"
+              },
+              "value": "-",
+              "hint": {
+                "en": "Minor."
+              }
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Eddystone info"
+          },
+          "children": [
+            {
+              "id": "eddystoneNS",
+              "type": "label",
+              "label": {
+                "en": "Namespace"
+              },
+              "value": "-",
+              "hint": {
+                "en": "Namespace."
+              }
+            },
+            {
+              "id": "eddystoneInstance",
+              "type": "label",
+              "label": {
+                "en": "Instance"
+              },
+              "value": "-",
+              "hint": {
+                "en": "Instance."
+              }
+            }
+          ]
+        }
+      ],
+      "mobile": {
+        "components": [
+          {
+            "id": "icon"
+          },
+          {
+            "id": "sensor",
+            "capabilities": [
+              "detect"
+            ],
+            "options": {
+              "icons": {
+                "detect": "./drivers/beacon/assets/detect.svg"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "capabilities": {
+    "detect": {
+      "uiComponent": "sensor",
+      "type": "boolean",
+      "icon": "assets/detect.svg",
+      "title": {
+        "en": "Detected",
+        "nl": "Gedetecteerd"
+      },
+      "getable": true,
+      "setable": true
+    },
+    "homey_distance": {
+      "uiComponent": "sensor",
+      "type": "number",
+      "units": "m",
+      "decimals": 0,
+      "icon": "assets/homey_distance.svg",
+      "title": {
+        "en": "Distance from Homey"
+      },
+      "getable": true,
+      "setable": true
+    },
+    "signal_strength": {
+      "uiComponent": "sensor",
+      "type": "number",
+      "units": "dBm",
+      "decimals": 0,
+      "icon": "assets/signal_strength.svg",
+      "title": {
+        "en": "Signal strength"
+      },
+      "getable": true,
+      "setable": true
+    }
+  }
 }
