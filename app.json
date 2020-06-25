@@ -281,51 +281,60 @@
         {
           "type": "group",
           "label": {
-            "en": "General info"
+            "en": "General info",
+            "nl": "Algemene informatie"
           },
           "children": [
             {
               "id": "address",
               "type": "label",
               "label": {
-                "en": "Address"
+                "en": "Address",
+                "nl": "Adres"
               },
               "value": "-",
               "hint": {
-                "en": "This is the current address advertised by this device."
+                "en": "The current address advertised by this device.",
+                "nl": "Het adres waarop dit apparaat adverteerd"
               }
             },
             {
-              "id": "advertisedName",
+              "id": "advertised_name",
               "type": "label",
               "label": {
-                "en": "Advertised name"
+                "en": "Name",
+                "nl": "Naam"
               },
               "value": "-",
               "hint": {
-                "en": "This is the original name advertised by this device."
+                "en": "The original name of this device.",
+                "nl": "De orginele naam van het apparaat"
               }
             },
             {
-              "id": "calibratedPower",
+              "id": "calibrated_power",
               "type": "label",
               "label": {
-                "en": "Calibrated power"
+                "en": "Calibrated power",
+                "nl": "Gekalibreerd vermogen"
               },
               "value": "-",
               "hint": {
-                "en": "This is the calibrated power."
+                "en": "The calibrated power.",
+                "nl": "Het gekalibreerd vermogen"
               }
             },
             {
               "id": "typeName",
               "type": "label",
               "label": {
-                "en": "Type"
+                "en": "Type",
+                "nl": "Type"
               },
               "value": "-",
               "hint": {
-                "en": "This is the beacon type."
+                "en": "The beacon type.",
+                "nl": "Het beacon type"
               }
             }
           ]
@@ -441,7 +450,8 @@
       "decimals": 0,
       "icon": "assets/homey_distance.svg",
       "title": {
-        "en": "Distance from Homey"
+        "en": "Estimated distance from Homey",
+        "nl": "Geschatte afstand vanaf Homey"
       },
       "getable": true,
       "setable": true
@@ -453,7 +463,8 @@
       "decimals": 0,
       "icon": "assets/signal_strength.svg",
       "title": {
-        "en": "Signal strength"
+        "en": "Signal strength",
+        "nl": "Signaal sterkte"
       },
       "getable": true,
       "setable": true
