@@ -200,13 +200,7 @@ class Beacon extends Homey.App {
             Homey.ManagerBLE.discover([], Homey.ManagerSettings.get('timeout') * 1000).then(function (advertisements) {
                 app._advertisements = [];
                 advertisements.forEach(advertisement => {
-                    //app._advertisements.push(advertisement);
-                    // Rather than push into array every BLE advertisenment, push
-                    //  beacon advertisement only.
-                    let beaconAdv = new BeaconAdvertisement(advertisement);
-                    if (beaconAdv.key.typeId > 0) {
-                        app._advertisements.push(beaconAdv);
-                    }
+                    app._advertisements.push(advertisement);
                 });
                 resolve(advertisements);
             }).catch(error => {
