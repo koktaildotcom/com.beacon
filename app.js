@@ -241,8 +241,9 @@ class Beacon extends Homey.App {
                     //  The method deviceToBePaired transforms a beacon
                     //  advertisement in an homey object suitable for pairing.
                     let beaconAdv = new BeaconAdvertisement(advertisement);
-                    if (beaconAdv.key.typeId > 0)
+                    if (beaconAdv.key.typeId > 0) {
                         devices.push(beaconAdv.deviceToBePaired());
+                    }
                 });
 
                 resolve(devices);

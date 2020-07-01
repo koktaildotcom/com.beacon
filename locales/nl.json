@@ -17,7 +17,7 @@
 			"info" : "Het aantal seconden wat gepauzeerd wordt voordat de sensoren opnieuw worden uitgelezen."
 		},
 		"timeout" : {
-			"label" : "Ontdek timeout (initieel 5)",
+			"label" : "Ontdek timeout (initieel 10)",
 			"info" : "Aantal seconden dat de app mag doen om bakens te ontdekken."
 		},
 		"save" : {

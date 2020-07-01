@@ -281,8 +281,8 @@
         {
           "type": "group",
           "label": {
-            "en": "General info",
-            "nl": "Algemene informatie"
+            "en": "Info",
+            "nl": "Informatie"
           },
           "children": [
             {
@@ -333,79 +333,19 @@
               },
               "value": "-",
               "hint": {
-                "en": "The beacon type.",
+                "en": "The beacon types currently supported by this app are iBeacon, Eddystone (UID) and generic BLE peripherals.\n\niBeacon is the trademark for an indoor positioning system developed by Apple Inc. iBeacon uses the Bluetooth Low Energy (BLE) standard, also known as Bluetooth Smart.\n\nEddystone is an open beacon format from Google for Bluetooth low energy (BLE) beacons. The Eddystone specification includes a number of broadcast frame types: UID, URL, TLM.",
                 "nl": "Het beacon type"
               }
-            }
-          ]
-        },
-        {
-          "type": "group",
-          "label": {
-            "en": "iBeacon info"
-          },
-          "children": [
-            {
-              "id": "iBeaconProximityUUID",
-              "type": "label",
-              "label": {
-                "en": "UUID"
-              },
-              "value": "-",
-              "hint": {
-                "en": "Proximity UUID."
-              }
             },
             {
-              "id": "iBeaconMajor",
+              "id": "frame_detail",
               "type": "label",
               "label": {
-                "en": "Major"
+                "en": "Detail"
               },
               "value": "-",
               "hint": {
-                "en": "Major."
-              }
-            },
-            {
-              "id": "iBeaconMinor",
-              "type": "label",
-              "label": {
-                "en": "Minor"
-              },
-              "value": "-",
-              "hint": {
-                "en": "Minor."
-              }
-            }
-          ]
-        },
-        {
-          "type": "group",
-          "label": {
-            "en": "Eddystone info"
-          },
-          "children": [
-            {
-              "id": "eddystoneNS",
-              "type": "label",
-              "label": {
-                "en": "Namespace"
-              },
-              "value": "-",
-              "hint": {
-                "en": "Namespace."
-              }
-            },
-            {
-              "id": "eddystoneInstance",
-              "type": "label",
-              "label": {
-                "en": "Instance"
-              },
-              "value": "-",
-              "hint": {
-                "en": "Instance."
+                "en": "Details related to frames broadcast by the beacon.\n\nA beacon that supports iBeacon technology uses BLE to periodically transmit a unique identifier, composed by an universal unique identifier, UUID, 128 bits, a major number, 16 bits, and a minor number, 16 bits.\n\nThe Eddystone-UID frame broadcasts an opaque unique 16-byte Beacon ID composed of a 10-byte namespace ID and a 6-byte instance ID."
               }
             }
           ]
