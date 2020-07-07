@@ -25,5 +25,23 @@
 		},
 		"success" : "The settings has been saved"
 	},
-	"outside_range": "The beacon is outside range"
+	"outside_range": "The beacon is outside range",
+        "repair": {
+              "title": "Replace the beacon",
+              "prologue": "This maintenance procedure allows you replace a physical beacon (iBeacon or Eddystone) without the need to remove and add the device <span id='deviceName'></span> defined in Homey and therefore preserving all the flows that involve the device itself.</br>Some reasons for replacing the beacon:",
+              "reason1": "The beacon has been lost or damaged.",
+              "reason2": "The beacon has run out of battery and the battery is non-replaceable.",
+              "reason3": "You want to use a new, more powerful beacon.",
+              "instructions": "To replace the beacon please follow the instructions below.",
+              "step1": "Take note of the type (<span id='typeName'></span>) and details (<span id='frameDetail'></span>) of the beacon.",
+              "step2": "Configure the new beacon with the same values shown in previous step. This step is done outside of Homey with the tools provided by the beacon manufacturer.",
+              "step3": "Make sure the new beacon is within range of Homey and tap the button <span id='buttonCaption'></span> below.",
+              "epilogue": "Step 1 and step 2 are mandatory. Step 3 is optional and let Homey refresh the device settings.<br/>Tap the back arrow to cancel this procedure.",
+              "button_caption": "Discover and refresh settings",
+              "unrepairable": "REMARK. This device is neither an iBeacon nor and Eddystone beacon and cannot be replaced by this maintenance procedure<br />Tap the back arrow to cancel this procedure.",
+              "not_discovered": "New beacon not discovered.\nMake sure that the beacon is within the range of Homey and that the new new beacon is configured with the correct values.",
+              "retry_or_cancel": "\nTap OK to retry or CANCEL to cancel this procedure.",
+              "refreshed": "Device settings successfully refreshed with the values of the new beacon.",
+              "unchanged": "Procedure successfully completed. No settings to be refreshed (it seems that the beacon hasn't been physically replaced)."
+        },
 }

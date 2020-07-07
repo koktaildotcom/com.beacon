@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+<head>
+    <script type="text/javascript">
+
+        Homey.setTitle(Homey.__('repair.title'));
+
+        $(function () {
+
+            function wantRetry(arg1, arg2) {
+                if (arg2) {
+                    doRepair();
+                }
+                else {
+                    Homey.done();
+                }
+            }
+
+            function doRepair() {
+                Homey.showLoadingOverlay();
+                Homey.emit('discover_and_refresh', {}, function (error, result) {
+                    Homey.hideLoadingOverlay();
+                    if (error) {
+                        Homey.confirm(error + Homey.__("repair.retry_or_cancel"), 'error', cb);
+                    }
+                    else if (result) {
+                        let refreshResult = result;
+                        if (refreshResult.actuallyRefreshed) {
+                            Homey.alert(Homey.__("repair.refreshed"));
+                        }
+                        else {
+                            Homey.alert(Homey.__("repair.unchanged"));
+                        }
+                        Homey.done();
+                    }
+                    else {
+                        Homey.confirm(Homey.__("repair.not_discovered") +
+                            Homey.__("repair.retry_or_cancel"), 'warning', wantRetry);
+                    }
+                });
+            };
+
+            $(document).ready(function () {
+                Homey.emit('query_curr_device', {}, function (error, result) {
+                    if (result) {
+                        let beaconTypeAndDetails = result;
+                        if (beaconTypeAndDetails.typeName.startsWith('iBeacon') || 
+                            beaconTypeAndDetails.typeName.startsWith('Eddystone')) {
+                            $('#deviceName').css("font-weight", "Bold");
+                            $('#deviceName').html(beaconTypeAndDetails.deviceName);
+                            $('#typeName').css("font-weight", "Bold");
+                            $('#typeName').html(beaconTypeAndDetails.typeName);
+                            $('#frameDetail').css("font-weight", "Bold");
+                            $('#frameDetail').html(beaconTypeAndDetails.frameDetail);
+                            $('#buttonCaption').css("font-weight", "Bold");
+                            $('#buttonCaption').html(Homey.__("repair.button_caption"));
+                            $('#common').show();
+                            $('#repairable').show();
+                        }
+                        else {
+                            $('#common').show();
+                            $('#unrepairable').show();
+                        }
+                    }
+                });
+            });
+
+
+            $('#repair').click(function () {
+                doRepair();
+            });
+
+        })
+    </script>
+
+    <style type="text/css">
+
+        .button {
+            border-radius: 8px;
+            min-width: 80px;
+            min-height: 36px;
+        }
+
+            .button:enabled {
+                color: white;
+                background-color: rgba(0, 193, 57, 1);
+            }
+
+            .button:hover {
+                color: white;
+                background-color: rgba(0, 193, 57, 0.5);
+            }
+    </style>
+</head>
+
+<body>
+    <div id="common" hidden>
+        <p data-i18n="repair.prologue"></p>
+        <ul>
+            <li data-i18n="repair.reason1"></li>
+            <li data-i18n="repair.reason2"></li>
+            <li data-i18n="repair.reason3"></li>
+        </ul>
+    </div>
+    <div id="repairable" hidden>
+        <p data-i18n="repair.instructions"></p>
+        <ol>
+            <li data-i18n="repair.step1"></li>
+            <li data-i18n="repair.step2"></li>
+            <li data-i18n="repair.step3"></li>
+        </ol>
+        <p id="step1" data-i18n="repair.epilogue"></p>
+        <div style="text-align:center">
+            <button id="repair" class="button" data-i18n="repair.button_caption"></button>
+        </div>
+    </div>
+    <div id="unrepairable" hidden>
+        <p data-i18n="repair.unrepairable"></p>
+    </div>
+</body>
+</html>

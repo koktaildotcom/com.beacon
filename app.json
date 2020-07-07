@@ -277,6 +277,11 @@
           "template": "add_devices"
         }
       ],
+      "repair": [
+        {
+          "id": "repair_device"
+        }
+      ],
       "settings": [
         {
           "type": "group",
