@@ -238,11 +238,9 @@ class Beacon extends Homey.App {
                 advertisements.forEach(function (advertisement) {
                     // Because there are several type of beacons with different
                     //  settings and capabilities, a dedicated method is called.
-                    //  The method deviceToBePaired transforms a beacon
-                    //  advertisement in an homey object suitable for pairing.
                     let beaconAdv = new BeaconAdvertisement(advertisement);
                     if (beaconAdv.key.typeId > 0) {
-                        devices.push(beaconAdv.deviceToBePaired());
+                        devices.push(beaconAdv.getPairObject());
                     }
                 });
 
