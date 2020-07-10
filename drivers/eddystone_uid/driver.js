@@ -3,14 +3,14 @@
 const BeaconDriver = require('../../lib/BeaconDriver.js');
 const BeaconAdvertisement = require('../../lib/BeaconAdvertisement.js');
 
-class GenericBeaconDriver extends BeaconDriver {
+class EddystoneUIDDriver extends BeaconDriver {
     getBleName() {
-        return 'Generic beacon';
+        return 'Eddystone UID';
     }
 
     get handledBeaconType() {
-        return BeaconAdvertisement.btaGenericBeacon;
+        return BeaconAdvertisement.btaEddystoneUID;
     }
 }
 
-module.exports = GenericBeaconDriver;
+module.exports = EddystoneUIDDriver;

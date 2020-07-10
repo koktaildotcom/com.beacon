@@ -40,30 +40,18 @@
             };
 
             $(document).ready(function () {
-                Homey.emit('query_curr_device', {}, function (error, result) {
-                    if (result) {
-                        let beaconTypeAndDetails = result;
-                        if (beaconTypeAndDetails.typeName.startsWith('iBeacon') || 
-                            beaconTypeAndDetails.typeName.startsWith('Eddystone')) {
-                            $('#deviceName').css("font-weight", "Bold");
-                            $('#deviceName').html(beaconTypeAndDetails.deviceName);
-                            $('#typeName').css("font-weight", "Bold");
-                            $('#typeName').html(beaconTypeAndDetails.typeName);
-                            $('#frameDetail').css("font-weight", "Bold");
-                            $('#frameDetail').html(beaconTypeAndDetails.frameDetail);
-                            $('#buttonCaption').css("font-weight", "Bold");
-                            $('#buttonCaption').html(Homey.__("repair.button_caption"));
-                            $('#common').show();
-                            $('#repairable').show();
-                        }
-                        else {
-                            $('#common').show();
-                            $('#unrepairable').show();
-                        }
-                    }
+                Homey.emit('query_curr_device', {}, function (error, beaconTypeAndDetails) {
+                    $('#deviceName').css("font-weight", "Bold");
+                    $('#deviceName').html(beaconTypeAndDetails.deviceName);
+                    $('#typeName').css("font-weight", "Bold");
+                    $('#typeName').html(beaconTypeAndDetails.typeName);
+                    $('#frameDetail').css("font-weight", "Bold");
+                    $('#frameDetail').html(beaconTypeAndDetails.frameDetail);
+                    $('#buttonCaption').css("font-weight", "Bold");
+                    $('#buttonCaption').html(Homey.__("repair.button_caption"));
+                    $('#common').show();
                 });
             });
-
 
             $('#repair').click(function () {
                 doRepair();
@@ -73,7 +61,6 @@
     </script>
 
     <style type="text/css">
-
         .button {
             border-radius: 8px;
             min-width: 80px;
@@ -100,8 +87,6 @@
             <li data-i18n="repair.reason2"></li>
             <li data-i18n="repair.reason3"></li>
         </ul>
-    </div>
-    <div id="repairable" hidden>
         <p data-i18n="repair.instructions"></p>
         <ol>
             <li data-i18n="repair.step1"></li>
@@ -112,9 +97,6 @@
         <div style="text-align:center">
             <button id="repair" class="button" data-i18n="repair.button_caption"></button>
         </div>
-    </div>
-    <div id="unrepairable" hidden>
-        <p data-i18n="repair.unrepairable"></p>
     </div>
 </body>
 </html>

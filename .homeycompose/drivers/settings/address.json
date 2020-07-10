@@ -1,0 +1,13 @@
+{
+  "id": "address",
+  "type": "label",
+  "label": {
+    "en": "Address",
+    "nl": "Adres"
+  },
+  "value": "-",
+  "hint": {
+    "en": "The current address advertised by this device.",
+    "nl": "Het adres waarop dit apparaat adverteerd"
+  }
+}

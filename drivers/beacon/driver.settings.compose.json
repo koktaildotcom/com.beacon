@@ -1,0 +1,23 @@
+[
+  {
+    "type": "group",
+    "label": {
+      "en": "Info",
+      "nl": "Informatie"
+    },
+    "children": [
+      {
+        "$extends": "address",
+        "id": "address"
+      },
+      {
+        "$extends": "advertised_name",
+        "id": "advertised_name"
+      },
+      {
+        "$extends": "type_name",
+        "id": "type_name"
+      }
+    ]
+  }
+]

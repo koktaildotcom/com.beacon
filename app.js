@@ -239,8 +239,10 @@ class Beacon extends Homey.App {
                     // Because there are several type of beacons with different
                     //  settings and capabilities, a dedicated method is called.
                     let beaconAdv = new BeaconAdvertisement(advertisement);
-                    if (beaconAdv.key.typeId > 0) {
-                        devices.push(beaconAdv.getPairObject());
+                    if (beaconAdv.type == driver.handledBeaconType) {
+                        let pairObject = beaconAdv.getPairObject();
+                        pairObject.settings['type_name'] = driver.getBleName();
+                        devices.push(pairObject);
                     }
                 });
 

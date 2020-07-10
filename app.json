@@ -126,7 +126,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=beacon"
+            "filter": "driver_id=beacon|ibeacon|eddystone_uid"
           }
         ]
       },
@@ -153,7 +153,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=beacon"
+            "filter": "driver_id=beacon|ibeacon|eddystone_uid"
           }
         ]
       },
@@ -190,7 +190,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=beacon"
+            "filter": "driver_id=beacon|ibeacon|eddystone_uid"
           }
         ]
       },
@@ -230,7 +230,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=beacon"
+            "filter": "driver_id=beacon|ibeacon|eddystone_uid"
           }
         ]
       }
@@ -258,7 +258,106 @@
       },
       "class": "sensor",
       "capabilities": [
-        "detect"
+        "detect",
+        "signal_strength"
+      ],
+      "images": {
+        "small": "drivers/beacon/assets/images/small.png",
+        "large": "drivers/beacon/assets/images/large.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add"
+          }
+        },
+        {
+          "id": "add",
+          "template": "add_devices"
+        }
+      ],
+      "mobile": {
+        "components": [
+          {
+            "id": "icon"
+          },
+          {
+            "id": "sensor",
+            "capabilities": [
+              "detect"
+            ],
+            "options": {
+              "icons": {
+                "detect": "./drivers/beacon/assets/detect.svg"
+              }
+            }
+          }
+        ]
+      },
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Info",
+            "nl": "Informatie"
+          },
+          "children": [
+            {
+              "id": "address",
+              "type": "label",
+              "label": {
+                "en": "Address",
+                "nl": "Adres"
+              },
+              "value": "-",
+              "hint": {
+                "en": "The current address advertised by this device.",
+                "nl": "Het adres waarop dit apparaat adverteerd"
+              }
+            },
+            {
+              "id": "advertised_name",
+              "type": "label",
+              "label": {
+                "en": "Name",
+                "nl": "Naam"
+              },
+              "value": "-",
+              "hint": {
+                "en": "The original name of this device.",
+                "nl": "De orginele naam van het apparaat"
+              }
+            },
+            {
+              "id": "type_name",
+              "type": "label",
+              "label": {
+                "en": "Type",
+                "nl": "Type"
+              },
+              "value": "-",
+              "hint": {
+                "en": "The beacon types currently supported by this app are generic beacon, iBeacon, Eddystone UID.\n\nGeneric beacon is a generic BLE peripheral used as a beacon.\n\niBeacon is the trademark for an indoor positioning system developed by Apple Inc.\n\nEddystone is an open beacon format from Google for Bluetooth Low Energy (BLE) beacons.",
+                "nl": "Het beacon type"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "eddystone_uid",
+      "name": {
+        "en": "Eddystone UID",
+        "nl": "Eddystone UID"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "detect",
+        "signal_strength",
+        "homey_distance"
       ],
       "images": {
         "small": "drivers/beacon/assets/images/small.png",
@@ -330,7 +429,7 @@
               }
             },
             {
-              "id": "typeName",
+              "id": "type_name",
               "type": "label",
               "label": {
                 "en": "Type",
@@ -338,7 +437,7 @@
               },
               "value": "-",
               "hint": {
-                "en": "The beacon types currently supported by this app are iBeacon, Eddystone (UID) and generic BLE peripherals.\n\niBeacon is the trademark for an indoor positioning system developed by Apple Inc. iBeacon uses the Bluetooth Low Energy (BLE) standard, also known as Bluetooth Smart.\n\nEddystone is an open beacon format from Google for Bluetooth low energy (BLE) beacons. The Eddystone specification includes a number of broadcast frame types: UID, URL, TLM.",
+                "en": "The beacon types currently supported by this app are generic beacon, iBeacon, Eddystone UID.\n\nGeneric beacon is a generic BLE peripheral used as a beacon.\n\niBeacon is the trademark for an indoor positioning system developed by Apple Inc.\n\nEddystone is an open beacon format from Google for Bluetooth Low Energy (BLE) beacons.",
                 "nl": "Het beacon type"
               }
             },
@@ -350,30 +449,121 @@
               },
               "value": "-",
               "hint": {
-                "en": "Details related to frames broadcast by the beacon.\n\nA beacon that supports iBeacon technology uses BLE to periodically transmit a unique identifier, composed by an universal unique identifier, UUID, 128 bits, a major number, 16 bits, and a minor number, 16 bits.\n\nThe Eddystone-UID frame broadcasts an opaque unique 16-byte Beacon ID composed of a 10-byte namespace ID and a 6-byte instance ID."
+                "en": "Details related to frames broadcast by the Eddystone beacon.\n\nThe Eddystone frame broadcasts an opaque unique 16-byte Beacon ID composed of a 10-byte namespace ID and a 6-byte instance ID."
               }
             }
           ]
         }
+      ]
+    },
+    {
+      "id": "ibeacon",
+      "name": {
+        "en": "iBeacon",
+        "nl": "iBeacon"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "detect",
+        "signal_strength",
+        "homey_distance"
       ],
-      "mobile": {
-        "components": [
-          {
-            "id": "icon"
+      "images": {
+        "small": "drivers/beacon/assets/images/small.png",
+        "large": "drivers/beacon/assets/images/large.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add"
+          }
+        },
+        {
+          "id": "add",
+          "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "repair_device"
+        }
+      ],
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Info",
+            "nl": "Informatie"
           },
-          {
-            "id": "sensor",
-            "capabilities": [
-              "detect"
-            ],
-            "options": {
-              "icons": {
-                "detect": "./drivers/beacon/assets/detect.svg"
+          "children": [
+            {
+              "id": "address",
+              "type": "label",
+              "label": {
+                "en": "Address",
+                "nl": "Adres"
+              },
+              "value": "-",
+              "hint": {
+                "en": "The current address advertised by this device.",
+                "nl": "Het adres waarop dit apparaat adverteerd"
+              }
+            },
+            {
+              "id": "advertised_name",
+              "type": "label",
+              "label": {
+                "en": "Name",
+                "nl": "Naam"
+              },
+              "value": "-",
+              "hint": {
+                "en": "The original name of this device.",
+                "nl": "De orginele naam van het apparaat"
+              }
+            },
+            {
+              "id": "calibrated_power",
+              "type": "label",
+              "label": {
+                "en": "Calibrated power",
+                "nl": "Gekalibreerd vermogen"
+              },
+              "value": "-",
+              "hint": {
+                "en": "The calibrated power.",
+                "nl": "Het gekalibreerd vermogen"
+              }
+            },
+            {
+              "id": "type_name",
+              "type": "label",
+              "label": {
+                "en": "Type",
+                "nl": "Type"
+              },
+              "value": "-",
+              "hint": {
+                "en": "The beacon types currently supported by this app are generic beacon, iBeacon, Eddystone UID.\n\nGeneric beacon is a generic BLE peripheral used as a beacon.\n\niBeacon is the trademark for an indoor positioning system developed by Apple Inc.\n\nEddystone is an open beacon format from Google for Bluetooth Low Energy (BLE) beacons.",
+                "nl": "Het beacon type"
+              }
+            },
+            {
+              "id": "frame_detail",
+              "type": "label",
+              "label": {
+                "en": "Detail"
+              },
+              "value": "-",
+              "hint": {
+                "en": "Detail related to the identifying frame periodically advertised by the iBeacon.\n\nThe iBeacon frame is composed by: an universal unique identifier (UUID), 16 byes represented as a 36-chars string; a major and a minor number that range from 0 to 65535."
               }
             }
-          }
-        ]
-      }
+          ]
+        }
+      ]
     }
   ],
   "capabilities": {
