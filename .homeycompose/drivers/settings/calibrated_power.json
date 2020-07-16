@@ -1,0 +1,13 @@
+{
+  "id": "calibrated_power",
+  "type": "label",
+  "label": {
+    "en": "Calibrated power",
+    "nl": "Gekalibreerd vermogen"
+  },
+  "value": "-",
+  "hint": {
+    "en": "The calibrated power.",
+    "nl": "Het gekalibreerd vermogen"
+  }
+}

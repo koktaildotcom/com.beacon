@@ -1,0 +1,38 @@
+[
+  {
+    "type": "group",
+    "label": {
+      "en": "Info",
+      "nl": "Informatie"
+    },
+    "children": [
+      {
+        "$extends": "address",
+        "id": "address"
+      },
+      {
+        "$extends": "advertised_name",
+        "id": "advertised_name"
+      },
+      {
+        "$extends": "calibrated_power",
+        "id": "calibrated_power"
+      },
+      {
+        "$extends": "type_name",
+        "id": "type_name"
+      },
+      {
+        "id": "frame_detail",
+        "type": "label",
+        "label": {
+          "en": "Detail"
+        },
+        "value": "-",
+        "hint": {
+          "en": "Details related to frames broadcast by the Eddystone beacon.\n\nThe Eddystone frame broadcasts an opaque unique 16-byte Beacon ID composed of a 10-byte namespace ID and a 6-byte instance ID."
+        }
+      }
+    ]
+  }
+]

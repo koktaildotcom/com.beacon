@@ -1,13 +1,14 @@
 {
-  "id": "beacon",
+  "id": "ibeacon",
   "name": {
-    "en": "beacon",
-    "nl": "beacon"
+    "en": "iBeacon",
+    "nl": "iBeacon"
   },
   "class": "sensor",
   "capabilities": [
     "detect",
-    "signal_strength"
+    "signal_strength",
+    "homey_distance"
   ],
   "images": {
     "small": "drivers/beacon/assets/images/small.png",
@@ -26,22 +27,10 @@
       "template": "add_devices"
     }
   ],
-  "mobile": {
-    "components": [
-      {
-        "id": "icon"
-      },
-      {
-        "id": "sensor",
-        "capabilities": [
-          "detect"
-        ],
-        "options": {
-          "icons": {
-            "detect": "./drivers/beacon/assets/detect.svg"
-          }
-        }
-      }
-    ]
-  }
+  "repair": [
+    {
+      "id": "repair_device",
+      "$template": "repair_device"
+    }
+  ]
 }
