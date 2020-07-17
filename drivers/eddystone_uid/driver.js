@@ -4,11 +4,18 @@ const BeaconDriver = require('../../lib/BeaconDriver.js');
 const BeaconAdvertisement = require('../../lib/BeaconAdvertisement.js');
 
 class EddystoneUIDDriver extends BeaconDriver {
+
+    /**
+     * @return string
+     */
     getBleName() {
         return 'Eddystone UID';
     }
 
-    get handledBeaconType() {
+    /**
+     * @return number
+     */
+    getBeaconType() {
         return BeaconAdvertisement.btaEddystoneUID;
     }
 }
