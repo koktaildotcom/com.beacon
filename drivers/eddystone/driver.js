@@ -2,21 +2,21 @@
 
 const BeaconDriver = require('../../lib/BeaconDriver.js');
 
-class IBeaconDriver extends BeaconDriver {
+class EddystoneDriver extends BeaconDriver {
 
     /**
      * @return string
      */
     getBleName() {
-        return 'iBeacon';
+        return 'Eddystone';
     }
 
     /**
      * @return string
      */
     static getBeaconType() {
-        return 'ibeacon'
+        return 'eddystone'
     }
 }
 
-module.exports = IBeaconDriver;
+module.exports = EddystoneDriver;

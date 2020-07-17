@@ -2,7 +2,7 @@
 
 const Homey = require('homey');
 
-const BeaconAdvertisement = require('../../lib/BeaconAdvertisement.js');
+const BeaconAdvertisement = require('../lib/BeaconAdvertisement');
 
 class Beacon extends Homey.App {
 
@@ -75,6 +75,8 @@ class Beacon extends Homey.App {
                 }
             }
         })
+
+        this.beaconAdvertisement = new BeaconAdvertisement();
     }
 
     /**
@@ -160,7 +162,7 @@ class Beacon extends Homey.App {
     /**
      * @private
      *
-     * handle beacon matches
+     * handle generic_beacon matches
      */
     async scanning () {
         console.log('start scanning')
@@ -168,7 +170,7 @@ class Beacon extends Homey.App {
             let updateDevicesTime = new Date()
             const foundDevices = await this._discoverAdvertisements()
             if (foundDevices.length !== 0) {
-                Homey.emit('beacon.devices', foundDevices)
+                Homey.emit('generic_beacon.devices', foundDevices)
             }
             Homey.app.log('All devices are synced complete in: ' + (new Date() - updateDevicesTime) / 1000 + ' seconds')
 
@@ -179,6 +181,10 @@ class Beacon extends Homey.App {
             return true
         }
         catch (error) {
+
+            // @todo throw stacktrace
+            throw error;
+
             Homey.app.log(error.message)
 
             if (this._useTimeout()) {
@@ -216,7 +222,6 @@ class Beacon extends Homey.App {
      * @returns {Promise.<object[]>}
      */
     _searchDevices(driver) {
-        const app = this;
         return new Promise((resolve, reject) => {
             let devices = [];
             let currentUuids = [];
@@ -238,10 +243,10 @@ class Beacon extends Homey.App {
                 advertisements.forEach(function (advertisement) {
                     // Because there are several type of beacons with different
                     //  settings and capabilities, a dedicated method is called.
-                    let beaconAdv = new BeaconAdvertisement(advertisement);
-                    if (beaconAdv.type == driver.handledBeaconType) {
-                        let pairObject = beaconAdv.getPairObject();
-                        pairObject.settings['type_name'] = driver.getBleName();
+                    let beacon = this.beaconAdvertisement.getBeaconFromAdvertisement(advertisement)
+                    if (null !== beacon && beacon.type === driver.getBeaconType()) {
+                        let pairObject = this.beaconAdvertisement.getMetaData(beacon);
+                        pairObject.settings['type_name'] = driver.getBleName();``
                         devices.push(pairObject);
                     }
                 });
