@@ -1,8 +1,7 @@
 'use strict';
 
 const Homey = require('homey');
-
-const BeaconAdvertisement = require('../lib/BeaconAdvertisement');
+const BeaconAdvertisement = require('./lib/beacon-advertisement.js')
 
 class Beacon extends Homey.App {
 
@@ -10,6 +9,7 @@ class Beacon extends Homey.App {
      * on init the app
      */
     onInit() {
+
         console.log('Successfully init Beacon app version: %s', Homey.app.manifest.version);
 
         if (!Homey.ManagerSettings.get('timeout')) {
@@ -91,8 +91,7 @@ class Beacon extends Homey.App {
                 this._searchDevices(driver).then((devices) => {
                     if (devices.length > 0) {
                         resolve(devices);
-                    }
-                    else {
+                    } else {
                         reject("No devices found.");
                     }
                 })
@@ -153,7 +152,7 @@ class Beacon extends Homey.App {
      *
      * set a new timeout for synchronisation
      */
-    _setNewTimeout () {
+    _setNewTimeout() {
         const seconds = Homey.ManagerSettings.get('updateInterval')
         console.log('try to scan again in ' + seconds + ' seconds')
         setTimeout(this.scanning.bind(this), 1000 * seconds)
@@ -164,13 +163,21 @@ class Beacon extends Homey.App {
      *
      * handle generic_beacon matches
      */
-    async scanning () {
+    async scanning() {
         console.log('start scanning')
         try {
             let updateDevicesTime = new Date()
-            const foundDevices = await this._discoverAdvertisements()
-            if (foundDevices.length !== 0) {
-                Homey.emit('generic_beacon.devices', foundDevices)
+            const advertisements = await this._discoverAdvertisements()
+            if (advertisements.length !== 0) {
+                let beacons = [];
+                advertisements.forEach(advertisement => {
+                    const beacon = Homey.app.beaconAdvertisement.getBeaconFromAdvertisement(advertisement);
+                    if (null !== beacon) {
+                        beacons.push(beacon);
+                    }
+                });
+
+                Homey.emit('generic_beacon.devices', beacons)
             }
             Homey.app.log('All devices are synced complete in: ' + (new Date() - updateDevicesTime) / 1000 + ' seconds')
 
@@ -179,8 +186,7 @@ class Beacon extends Homey.App {
             }
 
             return true
-        }
-        catch (error) {
+        } catch (error) {
 
             // @todo throw stacktrace
             throw error;
@@ -243,10 +249,10 @@ class Beacon extends Homey.App {
                 advertisements.forEach(function (advertisement) {
                     // Because there are several type of beacons with different
                     //  settings and capabilities, a dedicated method is called.
-                    let beacon = this.beaconAdvertisement.getBeaconFromAdvertisement(advertisement)
+                    let beacon = Homey.app.beaconAdvertisement.getBeaconFromAdvertisement(advertisement)
                     if (null !== beacon && beacon.type === driver.getBeaconType()) {
-                        let pairObject = this.beaconAdvertisement.getMetaData(beacon);
-                        pairObject.settings['type_name'] = driver.getBleName();``
+                        let pairObject = Homey.app.beaconAdvertisement.getMetaData(beacon);
+                        pairObject.settings['type_name'] = driver.getBleName();
                         devices.push(pairObject);
                     }
                 });
@@ -258,7 +264,7 @@ class Beacon extends Homey.App {
         });
     }
 
-    _useTimeout () {
+    _useTimeout() {
         return (Homey.ManagerSettings.get('useTimeout') !== false);
     }
 }

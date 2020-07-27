@@ -1,6 +1,7 @@
 "use strict";
 
-const BeaconDriver = require('../../lib/BeaconDriver.js');
+const drivers = require('../drivers');
+const BeaconDriver = require('../../lib/beacon-driver.js');
 
 class GenericBeaconDriver extends BeaconDriver {
 
@@ -14,8 +15,8 @@ class GenericBeaconDriver extends BeaconDriver {
     /**
      * @return string
      */
-    static getBeaconType() {
-        return 'generic'
+    getBeaconType() {
+        return drivers.GENERIC;
     }
 }
 
