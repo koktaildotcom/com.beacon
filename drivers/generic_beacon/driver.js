@@ -9,7 +9,7 @@ class GenericBeaconDriver extends BeaconDriver {
      * @return string
      */
     getBleName() {
-        return 'Generic generic_beacon';
+        return 'Generic beacon';
     }
 
     /**
