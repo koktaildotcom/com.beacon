@@ -28,7 +28,7 @@
 	"outside_range": "The beacon is outside range",
 	"repair": {
 		"title": "Replace the beacon",
-		"prologue": "This maintenance procedure allows you replace a physical beacon without the need to remove and then readd the device <span id='deviceName'></span> defined in Homey and therefore preserving all the flows that involve the device itself.</br>Some reasons for replacing the beacon:",
+		"prologue": "This maintenance procedure allows you replace a physical beacon without the need to remove and then read the device <span id='deviceName'></span> defined in Homey and therefore preserving all the flows that involve the device itself.</br>Some reasons for replacing the beacon:",
 		"reason1": "The beacon has been lost or damaged.",
 		"reason2": "The beacon has run out of battery and the battery is non-replaceable.",
 		"reason3": "You want to use a new, more powerful beacon.",
