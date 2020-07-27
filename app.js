@@ -1,7 +1,7 @@
 'use strict';
 
 const Homey = require('homey');
-const BeaconAdvertisement = require('./lib/beacon-advertisement.js')
+const BeaconDetectingService = require('./lib/beacon-detecting-service.js')
 
 class Beacon extends Homey.App {
 
@@ -76,7 +76,7 @@ class Beacon extends Homey.App {
             }
         })
 
-        this.beaconAdvertisement = new BeaconAdvertisement();
+        this.beaconDetectingService = new BeaconDetectingService();
     }
 
     /**
@@ -171,7 +171,7 @@ class Beacon extends Homey.App {
             if (advertisements.length !== 0) {
                 let beacons = [];
                 advertisements.forEach(advertisement => {
-                    const beacon = Homey.app.beaconAdvertisement.getBeaconFromAdvertisement(advertisement);
+                    const beacon = Homey.app.beaconDetectingService.getBeaconFromAdvertisement(advertisement);
                     if (null !== beacon) {
                         beacons.push(beacon);
                     }
@@ -187,10 +187,6 @@ class Beacon extends Homey.App {
 
             return true
         } catch (error) {
-
-            // @todo throw stacktrace
-            throw error;
-
             Homey.app.log(error.message)
 
             if (this._useTimeout()) {
@@ -249,9 +245,9 @@ class Beacon extends Homey.App {
                 advertisements.forEach(function (advertisement) {
                     // Because there are several type of beacons with different
                     //  settings and capabilities, a dedicated method is called.
-                    let beacon = Homey.app.beaconAdvertisement.getBeaconFromAdvertisement(advertisement)
+                    let beacon = Homey.app.beaconDetectingService.getBeaconFromAdvertisement(advertisement)
                     if (null !== beacon && beacon.type === driver.getBeaconType()) {
-                        let pairObject = Homey.app.beaconAdvertisement.getMetaData(beacon);
+                        let pairObject = Homey.app.beaconDetectingService.getMetaData(beacon);
                         pairObject.settings['type_name'] = driver.getBleName();
                         devices.push(pairObject);
                     }
