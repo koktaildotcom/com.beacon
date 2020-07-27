@@ -15,6 +15,10 @@
         "id": "advertised_name"
       },
       {
+        "$extends": "calibrated_power",
+        "id": "calibrated_power"
+      },
+      {
         "$extends": "type_name",
         "id": "type_name"
       }
