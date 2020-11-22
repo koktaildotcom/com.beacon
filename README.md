@@ -146,5 +146,7 @@ An overview of all the trigger cards that can be used
   * make automatic detection optional
   * add flow card for update beacon presence
   
+ * add repair logic
+ 
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/com.koktail.beacon
