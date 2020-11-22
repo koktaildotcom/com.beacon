@@ -11,8 +11,8 @@
     "homey_distance"
   ],
   "images": {
-    "small": "drivers/beacon/assets/images/small.png",
-    "large": "drivers/beacon/assets/images/large.png"
+    "small": "drivers/ibeacon/assets/images/small.png",
+    "large": "drivers/ibeacon/assets/images/large.png"
   },
   "pair": [
     {
