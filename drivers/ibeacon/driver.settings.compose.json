@@ -15,23 +15,51 @@
           "id": "advertised_name"
         },
         {
-          "$extends": "calibrated_power",
-          "id": "calibrated_power"
+          "$extends": "model",
+          "id": "model"
         },
         {
-          "$extends": "type_name",
-          "id": "type_name"
+          "$extends": "manufacturer",
+          "id": "manufacturer"
         },
         {
-          "id": "frame_detail",
-          "type": "label",
-          "label": {
-            "en": "Detail"
-          },
-          "value": "-",
-          "hint": {
-            "en": "Detail related to the identifying frame periodically advertised by the iBeacon.\n\nThe iBeacon frame is composed by: an universal unique identifier (UUID), 16 byes represented as a 36-chars string; a major and a minor number that range from 0 to 65535."
-          }
+          "type": "group",
+          "label": {"en": "iBeacon"},
+          "children": [
+            {
+              "id": "uuid",
+              "type": "label",
+              "label": {
+                "en": "UUID"
+              },
+              "value": "-",
+              "hint": {
+                "en": "Universal unique identifier (UUID), 16 byes represented as a 36-chars string"
+              }
+            },
+            {
+              "id": "major",
+              "type": "label",
+              "label": {
+                "en": "Major"
+              },
+              "value": "-",
+              "hint": {
+                "en": "Major number that ranges from 0 to 65535"
+              }
+            },
+            {
+              "id": "minor",
+              "type": "label",
+              "label": {
+                "en": "Minor"
+              },
+              "value": "-",
+              "hint": {
+                "en": "Minor number that ranges from 0 to 65535"
+              }
+            }
+          ]
         }
       ]
     }

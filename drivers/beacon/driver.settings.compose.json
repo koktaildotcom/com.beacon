@@ -15,12 +15,12 @@
         "id": "advertised_name"
       },
       {
-        "$extends": "calibrated_power",
-        "id": "calibrated_power"
+        "$extends": "model",
+        "id": "model"
       },
       {
-        "$extends": "type_name",
-        "id": "type_name"
+        "$extends": "manufacturer",
+        "id": "manufacturer"
       }
     ]
   }

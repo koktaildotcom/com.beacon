@@ -5,78 +5,25 @@
 
         Homey.setTitle(Homey.__('repair.title'));
 
-        $(function () {
+        Homey.emit('query_curr_device', {}).then (function (result) {
+            const uuidStr = result.deviceData.uuid.slice(0, 8) + '-' +
+                result.deviceData.uuid.slice(8, 12) + '-' +
+                result.deviceData.uuid.slice(12, 16) + '-' +
+                result.deviceData.uuid.slice(16, 20) + '-' +
+                result.deviceData.uuid.slice(20);
+            const frameDetail = "UUID: " + uuidStr + " major: " +
+                result.deviceData.major + " minor: " + result.deviceData.minor;
+            $('#deviceName').css("font-weight", "Bold");
+            $('#deviceName').html(result.deviceName);
+            $('#typeName').css("font-weight", "Bold");
+            $('#typeName').html("iBeacon");
+            $('#frameDetail').css("font-weight", "Bold");
+            $('#frameDetail').html(frameDetail);
+            $('#common').show();
+        });
 
-            function wantRetry(arg1, arg2) {
-                if (arg2) {
-                    doRepair();
-                }
-                else {
-                    Homey.done();
-                }
-            }
-
-            function doRepair() {
-                Homey.showLoadingOverlay();
-                Homey.emit('discover_and_refresh', {}, function (error, actuallyRefreshed) {
-                    Homey.hideLoadingOverlay();
-                    if (error) {
-                        Homey.confirm(error + Homey.__("repair.retry_or_cancel"), 'error', cb);
-                    }
-                    else if (actuallyRefreshed == null) {
-                        Homey.confirm(Homey.__("repair.not_discovered") +
-                            Homey.__("repair.retry_or_cancel"), 'warning', wantRetry);
-                    }
-                    else {
-                        if (actuallyRefreshed) {
-                            Homey.alert(Homey.__("repair.refreshed"));
-                        }
-                        else {
-                            Homey.alert(Homey.__("repair.nothing_to_be_refreshed"));
-                        }
-                        Homey.done();
-                    }
-                });
-            };
-
-            $(document).ready(function () {
-                Homey.emit('query_curr_device', {}, function (error, beaconTypeAndDetails) {
-                    $('#deviceName').css("font-weight", "Bold");
-                    $('#deviceName').html(beaconTypeAndDetails.deviceName);
-                    $('#typeName').css("font-weight", "Bold");
-                    $('#typeName').html(beaconTypeAndDetails.typeName);
-                    $('#frameDetail').css("font-weight", "Bold");
-                    $('#frameDetail').html(beaconTypeAndDetails.frameDetail);
-                    $('#buttonCaption').css("font-weight", "Bold");
-                    $('#buttonCaption').html(Homey.__("repair.button_caption"));
-                    $('#common').show();
-                });
-            });
-
-            $('#repair').click(function () {
-                doRepair();
-            });
-
-        })
     </script>
 
-    <style type="text/css">
-        .button {
-            border-radius: 8px;
-            min-width: 80px;
-            min-height: 36px;
-        }
-
-            .button:enabled {
-                color: white;
-                background-color: rgba(0, 193, 57, 1);
-            }
-
-            .button:hover {
-                color: white;
-                background-color: rgba(0, 193, 57, 0.5);
-            }
-    </style>
 </head>
 
 <body>
@@ -93,10 +40,6 @@
             <li data-i18n="repair.step2"></li>
             <li data-i18n="repair.step3"></li>
         </ol>
-        <p id="step1" data-i18n="repair.epilogue"></p>
-        <div style="text-align:center">
-            <button id="repair" class="button" data-i18n="repair.button_caption"></button>
-        </div>
     </div>
 </body>
 </html>

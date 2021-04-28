@@ -2,8 +2,8 @@
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.koktail.beacon",
   "version": "1.2.10",
-  "compatibility": ">=2.0.5",
-  "sdk": 2,
+  "compatibility": ">=5.0.0",
+  "sdk": 3,
   "brandColor": "#11437c",
   "homeyCommunityTopicId": 3550,
   "name": {
@@ -25,6 +25,14 @@
   "author": {
     "name": "Leendert De Kok",
     "email": "koktaildotcom@hotmail.com"
+  },
+  "contributors": {
+    "developers": [
+      {
+        "name": "Piero Freguia",
+        "email": "pfreguia@tiscali.it"
+      }
+    ]
   },
   "contributing": {
     "donate": {
@@ -260,8 +268,7 @@
       "class": "sensor",
       "capabilities": [
         "detect",
-        "signal_strength",
-        "homey_distance"
+        "signal_strength"
       ],
       "images": {
         "small": "drivers/beacon/assets/images/small.png",
@@ -315,29 +322,29 @@
               }
             },
             {
-              "id": "calibrated_power",
+              "id": "model",
               "type": "label",
               "label": {
-                "en": "Calibrated power",
-                "nl": "Gekalibreerd vermogen"
+                "en": "Model",
+                "nl": "Model"
               },
               "value": "-",
               "hint": {
-                "en": "The calibrated power.",
-                "nl": "Het gekalibreerd vermogen"
+                "en": "The model.",
+                "nl": "Het model."
               }
             },
             {
-              "id": "type_name",
+              "id": "manufacturer",
               "type": "label",
               "label": {
-                "en": "Type",
-                "nl": "Type"
+                "en": "Manufacturer",
+                "nl": "Manufacturer"
               },
               "value": "-",
               "hint": {
-                "en": "The beacon types currently supported by this app are generic beacon, iBeacon, Eddystone UID.\n\nGeneric beacon is a generic BLE peripheral used as a beacon.\n\niBeacon is the trademark for an indoor positioning system developed by Apple Inc.\n\nEddystone is an open beacon format from Google for Bluetooth Low Energy (BLE) beacons.",
-                "nl": "Het beacon type"
+                "en": "The manufacturer.",
+                "nl": "Het manufacturer."
               }
             }
           ]
@@ -375,7 +382,16 @@
       ],
       "repair": [
         {
-          "id": "repair_device"
+          "id": "repair_device",
+          "navigation": {
+            "next": "repair_device_done"
+          }
+        },
+        {
+          "id": "repair_device_done",
+          "navigation": {
+            "next": "repair_device_done"
+          }
         }
       ],
       "settings": [
@@ -413,41 +429,60 @@
               }
             },
             {
-              "id": "calibrated_power",
+              "id": "model",
               "type": "label",
               "label": {
-                "en": "Calibrated power",
-                "nl": "Gekalibreerd vermogen"
+                "en": "Model",
+                "nl": "Model"
               },
               "value": "-",
               "hint": {
-                "en": "The calibrated power.",
-                "nl": "Het gekalibreerd vermogen"
+                "en": "The model.",
+                "nl": "Het model."
               }
             },
             {
-              "id": "type_name",
+              "id": "manufacturer",
               "type": "label",
               "label": {
-                "en": "Type",
-                "nl": "Type"
+                "en": "Manufacturer",
+                "nl": "Manufacturer"
               },
               "value": "-",
               "hint": {
-                "en": "The beacon types currently supported by this app are generic beacon, iBeacon, Eddystone UID.\n\nGeneric beacon is a generic BLE peripheral used as a beacon.\n\niBeacon is the trademark for an indoor positioning system developed by Apple Inc.\n\nEddystone is an open beacon format from Google for Bluetooth Low Energy (BLE) beacons.",
-                "nl": "Het beacon type"
+                "en": "The manufacturer.",
+                "nl": "Het manufacturer."
               }
             },
             {
-              "id": "frame_detail",
-              "type": "label",
+              "type": "group",
               "label": {
-                "en": "Detail"
+                "en": "Eddystone UID"
               },
-              "value": "-",
-              "hint": {
-                "en": "Details related to frames broadcast by the Eddystone beacon.\n\nThe Eddystone frame broadcasts an opaque unique 16-byte Beacon ID composed of a 10-byte namespace ID and a 6-byte instance ID."
-              }
+              "children": [
+                {
+                  "id": "namespace",
+                  "type": "label",
+                  "label": {
+                    "en": "Namespace"
+                  },
+                  "value": "-",
+                  "hint": {
+                    "en": "10-byte namespace ID"
+                  }
+                },
+                {
+                  "id": "instance",
+                  "type": "label",
+                  "label": {
+                    "en": "Instance"
+                  },
+                  "value": "-",
+                  "hint": {
+                    "en": "6-byte instance ID"
+                  }
+                }
+              ]
             }
           ]
         }
@@ -484,7 +519,16 @@
       ],
       "repair": [
         {
-          "id": "repair_device"
+          "id": "repair_device",
+          "navigation": {
+            "next": "repair_device_done"
+          }
+        },
+        {
+          "id": "repair_device_done",
+          "navigation": {
+            "next": "repair_device_done"
+          }
         }
       ],
       "settings": [
@@ -522,41 +566,71 @@
               }
             },
             {
-              "id": "calibrated_power",
+              "id": "model",
               "type": "label",
               "label": {
-                "en": "Calibrated power",
-                "nl": "Gekalibreerd vermogen"
+                "en": "Model",
+                "nl": "Model"
               },
               "value": "-",
               "hint": {
-                "en": "The calibrated power.",
-                "nl": "Het gekalibreerd vermogen"
+                "en": "The model.",
+                "nl": "Het model."
               }
             },
             {
-              "id": "type_name",
+              "id": "manufacturer",
               "type": "label",
               "label": {
-                "en": "Type",
-                "nl": "Type"
+                "en": "Manufacturer",
+                "nl": "Manufacturer"
               },
               "value": "-",
               "hint": {
-                "en": "The beacon types currently supported by this app are generic beacon, iBeacon, Eddystone UID.\n\nGeneric beacon is a generic BLE peripheral used as a beacon.\n\niBeacon is the trademark for an indoor positioning system developed by Apple Inc.\n\nEddystone is an open beacon format from Google for Bluetooth Low Energy (BLE) beacons.",
-                "nl": "Het beacon type"
+                "en": "The manufacturer.",
+                "nl": "Het manufacturer."
               }
             },
             {
-              "id": "frame_detail",
-              "type": "label",
+              "type": "group",
               "label": {
-                "en": "Detail"
+                "en": "iBeacon"
               },
-              "value": "-",
-              "hint": {
-                "en": "Detail related to the identifying frame periodically advertised by the iBeacon.\n\nThe iBeacon frame is composed by: an universal unique identifier (UUID), 16 byes represented as a 36-chars string; a major and a minor number that range from 0 to 65535."
-              }
+              "children": [
+                {
+                  "id": "uuid",
+                  "type": "label",
+                  "label": {
+                    "en": "UUID"
+                  },
+                  "value": "-",
+                  "hint": {
+                    "en": "Universal unique identifier (UUID), 16 byes represented as a 36-chars string"
+                  }
+                },
+                {
+                  "id": "major",
+                  "type": "label",
+                  "label": {
+                    "en": "Major"
+                  },
+                  "value": "-",
+                  "hint": {
+                    "en": "Major number that ranges from 0 to 65535"
+                  }
+                },
+                {
+                  "id": "minor",
+                  "type": "label",
+                  "label": {
+                    "en": "Minor"
+                  },
+                  "value": "-",
+                  "hint": {
+                    "en": "Minor number that ranges from 0 to 65535"
+                  }
+                }
+              ]
             }
           ]
         }

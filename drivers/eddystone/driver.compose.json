@@ -29,7 +29,18 @@
   ],
   "repair": [
     {
-      "id": "repair_device"
+      "id": "repair_device",
+      "$template": "repair_device",
+      "navigation": {
+        "next": "repair_device_done"
+      }
+    },
+    {
+      "id": "repair_device_done",
+      "$template": "repair_device_done",
+      "navigation": {
+        "next": "repair_device_done"
+      }
     }
   ]
 }

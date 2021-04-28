@@ -7,8 +7,7 @@
   "class": "sensor",
   "capabilities": [
     "detect",
-    "signal_strength",
-    "homey_distance"
+    "signal_strength"
   ],
   "images": {
     "small": "drivers/beacon/assets/images/small.png",

@@ -15,23 +15,40 @@
         "id": "advertised_name"
       },
       {
-        "$extends": "calibrated_power",
-        "id": "calibrated_power"
+        "$extends": "model",
+        "id": "model"
       },
       {
-        "$extends": "type_name",
-        "id": "type_name"
+        "$extends": "manufacturer",
+        "id": "manufacturer"
       },
       {
-        "id": "frame_detail",
-        "type": "label",
-        "label": {
-          "en": "Detail"
-        },
-        "value": "-",
-        "hint": {
-          "en": "Details related to frames broadcast by the Eddystone beacon.\n\nThe Eddystone frame broadcasts an opaque unique 16-byte Beacon ID composed of a 10-byte namespace ID and a 6-byte instance ID."
-        }
+        "type": "group",
+        "label": {"en": "Eddystone UID"},
+        "children": [
+          {
+            "id": "namespace",
+            "type": "label",
+            "label": {
+              "en": "Namespace"
+            },
+            "value": "-",
+            "hint": {
+              "en": "10-byte namespace ID"
+            }
+          },
+          {
+            "id": "instance",
+            "type": "label",
+            "label": {
+              "en": "Instance"
+            },
+            "value": "-",
+            "hint": {
+              "en": "6-byte instance ID"
+            }
+          }
+        ]
       }
     ]
   }

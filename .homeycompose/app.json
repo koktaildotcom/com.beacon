@@ -1,8 +1,8 @@
 {
   "id": "com.koktail.beacon",
   "version": "1.2.10",
-  "compatibility": ">=2.0.5",
-  "sdk": 2,
+  "compatibility": ">=5.0.0",
+  "sdk": 3,
   "brandColor": "#11437c",
   "homeyCommunityTopicId": 3550,
   "name": {
@@ -24,6 +24,14 @@
   "author": {
     "name": "Leendert De Kok",
     "email": "koktaildotcom@hotmail.com"
+  },
+  "contributors": {
+    "developers": [
+      {
+        "name": "Piero Freguia",
+        "email": "pfreguia@tiscali.it"
+      }
+    ]
   },
   "contributing": {
     "donate": {

@@ -1,64 +1,49 @@
 'use strict';
 
 const Homey = require('homey');
-const BeaconDetectingService = require('./lib/beacon-detecting-service.js')
 
 class Beacon extends Homey.App {
 
     isPairing = false;
-
-    constructor(manifest) {
-        super(manifest);
-
-        this.beaconDetectingService = new BeaconDetectingService();
-    }
 
     /**
      * on init the app
      */
     async onInit() {
 
-        console.log('Successfully init Beacon app version: %s', Homey.app.manifest.version);
+        console.log('Successfully init Beacon app version: %s', this.manifest.version);
 
-        if (!Homey.ManagerSettings.get('timeout')) {
-            Homey.ManagerSettings.set('timeout', 10)
+        if (!this.homey.settings.get('timeout')) {
+            this.homey.settings.set('timeout', 10)
         }
 
-        if (!Homey.ManagerSettings.get('updateInterval')) {
-            Homey.ManagerSettings.set('updateInterval', 10)
+        if (!this.homey.settings.get('updateInterval')) {
+            this.homey.settings.set('updateInterval', 10)
         }
 
-        if (!Homey.ManagerSettings.get('verificationAmountInside')) {
-            Homey.ManagerSettings.set('verificationAmountInside', 1)
+        if (!this.homey.settings.get('verificationAmountInside')) {
+            this.homey.settings.set('verificationAmountInside', 1)
         }
 
-        if (!Homey.ManagerSettings.get('verificationAmountOutside')) {
-            Homey.ManagerSettings.set('verificationAmountOutside', 5)
+        if (!this.homey.settings.get('verificationAmountOutside')) {
+            this.homey.settings.set('verificationAmountOutside', 5)
         }
 
-        this.logTrigger = new Homey.FlowCardTrigger('log');
-        this.logTrigger.register();
+        this.logTrigger = this.homey.flow.getTriggerCard('log');
 
-        this.beaconInsideRange = new Homey.FlowCardTrigger('beacon_inside_range');
-        this.beaconInsideRange.register();
+        this.beaconInsideRange = this.homey.flow.getTriggerCard('beacon_inside_range');
 
-        this.deviceBeaconInsideRange = new Homey.FlowCardTriggerDevice('device_beacon_inside_range');
-        this.deviceBeaconInsideRange.register();
+        this.deviceBeaconInsideRange = this.homey.flow.getDeviceTriggerCard('device_beacon_inside_range');
 
-        this.beaconOutsideRange = new Homey.FlowCardTrigger('beacon_outside_range');
-        this.beaconOutsideRange.register();
+        this.beaconOutsideRange = this.homey.flow.getTriggerCard('beacon_outside_range');
 
-        this.deviceBeaconOutsideRange = new Homey.FlowCardTriggerDevice('device_beacon_outside_range');
-        this.deviceBeaconOutsideRange.register();
+        this.deviceBeaconOutsideRange = this.homey.flow.getDeviceTriggerCard('device_beacon_outside_range');
 
-        this.beaconStateChanged = new Homey.FlowCardTrigger('beacon_state_changed');
-        this.beaconStateChanged.register();
+        this.beaconStateChanged = this.homey.flow.getTriggerCard('beacon_state_changed');
 
-        this.deviceBeaconStateChanged = new Homey.FlowCardTriggerDevice('device_beacon_state_changed');
-        this.deviceBeaconStateChanged.register();
+        this.deviceBeaconStateChanged = this.homey.flow.getDeviceTriggerCard('device_beacon_state_changed');
 
-        this.deviceBeaconIsInsideRange = new Homey.FlowCardCondition('beacon_is_inside_range')
-        this.deviceBeaconIsInsideRange.register();
+        this.deviceBeaconIsInsideRange = this.homey.flow.getConditionCard('beacon_is_inside_range')
         this.deviceBeaconIsInsideRange.registerRunListener((args, state) => {
             return args.device.getCapabilityValue("detect");
         });
@@ -66,8 +51,7 @@ class Beacon extends Homey.App {
         this._advertisements = [];
         this._log = '';
 
-        new Homey.FlowCardAction('update_beacon_presence')
-            .register()
+        this.homey.flow.getActionCard('update_beacon_presence')
             .registerRunListener(async () => {
                 return Promise.resolve(await this.scanning())
             });
@@ -76,10 +60,10 @@ class Beacon extends Homey.App {
             await this.scanning();
         }
 
-        Homey.ManagerSettings.on('set', function (setting) {
+        this.homey.settings.on('set', function (setting) {
             if (setting === 'useTimeout') {
-                if (Homey.ManagerSettings.get('useTimeout') !== false) {
-                    Homey.app.scanning()
+                if (this.homey.settings.get('useTimeout') !== false) {
+                    this.homey.app.scanning()
                 }
             }
         })
@@ -88,11 +72,11 @@ class Beacon extends Homey.App {
     /**
      * @param message
      */
-    log(message) {
-        const logMessage = this._getDateTime(new Date()) + ' ' + message;
-        this._log += logMessage;
-        console.log(logMessage);
-    }
+    //log(message) {
+    //    const logMessage = this._getDateTime(new Date()) + ' ' + message;
+    //    this._log += logMessage;
+    //    console.log(logMessage);
+    //}
 
     sendLog() {
         if (this.logTrigger) {
@@ -137,7 +121,7 @@ class Beacon extends Homey.App {
      * set a new timeout for synchronisation
      */
     _setNewTimeout() {
-        const seconds = Homey.ManagerSettings.get('updateInterval')
+        const seconds = this.homey.settings.get('updateInterval')
         console.log('try to scan again in ' + seconds + ' seconds')
         setTimeout(this.scanning.bind(this), 1000 * seconds)
     }
@@ -158,19 +142,11 @@ class Beacon extends Homey.App {
 
         try {
             let updateDevicesTime = new Date()
-            const advertisements = await this._discoverAdvertisements(Homey.ManagerSettings.get('timeout') * 1000)
+            const advertisements = await this._discoverAdvertisements(this.homey.settings.get('timeout') * 1000)
             if (advertisements.length !== 0) {
-                let beacons = [];
-                advertisements.forEach(advertisement => {
-                    const beacon = Homey.app.beaconDetectingService.getBeaconFromAdvertisement(advertisement);
-                    if (null !== beacon) {
-                        beacons.push(beacon);
-                    }
-                });
-
-                Homey.emit('update.beacon.status', beacons)
+                this.homey.emit('update.beacon.status', advertisements)
             }
-            Homey.app.log('All devices are synced complete in: ' + (new Date() - updateDevicesTime) / 1000 + ' seconds')
+            this.log('All devices are synced complete in: ' + (new Date() - updateDevicesTime) / 1000 + ' seconds')
 
             if (this._useTimeout()) {
                 this._setNewTimeout()
@@ -178,7 +154,7 @@ class Beacon extends Homey.App {
 
             return true
         } catch (error) {
-            Homey.app.log(error.message)
+            this.log(error.message)
 
             if (this._useTimeout()) {
                 this._setNewTimeout()
@@ -194,61 +170,21 @@ class Beacon extends Homey.App {
      * @returns {Promise.<BeaconDevice[]>}
      */
     async _discoverAdvertisements(timeout = 10000) {
-console.log('_discoverAdvertisements');
-        return Homey.ManagerBLE.discover([], timeout)
+        console.log('_discoverAdvertisements');
+        return this.homey.ble.discover([], timeout)
             .then(advertisements => {
                 this._advertisements = [];
                 advertisements.forEach(advertisement => {
                     this._advertisements.push(advertisement);
                 });
-
-console.log(`return ${advertisements.length} advertisements`);
+                
+                console.log(`return ${advertisements.length} advertisements`);
                 return advertisements;
             });
     }
 
-    /**
-     * discover devices
-     *
-     * @param driver BeaconDriver
-     * @returns {Promise.<object[]>}
-     */
-    async _searchDevices(driver) {
-        let devices = [];
-        let currentUuids = [];
-
-        driver.getDevices().forEach(device => {
-            let data = device.getData();
-            currentUuids.push(data.uuid);
-        });
-
-        return this._discoverAdvertisements()
-            .then((advertisements) => {
-                return advertisements.filter(function (advertisement) {
-                    return (currentUuids.indexOf(advertisement.uuid) === -1);
-                });
-            })
-            .then((advertisements) => {
-                if (advertisements.length === 0) {
-                    return [];
-                }
-                advertisements.forEach(function (advertisement) {
-                    // Because there are several type of beacons with different
-                    //  settings and capabilities, a dedicated method is called.
-                    let beacon = Homey.app.beaconDetectingService.getBeaconFromAdvertisement(advertisement)
-                    if (null !== beacon && beacon.type === driver.getBeaconType()) {
-                        let pairObject = Homey.app.beaconDetectingService.getMetaData(beacon);
-                        pairObject.settings['type_name'] = driver.getBleName();
-                        devices.push(pairObject);
-                    }
-                });
-
-                return devices;
-            })
-    }
-
     _useTimeout() {
-        return (Homey.ManagerSettings.get('useTimeout') !== false);
+        return (this.homey.settings.get('useTimeout') !== false);
     }
 }
 
