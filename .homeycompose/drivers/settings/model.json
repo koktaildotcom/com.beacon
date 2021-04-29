@@ -1,0 +1,13 @@
+{
+  "id": "model",
+  "type": "label",
+  "label": {
+    "en": "Model",
+    "nl": "Model"
+  },
+  "value": "-",
+  "hint": {
+    "en": "The model.",
+    "nl": "Het model."
+  }
+}

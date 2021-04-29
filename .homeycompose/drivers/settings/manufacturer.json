@@ -1,0 +1,13 @@
+{
+  "id": "manufacturer",
+  "type": "label",
+  "label": {
+    "en": "Manufacturer",
+    "nl": "Manufacturer"
+  },
+  "value": "-",
+  "hint": {
+    "en": "The manufacturer.",
+    "nl": "Het manufacturer."
+  }
+}
