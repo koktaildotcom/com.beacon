@@ -20,6 +20,20 @@ class GenericBeaconDriver extends BeaconDriver {
         return false;
     }
 
+    /** @inheritdoc */
+    extractMetadata(advertisement) {
+        let metadata = super.extractMetadata(advertisement);
+        metadata['data'] = {
+            id: advertisement.id,
+            uuid: advertisement.uuid,
+            address: advertisement.uuid,
+            name: advertisement.localName,
+            type: advertisement.addressType,
+            version: "v" + this.homey.app.manifest.version
+        }
+        return metadata;
+    }
+
 }
 
 module.exports = GenericBeaconDriver;
