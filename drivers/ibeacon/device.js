@@ -19,7 +19,9 @@ const BeaconDevice = require('../../lib/beacon-device.js');
 
 class IBeaconDevice extends BeaconDevice {
 
-    /** @inheritdoc */
+    /**
+     * @inheritdoc
+     */
     matchAdvertisement(advertisement) {
         const devData = this.getData();
         if (advertisement.manufacturerData !== undefined) {
@@ -35,9 +37,11 @@ class IBeaconDevice extends BeaconDevice {
             }
         }
         return false;
-    }    
+    }
 
-    /** @inheritdoc */
+    /**
+     * @inheritdoc
+     */
     parseAdvertisement(advertisement) {
         let beaconAdv = super.parseAdvertisement(advertisement);
         if (advertisement.manufacturerData !== undefined) {

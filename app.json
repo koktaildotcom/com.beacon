@@ -262,8 +262,8 @@
     {
       "id": "beacon",
       "name": {
-        "en": "beacon",
-        "nl": "beacon"
+        "en": "Beacon",
+        "nl": "Beacon"
       },
       "class": "sensor",
       "capabilities": [
@@ -647,7 +647,16 @@
         "nl": "Gedetecteerd"
       },
       "getable": true,
-      "setable": true
+      "setable": true,
+      "insights": true,
+      "insightsTitleTrue": {
+        "en": "Inside range",
+        "nl": "Binnen bereik"
+      },
+      "insightsTitleFalse": {
+        "en": "Outside range",
+        "nl": "Buiten bereik"
+      }
     },
     "homey_distance": {
       "uiComponent": "sensor",

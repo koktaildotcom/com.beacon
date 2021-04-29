@@ -4,15 +4,16 @@ const BeaconDevice = require('../../lib/beacon-device.js');
 
 class GenericBeaconDevice extends BeaconDevice {
 
-    /** @inheritdoc */
+    /**
+     * @inheritdoc
+     */
     matchAdvertisement(advertisement) {
-        const devData = this.getData();
-        if (advertisement.uuid == devData.uuid) {
+        const deviceData = this.getData();
+        if (advertisement.uuid === deviceData.uuid) {
             return true;
         }
         return false;
-    }    
-    
+    }
 }
 
 module.exports = GenericBeaconDevice;

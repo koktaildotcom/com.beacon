@@ -20,7 +20,7 @@ const BeaconDriver = require('../../lib/beacon-driver.js');
 class IBeaconDriver extends BeaconDriver {
 
     /** @inheritdoc */
-    isMyAdvertisement(advertisement) {
+    supports(advertisement) {
         if (advertisement.manufacturerData !== undefined) {
             // Field manufacturerData expected in iBeacon.
             const md = advertisement.manufacturerData;
@@ -30,11 +30,11 @@ class IBeaconDriver extends BeaconDriver {
                 if (md[0] == 76 && md[1] == 0 && md[2] == 2 && md[3] == 21) {
                     return true;
                 }
-            } 
+            }
         }
-        return false;            
+        return false;
     }
-    
+
     /** @inheritdoc */
     extractMetadata(advertisement) {
         let metadata = super.extractMetadata(advertisement);

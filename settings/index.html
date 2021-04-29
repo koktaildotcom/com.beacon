@@ -1,8 +1,8 @@
 <!doctype html>
 <html>
 <head>
-    <script type="text/javascript" src="/homey.js" data-origin="settings"></script>
-    <style>
+	<script type="text/javascript" src="/homey.js" data-origin="settings"></script>
+	<style>
         #notice {
             color: green;
         }
@@ -14,6 +14,7 @@
 
         .setting-row {
             width: 100%;
+            text-transform: none;
         }
 
         #verificationAmountInside {
@@ -35,165 +36,208 @@
             width: 55px;
             padding: 5px 10px;
         }
-    </style>
+
+        #save {
+            display: inline-block;
+            background: #11437c;
+            color: white;
+            border-radius: 6px;
+            border: none;
+            line-height: 38px;
+            padding: 0 40px;
+            height: 40px;
+            font-size: 16px;
+            transition: all 0.3s;
+            -webkit-appearance: none;
+            width: 100%;
+        }
+	</style>
 </head>
 <body>
 
 <h1 data-i18n="settings.title"></h1>
 
-<fieldset>
-    <legend>
-        <p data-i18n="settings.update"></p>
-    </legend>
 
-    <table class="setting-row">
-        <tbody>
-        <tr>
-            <td>
-                <label for="useTimeout">
-                    <p data-i18n="settings.interval.use"></p>
-                </label>
-            </td>
-            <td>
-                <input id="useTimeout" class="left" type="checkbox"/>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <i data-i18n="settings.interval.label" class="note"></i>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="updateInterval">
-                    <p data-i18n="settings.interval.info"></p>
-                </label>
-            </td>
-            <td>
-                <input id="updateInterval" class="left" type="number" step=1 min=1/>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+<fieldset>
+	<legend>
+		<p data-i18n="settings.ignoreAddressType.title"></p>
+	</legend>
+
+	<table class="setting-row">
+		<tbody>
+		<tr>
+			<td colspan="2">
+				<i class="note" data-i18n="settings.ignoreAddressType.note"></i>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label for="ignoreAddressType" class="hy-nostyle" data-i18n="settings.ignoreAddressType.label"></label>
+			</td>
+			<td>
+				<input id="ignoreAddressType" class="left" type="checkbox"/>
+			</td>
+		</tr>
+		</tbody>
+	</table>
 </fieldset>
 
 <fieldset>
-    <legend>
-        <p data-i18n="settings.verification"></p>
-    </legend>
-    <table class="setting-row">
-        <tbody>
-        <tr>
-            <td colspan="2">
-                <i data-i18n="settings.timeout.label" class="note"></i>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="timeout">
-                    <p data-i18n="settings.timeout.info"></p>
-                </label>
-            </td>
-            <td>
-                <input id="timeout" class="left" type="number" step=1 min=5/>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <i data-i18n="settings.verification" class="note"></i>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="verificationAmountInside">
-                    <p data-i18n="settings.verification_amount_inside.label"></p>
-                </label>
-            </td>
-            <td>
-                <input id="verificationAmountInside" class="left" type="number" step=1 min=1 max=10/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="verificationAmountOutside">
-                    <p data-i18n="settings.verification_amount_outside.label"></p>
-                </label>
-            </td>
-            <td>
-                <input id="verificationAmountOutside" class="left" type="number" step=1 min=1 max=10/>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+	<legend>
+		<p data-i18n="settings.update"></p>
+	</legend>
+
+	<table class="setting-row">
+		<tbody>
+		<tr>
+			<td>
+				<label for="useTimeout" class="hy-nostyle" data-i18n="settings.interval.use"></label>
+			</td>
+			<td>
+				<input id="useTimeout" class="left" type="checkbox"/>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<i data-i18n="settings.interval.label" class="note"></i>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label for="updateInterval" class="hy-nostyle" data-i18n="settings.interval.info"></label>
+			</td>
+			<td>
+				<input id="updateInterval" class="left" type="number" step=1 min=1/>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</fieldset>
+
+<fieldset>
+	<legend>
+		<p data-i18n="settings.verification"></p>
+	</legend>
+	<table class="setting-row">
+		<tbody>
+		<tr>
+			<td colspan="2">
+				<i data-i18n="settings.timeout.label" class="note"></i>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label for="timeout" class="hy-nostyle" data-i18n="settings.timeout.info"></label>
+			</td>
+			<td>
+				<input id="timeout" class="left" type="number" step=1 min=5/>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<i data-i18n="settings.verification" class="note"></i>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label for="verificationAmountInside" class="hy-nostyle" data-i18n="settings.verification_amount_inside.label"></label>
+			</td>
+			<td>
+				<input id="verificationAmountInside" class="left" type="number" step=1 min=1 max=10/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label for="verificationAmountOutside" class="hy-nostyle" data-i18n="settings.verification_amount_outside.label"></label>
+			</td>
+			<td>
+				<input id="verificationAmountOutside" class="left" type="number" step=1 min=1 max=10/>
+			</td>
+		</tr>
+		</tbody>
+	</table>
 
 </fieldset>
 
 <div class="field row">
-    <button id="save" class="right"><p data-i18n="settings.save.label"></p></button>
+	<button id="save" class="right" data-i18n="settings.save.label"></button>
 </div>
 
 <script type="text/javascript">
 
-    function onHomeyReady (Homey) {
+  function onHomeyReady(Homey) {
 
-        Homey.ready()
+    Homey.ready()
 
-        let saveElement = document.getElementById('save')
+    let saveElement = document.getElementById('save')
 
-        let useTimeout = document.getElementById('useTimeout')
-        Homey.get('useTimeout', function (err, value) {
-            if (err) return Homey.alert(err)
-            if (true === value || null === value) {
-                useTimeout.setAttribute('checked', 'checked')
-            } else {
-                useTimeout.removeAttribute('checked')
-            }
-        })
+    let ignoreAddressType = document.getElementById('ignoreAddressType')
+    Homey.get('ignoreAddressType', function (err, value) {
+      if (err) return Homey.alert(err)
+      if (true === value || null === value) {
+          ignoreAddressType.setAttribute('checked', 'checked')
+      } else {
+          ignoreAddressType.removeAttribute('checked')
+      }
+    })
 
-        let timeout = document.getElementById('timeout')
-        Homey.get('timeout', function (err, value) {
-            if (err) return Homey.alert(err)
-            timeout.value = value
-        })
+    let useTimeout = document.getElementById('useTimeout')
+    Homey.get('useTimeout', function (err, value) {
+      if (err) return Homey.alert(err)
+      if (true === value || null === value) {
+        useTimeout.setAttribute('checked', 'checked')
+      } else {
+        useTimeout.removeAttribute('checked')
+      }
+    })
 
-        let updateInterval = document.getElementById('updateInterval')
-        Homey.get('updateInterval', function (err, value) {
-            if (err) return Homey.alert(err)
-            updateInterval.value = value
-        })
+    let timeout = document.getElementById('timeout')
+    Homey.get('timeout', function (err, value) {
+      if (err) return Homey.alert(err)
+      timeout.value = value
+    })
 
-        let verificationAmountOutside = document.getElementById('verificationAmountOutside')
-        Homey.get('verificationAmountOutside', function (err, value) {
-            if (err) return Homey.alert(err)
-            verificationAmountOutside.value = value
-        })
+    let updateInterval = document.getElementById('updateInterval')
+    Homey.get('updateInterval', function (err, value) {
+      if (err) return Homey.alert(err)
+      updateInterval.value = value
+    })
 
-        let verificationAmountInside = document.getElementById('verificationAmountInside')
-        Homey.get('verificationAmountInside', function (err, value) {
-            if (err) return Homey.alert(err)
-            verificationAmountInside.value = value
-        })
+    let verificationAmountOutside = document.getElementById('verificationAmountOutside')
+    Homey.get('verificationAmountOutside', function (err, value) {
+      if (err) return Homey.alert(err)
+      verificationAmountOutside.value = value
+    })
 
-        saveElement.addEventListener('click', function () {
-            Homey.set('useTimeout', useTimeout.checked, function (err) {
-                if (err) return Homey.alert(err)
-            })
-            Homey.set('timeout', timeout.value, function (err) {
-                if (err) return Homey.alert(err)
-            })
-            Homey.set('updateInterval', updateInterval.value, function (err) {
-                if (err) return Homey.alert(err)
-            })
-            Homey.set('verificationAmountOutside', verificationAmountOutside.value, function (err) {
-                if (err) return Homey.alert(err)
-            })
-            Homey.set('verificationAmountInside', verificationAmountInside.value, function (err) {
-                if (err) return Homey.alert(err)
-            })
+    let verificationAmountInside = document.getElementById('verificationAmountInside')
+    Homey.get('verificationAmountInside', function (err, value) {
+      if (err) return Homey.alert(err)
+      verificationAmountInside.value = value
+    })
 
-            Homey.alert(__('settings.success'))
-        })
-    }
+    saveElement.addEventListener('click', function () {
+      Homey.set('ignoreAddressType', ignoreAddressType.checked, function (err) {
+          if (err) return Homey.alert(err)
+      })
+      Homey.set('useTimeout', useTimeout.checked, function (err) {
+          if (err) return Homey.alert(err)
+      })
+      Homey.set('timeout', timeout.value, function (err) {
+        if (err) return Homey.alert(err)
+      })
+      Homey.set('updateInterval', updateInterval.value, function (err) {
+        if (err) return Homey.alert(err)
+      })
+      Homey.set('verificationAmountOutside', verificationAmountOutside.value, function (err) {
+        if (err) return Homey.alert(err)
+      })
+      Homey.set('verificationAmountInside', verificationAmountInside.value, function (err) {
+        if (err) return Homey.alert(err)
+      })
+
+      Homey.alert(__('settings.success'))
+    })
+  }
 </script>
 
 </body>

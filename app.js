@@ -11,14 +11,20 @@ class Beacon extends Homey.App {
      */
     async onInit() {
 
+        this._log = [];
+
         console.log('Successfully init Beacon app version: %s', this.manifest.version);
 
-        if (!this.homey.settings.get('timeout')) {
-            this.homey.settings.set('timeout', 10)
+        if (!this.homey.settings.get('ignoreAddressType')) {
+            this.homey.settings.set('ignoreAddressType', true)
         }
 
         if (!this.homey.settings.get('updateInterval')) {
             this.homey.settings.set('updateInterval', 10)
+        }
+
+        if (!this.homey.settings.get('timeout')) {
+            this.homey.settings.set('timeout', 30)
         }
 
         if (!this.homey.settings.get('verificationAmountInside')) {
@@ -48,9 +54,6 @@ class Beacon extends Homey.App {
             return args.device.getCapabilityValue("detect");
         });
 
-        this._advertisements = [];
-        this._log = '';
-
         this.homey.flow.getActionCard('update_beacon_presence')
             .registerRunListener(async () => {
                 return Promise.resolve(await this.scanning())
@@ -69,23 +72,23 @@ class Beacon extends Homey.App {
         })
     }
 
-    /**
-     * @param message
-     */
-    //log(message) {
-    //    const logMessage = this._getDateTime(new Date()) + ' ' + message;
-    //    this._log += logMessage;
-    //    console.log(logMessage);
-    //}
+    log(message) {
+        const logMessage = this._getDateTime(new Date()) + ' ' + message;
+        console.log(logMessage);
+        this._log.push(logMessage);
+
+        // limit log
+        if (this._log.length > 100) {
+            this._log.length = 101;
+        }
+    }
 
     sendLog() {
         if (this.logTrigger) {
             this.logTrigger.trigger({
-                'log': this._log
+                'log': this._log.join('')
             })
         }
-
-        this._log = '';
     }
 
     /**
@@ -142,9 +145,11 @@ class Beacon extends Homey.App {
 
         try {
             let updateDevicesTime = new Date()
-            const advertisements = await this._discoverAdvertisements(this.homey.settings.get('timeout') * 1000)
+            const advertisements = await this.homey.ble.discover([], this.homey.settings.get('timeout') * 1000);
             if (advertisements.length !== 0) {
                 this.homey.emit('update.beacon.status', advertisements)
+            } else {
+                this.log('No advertisements given');
             }
             this.log('All devices are synced complete in: ' + (new Date() - updateDevicesTime) / 1000 + ' seconds')
 
@@ -162,25 +167,6 @@ class Beacon extends Homey.App {
 
             return false
         }
-    }
-
-    /**
-     * discover beacons
-     *
-     * @returns {Promise.<BeaconDevice[]>}
-     */
-    async _discoverAdvertisements(timeout = 10000) {
-        console.log('_discoverAdvertisements');
-        return this.homey.ble.discover([], timeout)
-            .then(advertisements => {
-                this._advertisements = [];
-                advertisements.forEach(advertisement => {
-                    this._advertisements.push(advertisement);
-                });
-                
-                console.log(`return ${advertisements.length} advertisements`);
-                return advertisements;
-            });
     }
 
     _useTimeout() {

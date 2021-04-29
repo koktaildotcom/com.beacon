@@ -19,7 +19,9 @@ const BeaconDevice = require('../../lib/beacon-device.js');
 
 class EddystoneUIDDevice extends BeaconDevice {
 
-    /** @inheritdoc */
+    /**
+     * @inheritdoc
+     */
     matchAdvertisement(advertisement) {
         const devData = this.getData();
         if (advertisement.serviceData !== undefined) {
@@ -36,9 +38,11 @@ class EddystoneUIDDevice extends BeaconDevice {
             }
         }
         return false;
-    }    
+    }
 
-    /** @inheritdoc */
+    /**
+     * @inheritdoc
+     */
     parseAdvertisement(advertisement) {
         let beaconAdv = super.parseAdvertisement(advertisement);
 

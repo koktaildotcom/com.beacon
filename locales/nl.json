@@ -10,7 +10,12 @@
 			"label" : "Aantal keer verifiëren buiten bereik (initieel 5)",
 			"info" : "Aantal keer dat de app gaat verifiëren of het baken buiten bereik is."
 		},
-		"update" : "Update instellingen",
+		"ignoreAddressType": {
+		  "title": "Ontdek strategie",
+		  "note": "Een niet statisch adres kan variëren en is onbetrouwbaar als identificatie middel.",
+		  "label": "Niet statische adressen toch weergeven"
+		},
+	 	"update" : "Update instellingen",
 		"interval" : {
 			"use" : "Zet de automatische update aan",
 			"label" : "De interval tussen updates in seconden (initieel 10)",

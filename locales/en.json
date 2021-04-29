@@ -10,6 +10,11 @@
 			"label" : "Verification amount outside range (default 5)",
 			"info" : "The amount of verifications the app need to mark a beacon outside the range."
 		},
+		"ignoreAddressType": {
+		  "title": "Discovery strategy",
+		  "note": "A non-static address can vary and is unreliable as a identification mechanism.",
+		  "label": "Display static addresses anyway"
+		},
 		"update" : "Update settings",
 		"interval" : {
 			"use" : "Enable the automatic update",

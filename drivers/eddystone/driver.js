@@ -20,7 +20,7 @@ const BeaconDriver = require('../../lib/beacon-driver.js');
 class EddystoneDriver extends BeaconDriver {
 
     /** @inheritdoc */
-    isMyAdvertisement(advertisement) {
+    supports(advertisement) {
         if (advertisement.serviceData !== undefined) {
             for (const serviceDatum of advertisement.serviceData) {
                 // 0xFEAA is the 16 bit UUID data type of the Eddystone Service
@@ -68,7 +68,6 @@ class EddystoneDriver extends BeaconDriver {
         }
         return metadata;
     }
-    
 }
 
 module.exports = EddystoneDriver;

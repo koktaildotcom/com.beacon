@@ -1,8 +1,8 @@
 {
   "id": "beacon",
   "name": {
-    "en": "beacon",
-    "nl": "beacon"
+    "en": "Beacon",
+    "nl": "Beacon"
   },
   "class": "sensor",
   "capabilities": [
