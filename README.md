@@ -145,7 +145,7 @@ An overview of all the trigger cards that can be used
 ### v1.2.10 - 04.03.2020
   * make automatic detection optional
   * add flow card for update beacon presence
-### v1.3.0 - 29.04.2021
+### v1.3.0 - 29.05.2021
   * add support for ibeacon and eddystone beacons
   * prevent memory leak in log
   * ignore non-static address by default
