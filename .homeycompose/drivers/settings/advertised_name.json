@@ -1,0 +1,13 @@
+{
+  "id": "advertised_name",
+  "type": "label",
+  "label": {
+    "en": "Name",
+    "nl": "Naam"
+  },
+  "value": "-",
+  "hint": {
+    "en": "The original name of this device.",
+    "nl": "De originele naam van het apparaat"
+  }
+}

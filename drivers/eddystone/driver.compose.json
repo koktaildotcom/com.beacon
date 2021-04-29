@@ -1,0 +1,46 @@
+{
+  "id": "eddystone",
+  "name": {
+    "en": "Eddystone UID",
+    "nl": "Eddystone UID"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "detect",
+    "signal_strength",
+    "homey_distance"
+  ],
+  "images": {
+    "small": "drivers/eddystone/assets/images/small.png",
+    "large": "drivers/eddystone/assets/images/large.png"
+  },
+  "pair": [
+    {
+      "id": "list_devices",
+      "template": "list_devices",
+      "navigation": {
+        "next": "add"
+      }
+    },
+    {
+      "id": "add",
+      "template": "add_devices"
+    }
+  ],
+  "repair": [
+    {
+      "id": "repair_device",
+      "$template": "repair_device",
+      "navigation": {
+        "next": "repair_device_done"
+      }
+    },
+    {
+      "id": "repair_device_done",
+      "$template": "repair_device_done",
+      "navigation": {
+        "next": "repair_device_done"
+      }
+    }
+  ]
+}

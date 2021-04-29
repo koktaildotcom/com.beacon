@@ -1,0 +1,45 @@
+{
+  "id": "com.koktail.beacon",
+  "version": "1.3.0",
+  "compatibility": ">=5.0.0",
+  "sdk": 3,
+  "brandColor": "#11437c",
+  "homeyCommunityTopicId": 3550,
+  "name": {
+	"en": "Beacon",
+	"nl": "Beacon"
+  },
+  "description": {
+	"en": "Detect your presence with BLE beacons",
+	"nl": "Detecteer uw aanwezigheid met BLE beacons"
+  },
+  "category": [
+    "localization"
+  ],
+  "permissions": [
+    "homey:wireless:ble"
+  ],
+  "images": {
+    "large": "/assets/images/large.png",
+    "small": "/assets/images/small.png"
+  },
+  "author": {
+    "name": "Leendert De Kok",
+    "email": "koktaildotcom@hotmail.com"
+  },
+  "contributors": {
+    "developers": [
+      {
+        "name": "Piero Freguia",
+        "email": "pfreguia@tiscali.it"
+      }
+    ]
+  },
+  "contributing": {
+    "donate": {
+      "paypal": {
+        "username": "koktaildotcom"
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+    <script type="text/javascript">
+
+        Homey.setTitle(Homey.__('repair.title'));
+
+        Homey.emit('query_curr_device', {}).then (function (result) {
+            const frameDetail = "namespace: " + result.deviceData.namespace +
+                " instance: " + result.deviceData.instance;
+            $('#deviceName').css("font-weight", "Bold");
+            $('#deviceName').html(result.deviceName);
+            $('#typeName').css("font-weight", "Bold");
+            $('#typeName').html("Eddystone UID");
+            $('#frameDetail').css("font-weight", "Bold");
+            $('#frameDetail').html(frameDetail);
+            $('#common').show();
+        });
+
+    </script>
+
+</head>
+
+<body>
+    <div id="common" hidden>
+        <p data-i18n="repair.prologue"></p>
+        <ul>
+            <li data-i18n="repair.reason1"></li>
+            <li data-i18n="repair.reason2"></li>
+            <li data-i18n="repair.reason3"></li>
+        </ul>
+        <p data-i18n="repair.instructions"></p>
+        <ol>
+            <li data-i18n="repair.step1"></li>
+            <li data-i18n="repair.step2"></li>
+            <li data-i18n="repair.step3"></li>
+        </ol>
+    </div>
+</body>
+</html>

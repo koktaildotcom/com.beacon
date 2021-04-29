@@ -1,12 +1,13 @@
 {
   "id": "beacon",
   "name": {
-    "en": "beacon",
-    "nl": "beacon"
+    "en": "Beacon",
+    "nl": "Beacon"
   },
   "class": "sensor",
   "capabilities": [
-    "detect"
+    "detect",
+    "signal_strength"
   ],
   "images": {
     "small": "drivers/beacon/assets/images/small.png",
@@ -24,23 +25,5 @@
       "id": "add",
       "template": "add_devices"
     }
-  ],
-  "mobile": {
-    "components": [
-      {
-        "id": "icon"
-      },
-      {
-        "id": "sensor",
-        "capabilities": [
-          "detect"
-        ],
-        "options": {
-          "icons": {
-            "detect": "./drivers/beacon/assets/detect.svg"
-          }
-        }
-      }
-    ]
-  }
+  ]
 }

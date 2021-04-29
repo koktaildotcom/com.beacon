@@ -31,7 +31,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "driver_id=beacon"
+      "filter": "driver_id=beacon|ibeacon|eddystone"
     }
   ]
 }

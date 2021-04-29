@@ -1,0 +1,6 @@
+{
+  "extends": "athom",
+  "rules": {
+    "no-console": "off"
+  }
+}

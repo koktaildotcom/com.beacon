@@ -1,0 +1,22 @@
+{
+  "name": "com.koktail.beacon",
+  "version": "1.0.0",
+  "description": "Detect presence with beacons",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/koktaildotcom/com.koktail.beacon.git"
+  },
+  "author": "Leendert de Kok",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/koktaildotcom/com.koktail.beacon/issues"
+  },
+  "homepage": "https://github.com/koktaildotcom/com.koktail.beacon#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^7.8.1",
+    "eslint-config-athom": "^2.1.0",
+    "homey": "^2.17.2"
+  }
+}

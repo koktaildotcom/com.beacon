@@ -3,9 +3,18 @@
   "type": "boolean",
   "icon": "assets/detect.svg",
   "title": {
-    "en": "Detected",
-    "nl": "Gedetecteerd"
+	"en": "Detected",
+	"nl": "Gedetecteerd"
   },
   "getable": true,
-  "setable": true
+  "setable": true,
+  "insights": true,
+  "insightsTitleTrue": {
+    "en": "Inside range",
+    "nl": "Binnen bereik"
+  },
+  "insightsTitleFalse": {
+    "en": "Outside range",
+    "nl": "Buiten bereik"
+  }
 }

@@ -1,0 +1,55 @@
+[
+  {
+    "type": "group",
+    "label": {
+      "en": "Info",
+      "nl": "Informatie"
+    },
+    "children": [
+      {
+        "$extends": "address",
+        "id": "address"
+      },
+      {
+        "$extends": "advertised_name",
+        "id": "advertised_name"
+      },
+      {
+        "$extends": "model",
+        "id": "model"
+      },
+      {
+        "$extends": "manufacturer",
+        "id": "manufacturer"
+      },
+      {
+        "type": "group",
+        "label": {"en": "Eddystone UID"},
+        "children": [
+          {
+            "id": "namespace",
+            "type": "label",
+            "label": {
+              "en": "Namespace"
+            },
+            "value": "-",
+            "hint": {
+              "en": "10-byte namespace ID"
+            }
+          },
+          {
+            "id": "instance",
+            "type": "label",
+            "label": {
+              "en": "Instance"
+            },
+            "value": "-",
+            "hint": {
+              "en": "6-byte instance ID"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

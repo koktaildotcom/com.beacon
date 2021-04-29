@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+    <script type="text/javascript">
+
+        Homey.showLoadingOverlay();
+
+        Homey.emit('discover_and_refresh', {})
+            .then (function (result) {
+                Homey.hideLoadingOverlay();
+                if (result == 'refreshed') {
+                    $('#refreshed').show();
+                    Homey.setNavigationClose();
+                }
+                else if (result == 'nothing_to_be_refreshed') {
+                    $('#nothing_to_be_refreshed').show();
+                    Homey.setNavigationClose();
+                }  
+                else if (result == 'not_discovered') {
+                    $('#not_discovered').show();
+                }
+                else {
+                    // Remote error
+                    $('#errorStr').html(result);
+                    $('#error_occurred').show();
+                    Homey.setNavigationClose();
+                }
+            })
+            .catch(error => {
+                // Local error
+                $('#errorStr').html(error);
+                $('#error_occurred').show();
+                Homey.setNavigationClose();
+            });
+
+    </script>
+
+</head>
+
+<body>
+    <div id="refreshed" hidden>
+        <span data-i18n="repair.refreshed">Device properties successfully refreshed with the values of the new beacon.</span>
+    </div>
+    <div id="nothing_to_be_refreshed" hidden>
+        <span data-i18n="repair.nothing_to_be_refreshed">Procedure successfully completed. No properties to be refreshed (it seems that the beacon hasn't been replaced).</span>
+    </div>
+    <div id="not_discovered" hidden>
+        <span data-i18n="repair.not_discovered">The new beacon has not been discovered.\nMake sure that the beacon is within the range of Homey and that the new new beacon is configured with the correct values.</span>
+    </div>
+    <div id="error_occurred" hidden>
+        <span data-i18n="repair.error_occurred">The following error has occurred: <span id='errorStr'></span></span>
+    </div>
+</body>
+</html>

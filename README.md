@@ -19,8 +19,8 @@ Here is a list of used devices
 
 |Beacon name|Max range (through concrete)|
 | --- | --- |
-|*Tile Pro*|*8m*|
-|*Tile Mate*|*8m*|
+|*Tile Pro 2018*|*8m*|
+|*Tile Mate 2018*|*8m*|
 |*Nordic nRF51822*|*5m*|
 |*Keeper*|*8m*|
 |*iTag*|*5m*|
@@ -28,7 +28,6 @@ Here is a list of used devices
 |*Lapa*|*?m*
 
 > WARNING: The tile pro 2020 does not work because it is not publicly discoverable
-
 
 ## Usage
 1. Install app
@@ -44,7 +43,7 @@ There are some settings to improve and tweak the apps behaviour.
 The delay between reading sensor values in seconds. (default 10 seconds)
 
 #### Discovery timeout
-The amount of seconds that is given to discover the beacons. (10 seconds)
+The amount of seconds that is given to discover the beacons. (30 seconds)
 
 #### VerificationAmountInside
 The amount of verifications the app need to mark a beacon inside the range. (1 time)
@@ -55,17 +54,18 @@ The amount of verifications the app need to mark a beacon outside the range. (5 
 ## Cards
 An overview of all the trigger cards that can be used
 
-| Trigger | Name | Tokens |
-| :---: | :---: | :---: |
-| Global | A beacon detected state is changed | (beacon name, detected) |
-| Global | A beacon is inside range | (beacon name) |
-| Global | A beacon is outside range | (beacon name) |
-| Global | A beacon has been discovered | (beacon name, uuid) |
-| Global | Update beacon presence | - |
-| Device | The beacon detected state is changed | (beacon name, detected) |
-| Device | The beacon is inside range | beacon name |
-| Device | The beacon is outside range | beacon name |
-| Global | The app generates a log | (log) |
+| Type | Context | Name | Tokens |
+| :---: | :---: | :---: | :---: |
+| Trigger | Global | A beacon detected state is changed | (beacon name, detected) |
+| Trigger | Global | A beacon is inside range | (beacon name) |
+| Trigger | Global | A beacon is outside range | (beacon name) |
+| Trigger | Global | A beacon has been discovered | (beacon name, uuid) |
+| Trigger | Global | Update beacon presence | - |
+| Trigger | Global | The beacon detected state is changed | (beacon name, detected) |
+| Trigger | Global | The app generates a log | (log) |
+| Condition | Global | The beacon is inside range | beacon name |
+| Condition | Global | The beacon is outside range | beacon name |
+| Action | Global | Update all the beacon presence |
    
 ## History
 ### v1.0.0 - 04.10.2018
@@ -145,6 +145,11 @@ An overview of all the trigger cards that can be used
 ### v1.2.10 - 04.03.2020
   * make automatic detection optional
   * add flow card for update beacon presence
-  
+### v1.3.0 - 29.04.2021
+  * add support for ibeacon and eddystone beacons
+  * prevent memory leak in log
+  * ignore non-static address by default
+  * deprecate the log trigger
+ 
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/com.koktail.beacon

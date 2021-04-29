@@ -1,0 +1,13 @@
+{
+  "uiComponent": "sensor",
+  "type": "number",
+  "units": "m",
+  "decimals": 0,
+  "icon": "assets/homey_distance.svg",
+  "title": {
+    "en": "Estimated distance from Homey",
+    "nl": "Geschatte afstand vanaf Homey"
+  },
+  "getable": true,
+  "setable": true
+}

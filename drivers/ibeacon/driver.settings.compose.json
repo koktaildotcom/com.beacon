@@ -1,0 +1,66 @@
+  [
+    {
+      "type": "group",
+      "label": {
+        "en": "Info",
+        "nl": "Informatie"
+      },
+      "children": [
+        {
+          "$extends": "address",
+          "id": "address"
+        },
+        {
+          "$extends": "advertised_name",
+          "id": "advertised_name"
+        },
+        {
+          "$extends": "model",
+          "id": "model"
+        },
+        {
+          "$extends": "manufacturer",
+          "id": "manufacturer"
+        },
+        {
+          "type": "group",
+          "label": {"en": "iBeacon"},
+          "children": [
+            {
+              "id": "uuid",
+              "type": "label",
+              "label": {
+                "en": "UUID"
+              },
+              "value": "-",
+              "hint": {
+                "en": "Universal unique identifier (UUID), 16 byes represented as a 36-chars string"
+              }
+            },
+            {
+              "id": "major",
+              "type": "label",
+              "label": {
+                "en": "Major"
+              },
+              "value": "-",
+              "hint": {
+                "en": "Major number that ranges from 0 to 65535"
+              }
+            },
+            {
+              "id": "minor",
+              "type": "label",
+              "label": {
+                "en": "Minor"
+              },
+              "value": "-",
+              "hint": {
+                "en": "Minor number that ranges from 0 to 65535"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
