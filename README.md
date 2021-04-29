@@ -19,8 +19,8 @@ Here is a list of used devices
 
 |Beacon name|Max range (through concrete)|
 | --- | --- |
-|*Tile Pro*|*8m*|
-|*Tile Mate*|*8m*|
+|*Tile Pro 2018*|*8m*|
+|*Tile Mate 2018*|*8m*|
 |*Nordic nRF51822*|*5m*|
 |*Keeper*|*8m*|
 |*iTag*|*5m*|
