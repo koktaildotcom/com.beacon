@@ -28,7 +28,7 @@
 		"save" : {
 			"label" : "Save"
 		},
-		"success" : "The settings has been saved"
+		"success" : "The settings have been saved"
 	},
 	"outside_range": "The beacon is outside range",
 	"repair": {
