@@ -9,7 +9,7 @@ If the beacon is not found within the new "discovered list" the beacon is change
 For filtering out false positives there is a verification amount inside or outside the range available in the settings.
 This setting is the amount of times the beacon needs to be changed before it wil marked as such. The amount will be reset if the beacon is not in that current state.
 
-Do you like the app? You can make me happy by buying me a beer! [![](https://img.shields.io/badge/paypal-donate-green.svg)](https://www.paypal.me/koktaildotcom)
+Do you like the app? [Donate me a beer!](https://www.paypal.me/koktaildotcom)
 
 ## Supported devices:
 * Generic BLE beacon (every BLE device that is public discoverable)
