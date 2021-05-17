@@ -4,7 +4,7 @@ const Homey = require('homey');
 
 class Beacon extends Homey.App {
 
-    isPairing = false;
+    pairing = false;
 
     /**
      * on init the app
@@ -136,7 +136,7 @@ class Beacon extends Homey.App {
      */
     async scanning() {
         console.log('start scanning')
-        if (this._useTimeout() && this.isPairing) {
+        if (this._useTimeout() && this.pairing) {
             console.log('stop scanning for now, try to pair')
             this._setNewTimeout();
 
