@@ -145,11 +145,15 @@ An overview of all the trigger cards that can be used
 ### v1.2.10 - 04.03.2020
   * make automatic detection optional
   * add flow card for update beacon presence
-### v1.3.0 - 29.05.2021
+### v1.3.0 - 09.05.2021
   * add support for ibeacon and eddystone beacons
   * prevent memory leak in log
   * ignore non-static address by default
   * deprecate the log trigger
+### v1.3.1 - 17.05.2021
+  * support for Feasycom beacon
+  * resolved bug on re-pairing procedure
+  * timeout for pairing increased to 30 seconds
  
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/com.koktail.beacon
