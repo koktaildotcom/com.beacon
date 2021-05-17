@@ -157,3 +157,5 @@ An overview of all the trigger cards that can be used
  
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/com.koktail.beacon
+
+Do you like the app? [Donate me a beer!](https://www.paypal.me/koktaildotcom)
