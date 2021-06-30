@@ -107,7 +107,7 @@
 				<label for="updateInterval" class="hy-nostyle" data-i18n="settings.interval.info"></label>
 			</td>
 			<td>
-				<input id="updateInterval" class="left" type="number" step="1" min="1"/>
+				<input id="updateInterval" class="left" type="number" step="1" min="15"/>
 			</td>
 		</tr>
 		</tbody>
@@ -121,25 +121,12 @@
 	<table class="setting-row">
 		<tbody>
 		<tr>
-			<td colspan="2">
-				<i data-i18n="settings.timeout.info" class="note"></i>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<label for="timeout" class="hy-nostyle" data-i18n="settings.timeout.label"></label>
-			</td>
-			<td>
-				<input id="timeout" class="left" type="number" step="1" min="5" max="30"/>
-			</td>
-		</tr>
-		<tr>
 			<td>
 				<label for="verificationAmountInside" class="hy-nostyle"
 					   data-i18n="settings.verification_amount_inside.label"></label>
 			</td>
 			<td>
-				<input id="verificationAmountInside" class="left" type="number" step="1" min="1" max="10"/>
+				<input id="verificationAmountInside" class="left" type="number" step="1" min="1" max="30"/>
 			</td>
 		</tr>
 		<tr>
@@ -148,7 +135,7 @@
 					   data-i18n="settings.verification_amount_outside.label"></label>
 			</td>
 			<td>
-				<input id="verificationAmountOutside" class="left" type="number" step="1" min="1" max="10"/>
+				<input id="verificationAmountOutside" class="left" type="number" step="1" min="1" max="30"/>
 			</td>
 		</tr>
 		</tbody>
@@ -188,12 +175,6 @@
       }
     })
 
-    let timeout = document.getElementById('timeout')
-    Homey.get('timeout', function (err, value) {
-      if (err) return Homey.alert(err)
-      timeout.value = value
-    })
-
     let updateInterval = document.getElementById('updateInterval')
     Homey.get('updateInterval', function (err, value) {
       if (err) return Homey.alert(err)
@@ -213,8 +194,7 @@
     })
 
     saveElement.addEventListener('click', function (event) {
-      if (!timeout.checkValidity()
-        || !updateInterval.checkValidity()
+      if (!updateInterval.checkValidity()
         || !verificationAmountOutside.checkValidity()
         || !verificationAmountInside.checkValidity()) {
         return;
@@ -223,9 +203,6 @@
         if (err) return Homey.alert(err)
       })
       Homey.set('useTimeout', useTimeout.checked, function (err) {
-        if (err) return Homey.alert(err)
-      })
-      Homey.set('timeout', timeout.value, function (err) {
         if (err) return Homey.alert(err)
       })
       Homey.set('updateInterval', updateInterval.value, function (err) {

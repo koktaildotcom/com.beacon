@@ -19,12 +19,8 @@ class Beacon extends Homey.App {
             this.homey.settings.set('ignoreAddressType', true)
         }
 
-        if (!this.homey.settings.get('updateInterval')) {
-            this.homey.settings.set('updateInterval', 10)
-        }
-
-        if (!this.homey.settings.get('timeout')) {
-            this.homey.settings.set('timeout', 30)
+        if (!this.homey.settings.get('updateInterval') || this.homey.settings.get('updateInterval') < 15) {
+            this.homey.settings.set('updateInterval', 15)
         }
 
         if (!this.homey.settings.get('verificationAmountInside')) {
@@ -34,6 +30,8 @@ class Beacon extends Homey.App {
         if (!this.homey.settings.get('verificationAmountOutside')) {
             this.homey.settings.set('verificationAmountOutside', 5)
         }
+
+        this._updateInterval = this.homey.settings.get('updateInterval');
 
         this.logTrigger = this.homey.flow.getTriggerCard('log');
 
@@ -63,11 +61,14 @@ class Beacon extends Homey.App {
             await this.scanning();
         }
 
-        this.homey.settings.on('set', function (setting) {
+        this.homey.settings.on('set', (setting) => {
             if (setting === 'useTimeout') {
                 if (this.homey.settings.get('useTimeout') !== false) {
                     this.homey.app.scanning()
                 }
+            }
+            if (setting === 'updateInterval') {
+                this._updateInterval = this.homey.settings.get('updateInterval');
             }
         })
     }
@@ -124,9 +125,8 @@ class Beacon extends Homey.App {
      * set a new timeout for synchronisation
      */
     _setNewTimeout() {
-        const seconds = this.homey.settings.get('updateInterval')
-        console.log('try to scan again in ' + seconds + ' seconds')
-        setTimeout(this.scanning.bind(this), 1000 * seconds)
+        console.log('try to scan again in ' + this._updateInterval + ' seconds')
+        setTimeout(this.scanning.bind(this), 1000 * this._updateInterval)
     }
 
     /**
@@ -145,7 +145,7 @@ class Beacon extends Homey.App {
 
         try {
             let updateDevicesTime = new Date()
-            const advertisements = await this.homey.ble.discover([], this.homey.settings.get('timeout') * 1000);
+            const advertisements = await this.homey.ble.discover();
             if (advertisements.length !== 0) {
                 this.homey.emit('update.beacon.status', advertisements)
             } else {

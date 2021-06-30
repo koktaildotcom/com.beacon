@@ -18,12 +18,8 @@
 		"update" : "Update settings",
 		"interval" : {
 			"use" : "Enable the automatic update",
-			"label" : "The interval between updates in seconds (default 10)",
+			"label" : "The interval between updates in seconds (default 15)",
 			"info" : "The delay between reading sensor values in seconds."
-		},
-		"timeout" : {
-			"label" : "Discovery timeout (default 10)",
-			"info" : "The amount of seconds that is given to discover the beacons."
 		},
 		"save" : {
 			"label" : "Save"

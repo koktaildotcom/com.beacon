@@ -36,14 +36,11 @@ Here is a list of used devices
 4. Make a flow with one of the cards.
 
 ## Settings
-There are some settings to improve and tweak the apps behaviour.
-> NOTE: Changing this settings can result into an unstable situation. 
+There are some settings to improve and tweak the app's behaviour.
+> NOTE: Changing these settings can result into an unstable situation. 
 
 #### Update settings
-The delay between reading sensor values in seconds. (default 10 seconds)
-
-#### Discovery timeout
-The amount of seconds that is given to discover the beacons. (30 seconds)
+The delay between reading sensor values in seconds. (default 15 seconds)
 
 #### VerificationAmountInside
 The amount of verifications the app need to mark a beacon inside the range. (1 time)
@@ -154,6 +151,11 @@ An overview of all the trigger cards that can be used
   * support for Feasycom beacon
   * resolved bug on re-pairing procedure
   * timeout for pairing increased to 30 seconds
+### v1.3.2 - 30.06.2021
+  * directly use settings when changed
+  * update minimal interval to 15 seconds
+  * update maximal verification to 30 seconds
+  * removed timeout config because it is deprecated from Homey 6.0.0
  
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/com.koktail.beacon
