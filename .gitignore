@@ -19,3 +19,4 @@
 
 .idea/libraries
 build/*
+node_modules
