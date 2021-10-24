@@ -156,7 +156,9 @@ An overview of all the trigger cards that can be used
   * update minimal interval to 15 seconds
   * update maximal verification to 30 seconds
   * removed timeout config because it is deprecated from Homey 6.0.0
- 
+### v1.3.3 - 24.10.2021
+* Fixed bug: Settings cannot be saved
+
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/com.koktail.beacon
 
