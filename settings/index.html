@@ -194,11 +194,6 @@
     })
 
     saveElement.addEventListener('click', function (event) {
-      if (!updateInterval.checkValidity()
-        || !verificationAmountOutside.checkValidity()
-        || !verificationAmountInside.checkValidity()) {
-        return;
-      }
       Homey.set('ignoreAddressType', ignoreAddressType.checked, function (err) {
         if (err) return Homey.alert(err)
       })
