@@ -1,11 +1,17 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.koktail.beacon",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "compatibility": ">=6.0.0",
   "sdk": 3,
   "brandColor": "#11437c",
   "homeyCommunityTopicId": 3550,
+  "platforms": [
+    "local"
+  ],
+  "connectivity": [
+    "ble"
+  ],
   "name": {
     "en": "Beacon",
     "nl": "Beacon"
@@ -24,6 +30,7 @@
     "large": "/assets/images/large.png",
     "small": "/assets/images/small.png"
   },
+  "support": "https://community.athom.com/t/beacon-an-app-for-presence-detection-using-ble-beacons/3550",
   "author": {
     "name": "Leendert De Kok",
     "email": "koktaildotcom@hotmail.com"
@@ -272,6 +279,12 @@
         "detect",
         "signal_strength"
       ],
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "ble"
+      ],
       "images": {
         "small": "drivers/beacon/assets/images/small.png",
         "large": "drivers/beacon/assets/images/large.png"
@@ -364,6 +377,12 @@
         "detect",
         "signal_strength",
         "homey_distance"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "ble"
       ],
       "images": {
         "small": "drivers/eddystone/assets/images/small.png",
@@ -501,6 +520,12 @@
         "detect",
         "signal_strength",
         "homey_distance"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "ble"
       ],
       "images": {
         "small": "drivers/ibeacon/assets/images/small.png",

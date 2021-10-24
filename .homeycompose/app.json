@@ -1,17 +1,23 @@
 {
   "id": "com.koktail.beacon",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "compatibility": ">=6.0.0",
   "sdk": 3,
   "brandColor": "#11437c",
   "homeyCommunityTopicId": 3550,
+  "platforms": [
+    "local"
+  ],
+  "connectivity": [
+    "ble"
+  ],
   "name": {
-	"en": "Beacon",
-	"nl": "Beacon"
+    "en": "Beacon",
+    "nl": "Beacon"
   },
   "description": {
-	"en": "Detect your presence with BLE beacons",
-	"nl": "Detecteer uw aanwezigheid met BLE beacons"
+    "en": "Detect your presence with BLE beacons",
+    "nl": "Detecteer uw aanwezigheid met BLE beacons"
   },
   "category": [
     "localization"
@@ -23,6 +29,7 @@
     "large": "/assets/images/large.png",
     "small": "/assets/images/small.png"
   },
+  "support": "https://community.athom.com/t/beacon-an-app-for-presence-detection-using-ble-beacons/3550",
   "author": {
     "name": "Leendert De Kok",
     "email": "koktaildotcom@hotmail.com"

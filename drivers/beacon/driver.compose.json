@@ -9,6 +9,12 @@
     "detect",
     "signal_strength"
   ],
+  "platforms": [
+    "local"
+  ],
+  "connectivity": [
+    "ble"
+  ],
   "images": {
     "small": "drivers/beacon/assets/images/small.png",
     "large": "drivers/beacon/assets/images/large.png"

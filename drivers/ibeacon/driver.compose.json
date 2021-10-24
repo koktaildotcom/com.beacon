@@ -10,6 +10,12 @@
     "signal_strength",
     "homey_distance"
   ],
+  "platforms": [
+    "local"
+  ],
+  "connectivity": [
+    "ble"
+  ],
   "images": {
     "small": "drivers/ibeacon/assets/images/small.png",
     "large": "drivers/ibeacon/assets/images/large.png"
