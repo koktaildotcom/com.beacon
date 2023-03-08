@@ -159,7 +159,11 @@ An overview of all the trigger cards that can be used
   * update maximal verification to 30 seconds
   * removed timeout config because it is deprecated from Homey 6.0.0
 ### v1.3.3 - 24.10.2021
-* Fixed bug: Settings cannot be saved
+  * Fixed bug: Settings cannot be saved
+### v1.3.4 - 24.10.2021
+  * Removed unusefull silent setting validation
+### v1.3.5 - 08.03.2023
+  * Add Homey 2023 support
 
 ## Final note ##
 The repository is available at: https://github.com/koktaildotcom/com.koktail.beacon
