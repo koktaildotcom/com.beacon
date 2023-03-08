@@ -20,3 +20,7 @@
 .idea/libraries
 build/*
 node_modules
+
+
+# Added by Homey CLI
+/.homeybuild/

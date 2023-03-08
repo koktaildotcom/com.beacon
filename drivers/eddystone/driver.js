@@ -26,14 +26,14 @@ class EddystoneDriver extends BeaconDriver {
                 // 0xFEAA is the 16 bit UUID data type of the Eddystone Service
                 // UUID.
                 // Reference: https://github.com/google/eddystone/blob/master/protocol-specification.md
-                if (serviceDatum.uuid == 'feaa') {
+                if (serviceDatum.uuid === 'feaa') {
                     // The specific type of Eddystone frame is encoded in the
                     // high order four bits of the first octet in the Service
                     // Data associated with the Service UUID (the four low
                     // order bits have a fixed value of 0000). The value 0x00
                     // indicates the Eddystone UID frame; the value 0x30
                     // indicates the Eddystone EID frame.
-                    if (serviceDatum.data[0] == 0x00) {
+                    if (serviceDatum.data[0] === 0x00) {
                         return true;
                     }
                 }
@@ -47,8 +47,8 @@ class EddystoneDriver extends BeaconDriver {
         let metadata = super.extractMetadata(advertisement);
         if (advertisement.serviceData !== undefined) {
             for (const serviceDatum of advertisement.serviceData) {
-                if (serviceDatum.uuid == 'feaa') {
-                    if (serviceDatum.data[0] == 0x00) {
+                if (serviceDatum.uuid === 'feaa') {
+                    if (serviceDatum.data[0] === 0x00) {
                         metadata.capabilities.push('homey_distance');
                         const namespaceArr = new Uint8Array(serviceDatum.data.slice(2, 12));
                         const instanceArr = new Uint8Array(serviceDatum.data.slice(12, 18));

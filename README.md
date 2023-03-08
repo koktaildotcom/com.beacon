@@ -1,5 +1,7 @@
 # Beacon
 
+![app image](assets/images/large.png)
+
 ## Introduction
 This app integrate the basic flows for BLE beacons into Homey.
 Once the app is installed it will do a discovery of BLE devices, after a short adjustable timeout it wil keep discovering.

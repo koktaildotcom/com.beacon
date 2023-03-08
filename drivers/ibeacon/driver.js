@@ -25,9 +25,9 @@ class IBeaconDriver extends BeaconDriver {
             // Field manufacturerData expected in iBeacon.
             const md = advertisement.manufacturerData;
             // manufacturerData length must be 25.
-            if (md.length == 25) {
+            if (md && md.length === 25) {
                 // The first 4 bytes identify an iBeacon.
-                if (md[0] == 76 && md[1] == 0 && md[2] == 2 && md[3] == 21) {
+                if (md[0] === 76 && md[1] === 0 && md[2] === 2 && md[3] === 21) {
                     return true;
                 }
             }
@@ -41,7 +41,7 @@ class IBeaconDriver extends BeaconDriver {
         if (advertisement.manufacturerData !== undefined) {
             // Field manufacturerData expected in iBeacon.
             const md = advertisement.manufacturerData;
-            if (md.length == 25 && md[0] == 76 && md[1] == 0 && md[2] == 2 && md[3] == 21) {
+            if (md.length === 25 && md[0] === 76 && md[1] === 0 && md[2] === 2 && md[3] === 21) {
                 const uuidArr = new Uint8Array(md.slice(4, 20));
                 metadata.capabilities.push('homey_distance');
                 metadata['data'] = {

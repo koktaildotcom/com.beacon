@@ -26,13 +26,13 @@ class EddystoneUIDDevice extends BeaconDevice {
         const devData = this.getData();
         if (advertisement.serviceData !== undefined) {
             for (const serviceDatum of advertisement.serviceData) {
-                if (serviceDatum.uuid == 'feaa') {
-                    if (serviceDatum.data[0] == 0x00) {
+                if (serviceDatum.uuid === 'feaa') {
+                    if (serviceDatum.data[0] === 0x00) {
                         const namespaceArr = new Uint8Array(serviceDatum.data.slice(2, 12));
                         const instanceArr = new Uint8Array(serviceDatum.data.slice(12, 18));
                         const namespace = namespaceArr.toHexString();
                         const instance = instanceArr.toHexString();
-                        return namespace == devData.namespace && instance == devData.instance;
+                        return namespace === devData.namespace && instance === devData.instance;
                     }
                 }
             }
@@ -48,7 +48,7 @@ class EddystoneUIDDevice extends BeaconDevice {
 
         if (advertisement.serviceData !== undefined) {
             for (let serviceDatum of advertisement.serviceData) {
-                if (serviceDatum.uuid == 'feaa') {
+                if (serviceDatum.uuid === 'feaa') {
                     const calibratedPowerAt0m = serviceDatum.data[1] - 256;
                 // The calibrated power for Eddystone is the RSSI at 0 meter.
                 const ratio = advertisement.rssi / calibratedPowerAt0m;

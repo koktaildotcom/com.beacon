@@ -8,15 +8,15 @@
         Homey.emit('discover_and_refresh', {})
             .then (function (result) {
                 Homey.hideLoadingOverlay();
-                if (result == 'refreshed') {
+                if (result === 'refreshed') {
                     $('#refreshed').show();
                     Homey.setNavigationClose();
                 }
-                else if (result == 'nothing_to_be_refreshed') {
+                else if (result === 'nothing_to_be_refreshed') {
                     $('#nothing_to_be_refreshed').show();
                     Homey.setNavigationClose();
-                }  
-                else if (result == 'not_discovered') {
+                }
+                else if (result === 'not_discovered') {
                     $('#not_discovered').show();
                 }
                 else {
